@@ -1,66 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Contribution Guide
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Clone Project
+1. Open terminal or git bash on directory you would like to store the project, and command:
+   ```
+   git clone https://github.com/lafathalfath/tagrinov.git
+   ```
 
-## About Laravel
+### Start Project
+1. Copy and rename '.env.example' file ont root project to '.env', and configure your Database.
+   example:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_DATABASE=laravel
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+2. Open terminal and command:
+   - install dependencies
+   ```
+   cd tagrinov
+   ```
+   ```
+   composer install
+   ```
+   - generate app key
+   ```
+   php artisan key:generate
+   ```
+   - migrate the database
+   ```
+   php artisan migrate --seed
+   ```
+   or
+   ```
+   php artisan migrate:fresh --seed
+   ```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Push
+1. Make sure your local project is not on **master**. if it on master, change git branch:
+   ```
+   git branch -M <your-branch-name>
+   ```
+2. Stage change
+   - stage all changes
+   ```
+   git add .
+   ```
+   - stage specific file
+   ```
+   git add -p <filename>
+   ```
+3. Commit changes
+   ```
+   git commit -m '<commit message>'
+   ```
+   **Commit message:**
+     - 'CREATE: ...'
+     - 'UPDATE: ...'
+     - 'DELETE: ...'
+     - 'FIX: ...'
+4. Push changes
+   ```
+   git push -u origin <your-branch-name>
+   ```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Pull
+1. Pull project from your branch
+   ```
+   git pull
+   ```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Merge
+1. Master to your branch
+   - click pull request
+     <br/>![step1](https://github.com/user-attachments/assets/6c58ca37-852e-45ff-ab39-2dbad97344bb)
+   - click new pull request
+     ![step2](https://github.com/user-attachments/assets/a1d3deea-e483-46a0-91a1-1a2e9b1bfe7e)
+   - set base to your branch name and compare to master
+     ![step3](https://github.com/user-attachments/assets/49c43d23-e882-4051-be22-82b4cfd73613)
+   - add a title and create pull request
+     ![step4](https://github.com/user-attachments/assets/9530bfc7-2ec5-4d5c-b11c-0b36ef5831f3)
+   - merge pull request
+     ![step5](https://github.com/user-attachments/assets/541f104a-6ccf-42a3-bc9b-e7efbffde4bc)
+   - confirm merge
+     ![step6](https://github.com/user-attachments/assets/a976d97e-9d47-4486-b54a-d0012da9f690)
+2. Your branch to master
+   <br/>The steps is same as number 1 but you must set **base** to master and **compare** to your branch name
+   ![merge](https://github.com/user-attachments/assets/d871b30e-8ad5-4de9-bfee-f7acb2f52612)
+3. **Note**
+   - Merge from **master** to **your branch** if the last merge to **master** was **not** from **your branch**.
+   - You can merge from **your branch** to **master** if the last merge to **master** was from **your branch**.
