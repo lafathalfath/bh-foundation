@@ -1,14 +1,5 @@
 @php
-    // $settings = \App\Model\AppSettings::first();
-    $settings = (object) [
-        'app_name' => 'BH-Foundation',
-        'logo_url' => 'http://localhost:8000/storage/LOGO-YPB_BULAT.png',
-        'logo_banner_url' => 'http://localhost:8000/storage/LOGO-YPB_NOBG.png',
-        'primary_color' => '#C17D40',
-        'secondary_color' => '#16793C',
-        'accent_color' => '#F5C97F',
-        'info_color' => '#61CCEF'
-    ];
+    $settings = \App\Models\AppSettings::first();
 @endphp
 <!DOCTYPE html>
 <html lang="en">
