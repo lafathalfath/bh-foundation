@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 
 // public
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', function () {
     return view('public.index');
 })->name('home');
 Route::get('/about-us', [aboutController::class, 'index'])->name('about');
