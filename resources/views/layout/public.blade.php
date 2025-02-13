@@ -49,8 +49,6 @@
     <div class="pt-[70px]">
         @yield('content')
     </div>
-
-    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-10">
         <div class="container mx-auto max-w-6xl px-4 lg:px-0 grid grid-cols-1 md:grid-cols-4 gap-6">
             <!-- Logo dan Deskripsi -->
