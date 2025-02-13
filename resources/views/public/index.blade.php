@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
-</head>
-
+@extends('layout.public')
+@section('content')
 <body>
     <!-- Navbar -->
     <header class="bg-gray-100 sticky top-0">
-        <nav class="container mx-auto py-4 flex item-center">
-            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-                <a href="#" class="text-3xl font-bold">BH Foundation</a>
-                <ul class="flex space-x-6">
-                    <li><a href="#" class="px-7 py-1 text-gray-700 hover:text-blue-500">Home</a></li>
-                    <li><a href="#" class="px-7 py-1 text-gray-700 hover:text-blue-500">About</a></li>
-                    <li><a href="#" class="px-7 py-1 text-gray-700 hover:text-blue-500">News</a></li>
-                    <li><a href="#" class="px-7 py-1 text-gray-700 hover:text-blue-500">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
 
         <section class="bg-blue-500 text-white py-30">
             <div class="container mx-auto flex h-screen items-center">
@@ -47,7 +27,7 @@
             <div class="container mx-auto flex flex-col md:flex-row items-center">
                 <!-- Bagian Kiri: Gambar -->
                 <div class="w-full md:w-1/2 mb-8 md:mb-0">
-                    <img src="{{ asset('assets/theme/images/LOGO_YPB_BG.png') }}" alt="Logo"
+                    <img src="http://localhost:8000/storage/LOGO_YPB_BG.png" alt="Logo"
                         class="w-full max-w-sm mx-auto">
                 </div>
 
@@ -100,20 +80,5 @@
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-10">
-            <div class="container mx-auto text-center">
-                <h3 class="text-2xl font-bold mb-4">BH Foundation</h3>
-                <p class="text-gray-400 mb-4">Lestarikan Budaya, Lindungi Warisan.</p>
-                <div class="flex justify-center space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i> Facebook</a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i> Twitter</a>
-                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i> Instagram</a>
-                </div>
-                <p class="text-gray-500 mt-4">&copy; 2025 BH Foundation. All Rights Reserved.</p>
-            </div>
-        </footer>
 </body>
-
-</html>
+@endsection

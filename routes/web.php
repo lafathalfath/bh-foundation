@@ -17,3 +17,4 @@ Route::get('/', function () {
 Route::get('/about-us', [aboutController::class, 'index'])->name('about');
 Route::get('/our-works', function () {return 'OUR WORKS';})->name('works');
 Route::get('/ideas', function () {return 'IDEAS';})->name('ideas');
+Route::get('/contact', function () {return 'CONTACT';})->name('contact');
