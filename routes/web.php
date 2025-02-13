@@ -24,6 +24,10 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
 
 // public
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', function () {
     return view('public.index');
 })->name('home');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
