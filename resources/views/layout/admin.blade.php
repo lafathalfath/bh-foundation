@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-white text-black min-h-[100vh]">
     
 </body>
 </html>
