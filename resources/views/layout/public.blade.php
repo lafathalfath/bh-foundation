@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="{{ $settings->logo_url }}" type="image/x-icon">
     <title>Bogor Heritage Foundation</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-black min-h-[100vh]">
@@ -53,8 +54,10 @@
         <div class="container mx-auto max-w-6xl px-4 lg:px-0 grid grid-cols-1 md:grid-cols-4 gap-6">
             <!-- Logo dan Deskripsi -->
             <div class="space-y-3">
+                <div class="flex items-center space-x-3">
                 <img src="{{ $settings->logo_url }}" alt="Logo" class="w-10 mb-2">
                 <h3 class="text-white text-lg font-bold">BH Foundation</h3>
+                </div>
                 <p class="text-gray-500 text-sm">Aliquam rhoncus ligula est, non pulvinar elit convallis nec. Donec
                     mattis odio at.</p>
                 <div class="flex gap-2 mt-3">

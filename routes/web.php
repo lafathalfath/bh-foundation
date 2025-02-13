@@ -4,6 +4,7 @@ use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\public\IdeasController;
 use App\Http\Middleware\AuthenticateMiddleware;
 use App\Http\Middleware\GuestMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,5 @@ Route::get('/', function () {
 Route::get('/', [homeController::class, 'index'])->name('home');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
 Route::get('/our-works', function () {return 'OUR WORKS';})->name('works');
-Route::get('/ideas', function () {return 'IDEAS';})->name('ideas');
+Route::get('/ideas', [IdeasController::class, 'index'])->name('ideas');
 Route::get('/contact', function () {return 'CONTACT';})->name('contact');
