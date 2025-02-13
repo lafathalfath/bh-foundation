@@ -35,7 +35,7 @@
             <div class="w-10">
                 <img src="{{ $settings->logo_url }}" alt="">
             </div>
-            <div class="text-2xl pb-2 font-semibold">BH-Foundation</div>
+            <div class="text-2xl pb-2 font-semibold">{{ $settings->app_name }}</div>
         </div>
         <div class="flex w-full h-[90.5%]">
             <div class="w-2/5 bg-[{{ $settings->secondary_color }}] flex items-center justify-center">

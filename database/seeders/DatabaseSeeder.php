@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserSeeder::class,
+            AppSettingSeeder::class,
+            ProgramTypeSeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }
