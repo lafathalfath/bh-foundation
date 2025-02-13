@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('app_name');
             $table->string('logo_url');
+            $table->string('logo_banner_url');
             $table->string('primary_color');
             $table->string('secondary_color');
             $table->string('accent_color');
