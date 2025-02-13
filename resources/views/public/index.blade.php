@@ -1,9 +1,6 @@
 @extends('layout.public')
 @section('content')
-<body>
-    <!-- Navbar -->
-    <header class="bg-gray-100 sticky top-0">
-
+    <div>
         <section class="bg-blue-500 text-white py-30">
             <div class="container mx-auto flex h-screen items-center">
                 <!-- Bagian Kiri: Judul dan Teks -->
@@ -20,7 +17,6 @@
                 </div>
             </div>
         </section>
-
 
         <!-- About Us Section -->
         <section class="py-20">
@@ -46,8 +42,8 @@
         <section class="py-20 bg-gray-100">
             <div class="container mx-auto text-center">
                 <h2 class="text-3xl font-bold mb-10">Recent News</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card shadow-md">
+                <div class="p-5 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="shadow-md rounded-xl">
                         <figure>
                             <img src="https://stpbogor.ac.id/wp-content/uploads/2025/02/Desain-tanpa-judul-1024x907.png" alt="News Image" class="w-full">
                         </figure>
@@ -57,7 +53,7 @@
                             <button class="btn btn-outline btn-warning mt-4">Read More...</button>
                         </div>
                     </div>
-                    <div class="card shadow-md">
+                    <div class="shadow-md rounded-xl">
                         <figure>
                             <img src="https://stpbogor.ac.id/wp-content/uploads/2025/01/MoU-STP-Bogor-dan-Hands-to-the-Future-H2TF-e1736845670562.jpeg" alt="News Image" class="w-full">
                         </figure>
@@ -67,7 +63,7 @@
                             <button class="btn btn-outline btn-warning mt-4">Read More...</button>
                         </div>
                     </div>
-                    <div class="card shadow-md">
+                    <div class="shadow-md rounded-xl">
                         <figure>
                             <img src="https://stpbogor.ac.id/wp-content/uploads/2025/01/PPN-Batal-Naik-_-STP-Bogor-e1736413891938.jpg.webp" alt="News Image" class="w-full">
                         </figure>
@@ -80,5 +76,5 @@
                 </div>
             </div>
         </section>
-</body>
+    </div>
 @endsection

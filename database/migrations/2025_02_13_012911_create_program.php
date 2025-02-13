@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->string('image_url')->unique();
             $table->text('description')->unique();
+            $table->boolean('drafted')->default(false);
             $table->timestamps();
             
             $table->foreign('type_id')->references('id')->on('m_program_type');

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             AppSettingSeeder::class,
             ProgramTypeSeeder::class,
             CategorySeeder::class,
+            AboutPageSeeder::class,
         ]);
     }
 }
