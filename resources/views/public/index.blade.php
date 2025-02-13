@@ -4,6 +4,16 @@
     <body>
         <!-- Navbar -->
         <header class="bg-gray-100 sticky top-0">
+    <div>
+        <section class="bg-blue-500 text-white py-30">
+            <div class="container mx-auto flex h-screen items-center">
+                <!-- Bagian Kiri: Judul dan Teks -->
+                <div class="w-full md:w-1/2 pl-10">
+                    <h3 class="text-5xl text-center md:text-6xl font-bold leading-tight">Yayasan Pusaka Bogor</h3>
+                    <p class="mt-4 text-lg md:text-xl text-center">Lestarikan Budaya, Lindungi Warisan. Yayasan Pusaka
+                        Bogor menjaga
+                        dan melestarikan kekayaan budaya dan sejarah Bogor.</p>
+                </div>
 
             <!-- <section class="bg-blue-500 text-white py-30">
                                 <div class="container mx-auto flex h-screen items-center">
