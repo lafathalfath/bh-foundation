@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ProgramTypeSeeder::class,
             CategorySeeder::class,
             AboutPageSeeder::class,
+            mMemberLevelSeeder::class,
         ]);
     }
 }

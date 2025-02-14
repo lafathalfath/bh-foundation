@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->string('image_url')->unique();
             $table->text('description')->unique();
+            $table->unsignedInteger('views')->default(0);
             $table->boolean('drafted')->default(false);
             $table->timestamps();
             
