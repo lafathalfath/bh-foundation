@@ -18,12 +18,12 @@
     <div>
         <nav
             class="fixed top-0 w-full bg-white px-10 py-3 flex items-center justify-between outline outline-1 outline-gray-200">
-            <div class="flex items-center gap-3">
+            <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <img src="{{ $settings->logo_url }}" alt="" class="w-10">
                 <div class="font-semibold text-xl">
                     {{ $settings->app_name }}
                 </div>
-            </div>
+            </a>
             <div class="flex items-center justify-center gap-5">
                 <a href="{{ route('home') }}" class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
                     Home
@@ -43,7 +43,7 @@
             </div>
             <div class="flex items-center gap-3 px-3 py-1 outline outline-1 outline-gray-300">
                 <div class="text-xl">⌕</div>
-                <input type="search" class="outline-none bg-white" placeholder="Search...">
+                <input type="search" name="search" class="outline-none bg-white" placeholder="Search...">
             </div>
         </nav>
     </div>
@@ -57,7 +57,7 @@
         @endif
         @if (session('success'))
             <div class="fixed w-full p-3">
-                <div class="bg-success p-3 rounded-xl" id="success">{{ session('success') }}</div>
+                <div class="bg-success p-3 rounded-xl" id="success" onclick="hideSuccess()">{{ session('success') }}</div>
             </div>
         @endif
         
@@ -133,6 +133,16 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        const hideError = (id) => {
+            const alert = document.getElementById(`error-${id}`)
+            alert.style.display = 'none'
+        }
+        const hideSuccess = () => {
+            const alert = document.getElementById('success')
+            alert.style.display = 'none'
+        }
+    </script>
 </body>
-
 </html>

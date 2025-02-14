@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AppSettingsController;
 use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
@@ -21,6 +22,8 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
 
     Route::prefix('/admin')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('admin.app_settings.view');
+        Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('admin.app_settings.update');
     });
 });
 
