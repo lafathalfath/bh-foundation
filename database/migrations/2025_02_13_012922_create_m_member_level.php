@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member', function (Blueprint $table) {
+        Schema::create('m_member_level', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('level_id');
             $table->string('name')->unique();
-            $table->string('image_url')->unique();
-            $table->string('position');
             $table->timestamps();
-
-            $table->foreign('level_id')->references('id')->on('m_member_level');
         });
     }
 
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member');
+        Schema::dropIfExists('m_member_level');
     }
 };

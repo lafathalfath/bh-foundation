@@ -1,8 +1,8 @@
 @extends('layout.public')
 @section('content')
-<div class="flex flex-col gap-5">
+<div class="flex flex-col">
     @if ($about->is_hero_visible)
-        <section class="flex items-center justify-between h-96">
+        <section class="my-5 flex items-center justify-between h-96">
             <div class="w-1/2 h-full">
                 <div class="p-10">
                     <div class="text-5xl font-semibold">{{ $about->title }}</div><br>
@@ -32,5 +32,69 @@
             </div>
         </section>
     @endif
+
+    @if ($about->is_members_visible)
+        <section class="py-10 bg-gray-200 flex flex-col items-center gap-5">
+            <div class="text-2xl font-semibold">Level</div>
+            <div class="flex items-center justify-center gap-5">
+                <div class="w-60">
+                    <div class="w-full h-60 bg-gray-500"></div>
+                    {{-- <img src="" alt=""> --}}
+                    <div class="w-full h-20 bg-white flex flex-col items-center">
+                        <div class="w-full text-center font-semibold">Name</div>
+                        <div class="w-full text-center text-sm">Position</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if ($about->is_programs_visible)
+        @php
+            $views = strval(10000);
+            if (strlen($views) >= 4 && strlen($views) < 7) $views = substr($views, 0, strlen($views)-3)."K";
+            if (strlen($views) >= 7 && strlen($views) < 10) $views = substr($views, 0, strlen($views)-6)."M";
+            if (strlen($views) >= 10) $views = substr($views, 0, strlen($views)-9)."B";
+        @endphp
+        <section class="px-[8%] py-[5%]">
+            <div class="flex items-center justify-between mb-3">
+                <div class="font-semibold text-lg">Programs</div>
+                <div class="flex items-center gap-1">
+                    <div class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] flex items-center justify-center w-10 h-10 scale-x-[-1]">&#10140;</div>
+                    <div class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] flex items-center justify-center w-10 h-10">&#10140;</div>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-5">
+                <div class="w-[304px] outline outline-1 outline-gray-300 hover:border-b-2 border-[{{ $settings->primary_color }}] rounded shadow-lg">
+                    <div class="w-full h-[171px] bg-gray-500"></div>
+                    {{-- <img src="" alt=""> --}}
+                    <div class="w-full h-full bg-white p-2">
+                        <div class="w-full font-semibold truncate">Title</div>
+                        <div class="text-gray-400 text-sm">00/00/000</div><br>
+                        <div class="h-full flex items-end justify-between">
+                            <div class="w-2/3 flex flex-wrap items-center gap-2">
+                                <div class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] px-2 rounded-full">category</div>
+                            </div>
+                            <div class="text-center text-sm">{{ $views }} views</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if ($about->is_partners_visible)
+        <section class="mx-[8%] my-[5%] outline outline-1 outline-gray-300 h-96 flex items-center gap-10">
+            <div class="p-5 flex flex-col items-center justify-center w-1/3">
+                    <div class="w-full mb-3 text-2xl font-semibold">Title</div>
+                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta excepturi ab explicabo laboriosam pariatur perspiciatis eius mollitia quia eveniet nobis, suscipit doloremque animi at nisi quisquam, sequi in distinctio modi!</div>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2 w-2/3">
+                {{-- <img src="" alt=""> --}}
+                <div class="w-48 h-24 bg-white rounded shadow-lg outline outline-1 outline-gray-300"></div>
+            </div>
+        </section>
+    @endif
+
 </div>
 @endsection
