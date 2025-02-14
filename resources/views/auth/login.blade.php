@@ -20,6 +20,11 @@
             @endforeach
         </div>
     @endif
+    @if (session('success'))
+        <div class="fixed w-full p-3">
+            <div class="bg-success p-3 rounded-xl" id="success">{{ session('success') }}</div>
+        </div>
+    @endif
     
     <div class="h-[100vh]">
         <div class="flex items-center gap-3 py-3 px-[20%] border border-b-1 border-gray-200">
