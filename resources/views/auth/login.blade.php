@@ -22,7 +22,7 @@
     @endif
     @if (session('success'))
         <div class="fixed w-full p-3">
-            <div class="bg-success p-3 rounded-xl" id="success">{{ session('success') }}</div>
+            <div class="bg-success p-3 rounded-xl" id="success" onclick="hideSuccess()">{{ session('success') }}</div>
         </div>
     @endif
     
@@ -74,6 +74,10 @@
         }
         const hideError = (id) => {
             const alert = document.getElementById(`error-${id}`)
+            alert.style.display = 'none'
+        }
+        const hideSuccess = () => {
+            const alert = document.getElementById('success')
             alert.style.display = 'none'
         }
     </script>

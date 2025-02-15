@@ -17,15 +17,15 @@
 
 <body class="bg-white text-black min-h-[100vh]">
     <div>
-        <nav
-            class="fixed top-0 w-full bg-white px-5 py-3 flex items-center justify-between outline outline-1 outline-gray-200 z-50">
+        <nav class="fixed top-0 w-full bg-white px-5 py-3 flex items-center justify-between outline outline-1 outline-gray-200 z-50">
             <!-- Logo dan Nama Aplikasi -->
-            <div class="flex items-center gap-3">
+            class="fixed top-0 w-full bg-white px-10 py-3 flex items-center justify-between outline outline-1 outline-gray-200">
+            <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <img src="{{ $settings->logo_url }}" alt="" class="w-10">
                 <div class="font-semibold text-xl">
                     {{ $settings->app_name }}
                 </div>
-            </div>
+            </a>
 
             <!-- Hamburger Menu (Mobile) -->
             <button id="menu-toggle" class="block md:hidden focus:outline-none text-2xl">
@@ -34,8 +34,7 @@
 
             <!-- Link Navigasi -->
             <div id="menu" class="hidden md:flex items-center gap-5">
-                <a href="{{ route('home') }}"
-                    class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
+                <a href="{{ route('home') }}" class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
                     Home
                 </a>
                 <a href="{{ route('about') }}"
@@ -68,7 +67,7 @@
             <!-- Search Box -->
             <div class="hidden md:flex items-center gap-3 px-3 py-1 outline outline-1 outline-gray-300">
                 <div class="text-xl">⌕</div>
-                <input type="search" class="outline-none bg-white" placeholder="Search...">
+                <input type="search" name="search" class="outline-none bg-white" placeholder="Search...">
             </div>
         </nav>
 
@@ -111,7 +110,7 @@
         @endif
         @if (session('success'))
             <div class="fixed w-full p-3">
-                <div class="bg-success p-3 rounded-xl" id="success">{{ session('success') }}</div>
+                <div class="bg-success p-3 rounded-xl" id="success" onclick="hideSuccess()">{{ session('success') }}</div>
             </div>
         @endif
         
@@ -188,6 +187,7 @@
             </div>
         </div>
     </footer>
+    
     <script>
         // JavaScript untuk Toggle Menu
         const menuToggle = document.getElementById('menu-toggle');
@@ -196,7 +196,15 @@
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+        
+        const hideError = (id) => {
+            const alert = document.getElementById(`error-${id}`)
+            alert.style.display = 'none'
+        }
+        const hideSuccess = () => {
+            const alert = document.getElementById('success')
+            alert.style.display = 'none'
+        }
     </script>
 </body>
-
 </html>
