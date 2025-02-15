@@ -3,7 +3,7 @@
 ### Clone Project
 1. Open terminal or git bash on directory you would like to store the project, and command:
    ```
-   git clone https://github.com/lafathalfath/tagrinov.git
+   git clone https://github.com/lafathalfath/bh-foundation.git
    ```
 
 ### Start Project
@@ -20,7 +20,7 @@
 2. Open terminal and command:
    - install dependencies
    ```
-   cd tagrinov
+   cd bh-foundation
    ```
    ```
    composer install
