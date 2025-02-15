@@ -39,7 +39,7 @@
    ```
 
 ### Push
-1. Make sure your local project is not on **master**. if it on master, change git branch:
+1. Make sure your branch is not on **master**. if it on master, change git branch:
    ```
    git branch -M <your-branch-name>
    ```
@@ -48,7 +48,7 @@
    ```
    git add .
    ```
-   - stage specific file
+   - **or** stage specific file
    ```
    git add -p <filename>
    ```
