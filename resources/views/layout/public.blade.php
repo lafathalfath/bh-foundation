@@ -19,7 +19,6 @@
     <div>
         <nav class="fixed top-0 w-full bg-white px-5 py-3 flex items-center justify-between outline outline-1 outline-gray-200 z-50">
             <!-- Logo dan Nama Aplikasi -->
-            class="fixed top-0 w-full bg-white px-10 py-3 flex items-center justify-between outline outline-1 outline-gray-200">
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <img src="{{ $settings->logo_url }}" alt="" class="w-10">
                 <div class="font-semibold text-xl">
