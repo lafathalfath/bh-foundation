@@ -33,8 +33,8 @@
                         Manage
                     </button>
                     <div style="display: {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? 'block' : 'none' }};" id="sub-manage">
-                        <a href="">
-                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                        <a href="{{ route('manage.page.front_page') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.page.front_page') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                                 Front Page
                             </div>
                         </a>
@@ -53,8 +53,8 @@
                                 Ideas
                             </div>
                         </a>
-                        <a href="">
-                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                        <a href="{{ route('manage.page.contact') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.page.contact') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                                 Contact
                             </div>
                         </a>
