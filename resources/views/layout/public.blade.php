@@ -102,6 +102,19 @@
         </div>
     </div>
     <div class="pt-[70px]">
+        @if ($errors->any())
+            <div class="fixed w-full p-3">
+                @foreach ($errors->all() as $key=>$err)
+                    <div class="bg-error p-3 rounded-xl" id="error-{{ $key }}" onclick="hideError({{ $key }})">{{ $err }}</div>
+                @endforeach
+            </div>
+        @endif
+        @if (session('success'))
+            <div class="fixed w-full p-3">
+                <div class="bg-success p-3 rounded-xl" id="success">{{ session('success') }}</div>
+            </div>
+        @endif
+        
         @yield('content')
     </div>
     <footer class="bg-gray-900 text-gray-400 py-10">
