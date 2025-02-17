@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AppSettingsController;
+use App\Http\Controllers\admin\FrontPageController;
 use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
@@ -32,6 +33,7 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
         });
         Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
         Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
+        Route::get('/front-page', [FrontPageController::class, 'index'])->name('manage.front_page.view');
     });
 });
 
