@@ -1,22 +1,22 @@
 @extends('layout.public')
 @section('content')
     <div>
-        <section class="bg-[{{ $settings->info_color }}] text-white py-30">
-            <div class="container mx-auto flex h-screen items-center">
-                <!-- Bagian Kiri: Judul dan Teks -->
-                <div class="w-full md:w-1/2 pl-10">
-                    <h3 class="text-5xl text-center md:text-6xl font-bold leading-tight">Yayasan Pusaka Bogor</h3>
-                    <p class="mt-4 text-lg md:text-xl text-center">Lestarikan Budaya, Lindungi Warisan. Yayasan Pusaka
-                        Bogor menjaga
-                        dan melestarikan kekayaan budaya dan sejarah Bogor.</p>
-                </div>
+        @if ($front_page->is_hero_visible)
+            <section class="bg-[{{ $front_page->hero_bg_color }}] text-white py-30">
+                <div class="container mx-auto flex h-screen items-center">
+                    <!-- Bagian Kiri: Judul dan Teks -->
+                    <div class="w-full md:w-1/2 pl-10">
+                        <h3 class="text-5xl text-center md:text-6xl font-bold leading-tight">{{ $front_page->hero_title }}</h3>
+                        <p class="mt-4 text-lg md:text-xl text-center">{{ $front_page->hero_description }}.</p>
+                    </div>
 
-                <div class="md:block md:w-1/2 flex justify-end pr-40">
-                    <img src="https://stpbogor.ac.id/wp-content/uploads/2024/08/Dionisius.jpg.webp" alt="Gambar Yayasan"
-                        class="w-full max-w-sm rounded-lg shadow-lg ml-auto">
+                    <div class="md:block md:w-1/2 flex justify-end pr-40">
+                        <img src="{{ $front_page->hero_image_url }}" alt="Gambar Yayasan"
+                            class="w-full max-w-sm rounded-lg shadow-lg ml-auto">
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         <main class="container mx-auto px-5 md:px-9">
 
@@ -35,7 +35,8 @@
                             melindungi
                             warisan budaya yang kaya dari Bogor. Kami bekerja untuk menjaga nilai sejarah, seni, dan tradisi
                             yang menjadi identitas masyarakat Bogor.</p>
-                        <button class="btn btn-outline btn-warning" onclick="window.location='{{ route('about') }}'">Read More...</button>
+                        <button class="btn btn-outline btn-warning" onclick="window.location='{{ route('about') }}'">Read
+                            More...</button>
                     </div>
                 </div>
             </section>
@@ -53,7 +54,8 @@
                             <div class="card-body">
                                 <h3 class="card-title">Berita 1</h3>
                                 <p class="text-gray-600">Deskripsi singkat berita pertama.</p>
-                                <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button>
+                                <button class="btn btn-outline btn-warning mt-4"
+                                    onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
                         <div class="shadow-md rounded-xl">
@@ -64,7 +66,8 @@
                             <div class="card-body">
                                 <h3 class="card-title">Berita 2</h3>
                                 <p class="text-gray-600">Deskripsi singkat berita kedua.</p>
-                                <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button>
+                                <button class="btn btn-outline btn-warning mt-4"
+                                    onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
                         <div class="shadow-md rounded-xl">
@@ -75,7 +78,8 @@
                             <div class="card-body">
                                 <h3 class="card-title">Berita 3</h3>
                                 <p class="text-gray-600">Deskripsi singkat berita ketiga.</p>
-                                <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button>
+                                <button class="btn btn-outline btn-warning mt-4"
+                                    onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
                     </div>
