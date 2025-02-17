@@ -105,7 +105,7 @@ class ManageAboutController extends Controller
         if ($req->hasFile('image')) {
             $filename = $req->image->hashName();
             $req->image->move($target_dir, $filename);
-            $data['image_url'] = "/partners/$filename";
+            $data['image_url'] = "/storage/partners/$filename";
         }
         Partner::create($data);
         return back()->with('success', 'Add partner successful')->withInput();
