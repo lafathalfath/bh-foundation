@@ -38,6 +38,10 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
         Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
         Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
 
+        Route::post('/members/store', [ManageAboutController::class, 'addMember'])->name('manage.member.store');
+        Route::delete('/members/{id}/destroy', [ManageAboutController::class, 'destroyMember'])->name('manage.member.destroy');
+        Route::put('/members/{id}/update', [ManageAboutController::class, 'updateMember'])->name('manage.member.update');
+
         Route::post('/partners/store', [ManageAboutController::class, 'addPartners'])->name('manage.partner.store');
         Route::put('/partners/{id}/update', [ManageAboutController::class, 'updateParters'])->name('manage.partner.update');
         Route::delete('/partners/{id}/destroy', [ManageAboutController::class, 'destroyPartner'])->name('manage.partner.destroy');
