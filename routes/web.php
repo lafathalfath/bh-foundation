@@ -30,13 +30,17 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('manage.dashboard');
         Route::prefix('/page')->group(function () {
             Route::get('/about-us', [ManageAboutController::class, 'index'])->name('manage.page.about');
-            Route::get('/about-us/update', [ManageAboutController::class, 'index'])->name('manage.page.about.update');
+            Route::put('/about-us/update', [ManageAboutController::class, 'update'])->name('manage.page.about.update');
             Route::get('/front-page', [FrontPageController::class, 'index'])->name('manage.page.front_page');
             Route::put('/front-page/update', [FrontPageController::class, 'update'])->name('manage.page.front_page.update');
             Route::get('/contact', [ManageContactController::class, 'index'])->name('manage.page.contact');
         });
         Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
         Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
+
+        Route::post('/partners/store', [ManageAboutController::class, 'addPartners'])->name('manage.partner.store');
+        Route::put('/partners/{id}/update', [ManageAboutController::class, 'updateParters'])->name('manage.partner.update');
+        Route::delete('/partners/{id}/destroy', [ManageAboutController::class, 'destroyPartner'])->name('manage.partner.destroy');
     });
 });
 

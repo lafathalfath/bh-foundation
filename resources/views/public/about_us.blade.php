@@ -86,8 +86,8 @@
     @if ($about->is_partners_visible)
         <section class="mx-[8%] my-[5%] outline outline-1 outline-gray-300 h-96 flex items-center gap-10">
             <div class="p-5 flex flex-col items-center justify-center w-1/3">
-                    <div class="w-full mb-3 text-2xl font-semibold">Title</div>
-                    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta excepturi ab explicabo laboriosam pariatur perspiciatis eius mollitia quia eveniet nobis, suscipit doloremque animi at nisi quisquam, sequi in distinctio modi!</div>
+                    <div class="w-full mb-3 text-2xl font-semibold">{{ $about->partners_title }}</div>
+                    <div>{{ $about->partners_description }}</div>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-2 w-2/3">
                 {{-- <img src="" alt=""> --}}
