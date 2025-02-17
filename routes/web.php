@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AppSettingsController;
 use App\Http\Controllers\admin\FrontPageController;
+use App\Http\Controllers\admin\ManageContactController;
 use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
@@ -30,10 +31,12 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
         Route::prefix('/page')->group(function () {
             Route::get('/about-us', [ManageAboutController::class, 'index'])->name('manage.page.about');
             Route::get('/about-us/update', [ManageAboutController::class, 'index'])->name('manage.page.about.update');
+            Route::get('/front-page', [FrontPageController::class, 'index'])->name('manage.page.front_page');
+            Route::put('/front-page/update', [FrontPageController::class, 'update'])->name('manage.page.front_page.update');
+            Route::get('/contact', [ManageContactController::class, 'index'])->name('manage.page.contact');
         });
         Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
         Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
-        Route::get('/front-page', [FrontPageController::class, 'index'])->name('manage.front_page.view');
     });
 });
 
@@ -44,7 +47,8 @@ Route::get('/', function () {
 
 Route::get('/', [homeController::class, 'index'])->name('home');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
-Route::get('/our-works', function () {return 'OUR WORKS';})->name('works');
+Route::get('/our-works', function () {
+    return 'OUR WORKS'; })->name('works');
 Route::get('/ideas', [IdeasController::class, 'index'])->name('ideas');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/allnews', [AllnewsController::class, 'index'])->name('allnews');

@@ -17,7 +17,7 @@
         }
     </style>
     <div>
-        <form action="{{ route('manage.page.front_page.update') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('manage.page.contact.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
