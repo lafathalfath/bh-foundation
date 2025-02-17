@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\FrontPageController;
 use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\ManageAboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\public\IdeasController;
 use App\Http\Controllers\public\ContactController;
@@ -24,11 +25,14 @@ Route::prefix('/auth')->middleware(GuestMiddleware::class)->group(function () {
 Route::middleware(AuthenticateMiddleware::class)->group(function () {
     Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-    Route::prefix('/admin')->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('admin.app_settings.view');
-        Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('admin.app_settings.update');
-        Route::get('/front-page', [FrontPageController::class, 'index'])->name('admin.front_page.view');
+    Route::prefix('/manage')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('manage.dashboard');
+        Route::prefix('/page')->group(function () {
+            Route::get('/about-us', [ManageAboutController::class, 'index'])->name('manage.page.about');
+        });
+        Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
+        Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
+        Route::get('/front-page', [FrontPageController::class, 'index'])->name('manage.front_page.view');
     });
 });
 
