@@ -35,7 +35,7 @@
                             melindungi
                             warisan budaya yang kaya dari Bogor. Kami bekerja untuk menjaga nilai sejarah, seni, dan tradisi
                             yang menjadi identitas masyarakat Bogor.</p>
-                        <button class="btn btn-outline btn-warning">Read More...</button>
+                        <button class="btn btn-outline btn-warning" onclick="window.location='{{ route('about') }}'">Read More...</button>
                     </div>
                 </div>
             </section>
@@ -53,7 +53,7 @@
                             <div class="card-body">
                                 <h3 class="card-title">Berita 1</h3>
                                 <p class="text-gray-600">Deskripsi singkat berita pertama.</p>
-                                <button class="btn btn-outline btn-warning mt-4">Read More...</button>
+                                <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
                         <div class="shadow-md rounded-xl">
@@ -64,7 +64,7 @@
                             <div class="card-body">
                                 <h3 class="card-title">Berita 2</h3>
                                 <p class="text-gray-600">Deskripsi singkat berita kedua.</p>
-                                <button class="btn btn-outline btn-warning mt-4">Read More...</button>
+                                <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
                         <div class="shadow-md rounded-xl">
@@ -75,15 +75,18 @@
                             <div class="card-body">
                                 <h3 class="card-title">Berita 3</h3>
                                 <p class="text-gray-600">Deskripsi singkat berita ketiga.</p>
-                                <button class="btn btn-outline btn-warning mt-4">Read More...</button>
+                                <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center justify-center space-x-3">
-                    <button class="btn btn-outline btn-warning mt-4">Berita Lainnya...</button>
+                    <a href="{{ route('allnews') }}">
+                        <button class="btn btn-outline btn-warning mt-4">Berita Lainnya...</button>
+                    </a>
                     <a href="{{ route('contact') }}">
-                        <button class="btn btn-outline btn-warning mt-4">Contact <i class="fa-solid fa-paper-plane"></i></button>
+                        <button class="btn btn-outline btn-warning mt-4">Contact <i
+                                class="fa-solid fa-paper-plane"></i></button>
                     </a>
                 </div>
             </section>
