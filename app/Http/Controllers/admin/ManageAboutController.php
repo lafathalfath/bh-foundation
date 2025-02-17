@@ -39,7 +39,7 @@ class ManageAboutController extends Controller
     }
     
     public function update(Request $req) {
-        dd($req->all());
+        // dd($req->all());
         $req->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',

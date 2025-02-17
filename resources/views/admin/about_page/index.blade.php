@@ -21,7 +21,7 @@
         @csrf
         @method('PUT')
         <div class="mb-5">
-            <input type="checkbox" name="is_hero_visible" id="is_hero_visible" placeholder="Type Here..." value="true" class="" {{ $about->is_hero_visible ? 'checked' : '' }}>
+            <input type="checkbox" name="is_hero_visible" id="is_hero_visible" placeholder="Type Here..." value="1" class="" {{ $about->is_hero_visible ? 'checked' : '' }}>
             <label class="text-xl" for="is_hero_visible">Hero Section</label>
         </div>
         <section id="hero">
@@ -45,7 +45,7 @@
         </section>
 
         <div class="mt-10 mb-5">
-            <input type="checkbox" name="is_vision_visible" id="is_vision_visible" placeholder="Type Here..." value="true" class="" {{ $about->is_vision_visible ? 'checked' : '' }}>
+            <input type="checkbox" name="is_vision_visible" id="is_vision_visible" placeholder="Type Here..." value="1" class="" {{ $about->is_vision_visible ? 'checked' : '' }}>
             <label class="text-xl" for="is_vision_visible">Vision & Mision Section</label>
         </div>
         <section id="vision">
@@ -68,20 +68,24 @@
                     {{ $about->mision }}
                 </textarea>
             </div>
+            <div class="mb-3">
+                <label for="bg_color">Background Color</label><br>
+                <input type="color" name="bg_color" id="bg_color" value="{{ $about->bg_color }}" class="input-box" required>
+            </div>
         </section>
 
         <div class="mt-10 mb-5">
-            <input type="checkbox" name="is_members_visible" id="is_members_visible" placeholder="Type Here..." value="true" class="" {{ $about->is_members_visible ? 'checked' : '' }}>
+            <input type="checkbox" name="is_members_visible" id="is_members_visible" placeholder="Type Here..." value="1" class="" {{ $about->is_members_visible ? 'checked' : '' }}>
             <label class="text-xl" for="is_members_visible">Members Section</label>
         </div>
 
         <div class="mt-10 mb-5">
-            <input type="checkbox" name="is_programs_visible" id="is_programs_visible" placeholder="Type Here..." value="true" class="" {{ $about->is_programs_visible ? 'checked' : '' }}>
+            <input type="checkbox" name="is_programs_visible" id="is_programs_visible" placeholder="Type Here..." value="1" class="" {{ $about->is_programs_visible ? 'checked' : '' }}>
             <label class="text-xl" for="is_programs_visible">Programs Section</label>
         </div>
 
         <div class="mt-10 mb-5">
-            <input type="checkbox" name="is_partners_visible" id="is_partners_visible" placeholder="Type Here..." value="true" class="" {{ $about->is_partners_visible ? 'checked' : '' }}>
+            <input type="checkbox" name="is_partners_visible" id="is_partners_visible" placeholder="Type Here..." value="1" class="" {{ $about->is_partners_visible ? 'checked' : '' }}>
             <label class="text-xl" for="is_partners_visible">Partners Section</label>
         </div>
         <section id="partners">
@@ -184,6 +188,7 @@
         <button>close</button>
     </form>
 </dialog>
+
 <dialog id="delete_partner_modal" class="modal">
     <div class="modal-box bg-white">
         <h3 class="text-lg font-bold">Edit Partner</h3>
