@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutPage;
+use App\Models\Member;
 use App\Models\mMemberLevel;
 use App\Models\Partner;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class ManageAboutController extends Controller
             'is_programs_visible',
             'is_partners_visible'
         ])->first();
-        $member_level = mMemberLevel::select('name')->get();
+        $member_level = mMemberLevel::select(['id', 'name'])->get();
         $partners = Partner::select(['id', 'name', 'url', 'image_url'])->orderBy('id', 'desc')->get();
         return view('admin.about_page.index', [
             'about' => $about,
@@ -139,7 +140,67 @@ class ManageAboutController extends Controller
         $id = Crypt::decryptString($id);
         $partner = Partner::find($id);
         if (!$partner) return back()->withErrors('Partner not found');
+        $target_dir = storage_path('app/public/partners');
+        $prev_path = str_replace('/storage/partners', '', $partner->image_url);
+        if ($partner->image_url && File::exists($target_dir)."/$prev_path") File::delete($target_dir)."/$prev_path";
         $partner->delete();
         return back()->with('success', 'Partner deleted successfully')->withInput();
+    }
+
+    public function addMember(Request $req) {
+        $req->validate([
+            'level_id' => 'required|numeric',
+            'name' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'image' => 'required|mimes:jpg,jpeg,png|max:5120',
+        ]);
+        $data = [
+            'level_id' => $req->level_id,
+            'name' => $req->name,
+            'position' => $req->position,
+        ];
+        $target_dir = storage_path('app/public/members');
+        if ($req->hasFile('image')) {
+            $filename = $req->image->hashName();
+            $req->image->move($target_dir, $filename);
+            $data['image_url'] = "/storage/members/$filename";
+        }
+        Member::create($data);
+        return back()->with('success', 'Member added successfully');
+    }
+
+    public function updateMember($id, Request $req) {
+        $member = Member::find(Crypt::decryptString($id));
+        if (!$member) return back()->withErrors('Member not found')->withInput();
+        $req->validate([
+            'level_id' => 'required|numeric',
+            'name' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'image' => 'mimes:jpg,jpeg,png|max:5120',
+        ]);
+        $data = [
+            'level_id' => $req->level_id,
+            'name' => $req->name,
+            'position' => $req->position,
+        ];
+        $target_dir = storage_path('app/public/members');
+        if ($req->hasFile('image')) {
+            $filename = $req->image->hashName();
+            $req->image->move($target_dir, $filename);
+            $prev_path = str_replace('/storage', storage_path('app/public'), $member->image_url);
+            if (File::exists($prev_path)) File::delete($prev_path);
+            $data['image_url'] = "/storage/members/$filename";
+        }
+        $member->update($data);
+        return back()->with('success', 'Member updated successfully')->withInput();
+    }
+
+    public function destroyMember($id) {
+        $member = Member::find(Crypt::decryptString($id));
+        if (!$member) return back()->withErrors('Member not found')->withInput();
+        $prev_path = str_replace('/storage', storage_path('app/public'), $member->image_url);
+        if (File::exists($prev_path)) File::delete($prev_path);
+        $member->delete();
+        return back()->with('success', 'Member deleted successfully')->withInput();
     }
 }
