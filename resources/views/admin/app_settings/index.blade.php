@@ -16,7 +16,7 @@
 </style>
 
 <div >
-    <form action="{{ route('admin.app_settings.update') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('manage.app_settings.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">

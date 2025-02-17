@@ -32,7 +32,7 @@ class AuthController extends Controller
             'email' => $user->email,
             'password' => $request->password
         ]);
-        return redirect()->route('admin.dashboard')->with('success', 'Login Successful!');
+        return redirect()->route('manage.dashboard')->with('success', 'Login Successful!');
     }
 
     public function logout() {
