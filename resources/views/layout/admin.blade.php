@@ -1,4 +1,5 @@
 @php
+    // dd(str_starts_with(request()->getPathInfo(), '/manage/page'));
     $settings = \App\Models\AppSettings::first();
 @endphp
 <!DOCTYPE html>
@@ -23,15 +24,46 @@
             </a>
             <div class="h-[84vh] my-5 flex flex-col justify-between">
                 <div>
-                    <div class="px-5 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                        <a href="{{ route('manage.dashboard') }}">Dashboard</a>
+                    <a href="{{ route('manage.dashboard') }}">
+                        <div class="px-5 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                            Dashboard
+                        </div>
+                    </a>
+                    <button class="w-full text-start px-5 py-3 {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}" onclick="toggleManage()">
+                        Manage
+                    </button>
+                    <div style="display: {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? 'block' : 'none' }};" id="sub-manage">
+                        <a href="">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Front Page
+                            </div>
+                        </a>
+                        <a href="{{ route('manage.page.about') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.page.about') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                About Us
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                News
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Ideas
+                            </div>
+                        </a>
+                        <a href="">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Contact
+                            </div>
+                        </a>
                     </div>
-                    <div class="px-5 py-3 hover:bg-[{{ $settings->primary_color }}]/[0.5] text-gray-300 hover:text-white">
-                        <div href="">App Settings</div>
-                    </div>
-                    <div class="px-5 py-3 {{ request()->routeIs('manage.app_settings.view') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                        <a href="{{ route('manage.app_settings.view') }}">App Settings</a>
-                    </div>
+                    <a href="{{ route('manage.app_settings.view') }}">
+                        <div class="px-5 py-3 {{ request()->routeIs('manage.app_settings.view') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                            App Settings
+                        </div>
+                    </a>
                 </div>
                 <div>
                     <div class="px-5 py-3 hover:bg-red-800 text-gray-300 hover:text-white">
@@ -91,6 +123,10 @@
         const hideSuccess = () => {
             const alert = document.getElementById('success')
             alert.style.display = 'none'
+        }
+        const toggleManage = () => {
+            subMenu = document.getElementById('sub-manage')
+            subMenu.style.display = subMenu.style.display == 'none' ? 'block' : 'none'
         }
     </script>
 </body>

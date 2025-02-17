@@ -29,6 +29,7 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('manage.dashboard');
         Route::prefix('/page')->group(function () {
             Route::get('/about-us', [ManageAboutController::class, 'index'])->name('manage.page.about');
+            Route::get('/about-us/update', [ManageAboutController::class, 'index'])->name('manage.page.about.update');
         });
         Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
         Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
