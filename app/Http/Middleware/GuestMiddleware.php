@@ -16,7 +16,7 @@ class GuestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) return redirect()->route('admin.dashboard');
+        if (Auth::check()) return redirect()->route('manage.dashboard');
         return $next($request);
     }
 }

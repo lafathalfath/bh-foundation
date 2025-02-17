@@ -23,14 +23,14 @@
             </a>
             <div class="h-[84vh] my-5 flex flex-col justify-between">
                 <div>
-                    <div class="px-5 py-3 {{ request()->routeIs('admin.dashboard') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <div class="px-5 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                        <a href="{{ route('manage.dashboard') }}">Dashboard</a>
                     </div>
                     <div class="px-5 py-3 hover:bg-[{{ $settings->primary_color }}]/[0.5] text-gray-300 hover:text-white">
                         <div href="">App Settings</div>
                     </div>
-                    <div class="px-5 py-3 {{ request()->routeIs('admin.app_settings.view') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                        <a href="{{ route('admin.app_settings.view') }}">App Settings</a>
+                    <div class="px-5 py-3 {{ request()->routeIs('manage.app_settings.view') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                        <a href="{{ route('manage.app_settings.view') }}">App Settings</a>
                     </div>
                 </div>
                 <div>
@@ -57,9 +57,9 @@
 
             <div class="bg-white w-full px-10 py-5 flex items-center justify-between">
                 <div class="text-lg capitalize font-semibold">
-                    @if (request()->routeIs('admin.dashboard'))
+                    @if (request()->routeIs('manage.dashboard'))
                         Dashboard
-                    @elseif (request()->routeIs('admin.app_settings.view'))
+                    @elseif (request()->routeIs('manage.app_settings.view'))
                         App Settings
                     @endif
                 </div>
