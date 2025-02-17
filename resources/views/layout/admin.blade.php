@@ -32,6 +32,9 @@
                     <div class="px-5 py-3 {{ request()->routeIs('admin.app_settings.view') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                         <a href="{{ route('admin.app_settings.view') }}">App Settings</a>
                     </div>
+                    <div class="px-5 py-3 {{ request()->routeIs('admin.front_page.view') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                        <a href="{{ route('admin.front_page.view') }}">Front Page</a>
+                    </div>
                 </div>
                 <div>
                     <div class="px-5 py-3 hover:bg-red-800 text-gray-300 hover:text-white">
