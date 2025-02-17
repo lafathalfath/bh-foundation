@@ -25,7 +25,7 @@
                 <div class="container mx-auto flex flex-col md:flex-row items-center">
                     <!-- Bagian Kiri: Gambar -->
                     <div class="w-full md:w-1/2 mb-8 md:mb-0">
-                        <img src="http://localhost:8000/storage/LOGO_YPB_BG.png" alt="Logo" class="w-full max-w-sm mx-auto">
+                        <img src="{{ $settings->logo_banner_url }}" alt="Logo" class="w-full max-w-sm mx-auto">
                     </div>
 
                     <!-- Bagian Kanan: Teks -->
