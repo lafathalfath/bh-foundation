@@ -4,19 +4,42 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutPage;
+use App\Models\mMemberLevel;
+use App\Models\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 
 class ManageAboutController extends Controller
 {
     public function index() {
-        $about = AboutPage::first();
+        $about = AboutPage::select([
+            'title',
+            'description',
+            'image_1_url',
+            'image_2_url',
+            'vision',
+            'mision',
+            'bg_color',
+            'partners_title',
+            'partners_description',
+            'is_hero_visible',
+            'is_vision_visible',
+            'is_members_visible',
+            'is_programs_visible',
+            'is_partners_visible'
+        ])->first();
+        $member_level = mMemberLevel::select('name')->get();
+        $partners = Partner::select(['id', 'name', 'url', 'image_url'])->orderBy('id', 'desc')->get();
         return view('admin.about_page.index', [
             'about' => $about,
+            'member_level' => $member_level,
+            'partners' => $partners
         ]);
     }
     
     public function update(Request $req) {
+        dd($req->all());
         $req->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -42,28 +65,81 @@ class ManageAboutController extends Controller
             'bg_color' => $req->bg_color,
             'partners_title' => $req->partners_title,
             'partners_description' => $req->partners_description,
-            'is_hero_visible' => $req->is_hero_visible,
-            'is_vision_visible' => $req->is_vision_visible,
-            'is_members_visible' => $req->is_members_visible,
-            'is_programs_visible' => $req->is_programs_visible,
-            'is_partners_visible' => $req->is_partners_visible,
+            'is_hero_visible' => $req->is_hero_visible ?? false,
+            'is_vision_visible' => $req->is_vision_visible ?? false,
+            'is_members_visible' => $req->is_members_visible ?? false,
+            'is_programs_visible' => $req->is_programs_visible ?? false,
+            'is_partners_visible' => $req->is_partners_visible ?? false,
         ];
         $target_dir = storage_path('app/public/about');
         if ($req->hasFile('image_1')) {
             $filename = $req->image_1->hashName();
             $req->logo->move($target_dir, $filename);
-            $prev_path = str_replace(env('APP_URL').'/storage', '', $about->logo_url);
+            $prev_path = str_replace('/storage', '', $about->logo_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
-            $data['image_1_url'] = env('APP_URL').'/storage/about/'.$filename;
+            $data['image_1_url'] = '/storage/about/'.$filename;
         }
         if ($req->hasFile('image_2')) {
             $filename = $req->image_2->hashName();
             $req->logo->move($target_dir, $filename);
-            $prev_path = str_replace(env('APP_URL').'/storage', '', $about->logo_url);
+            $prev_path = str_replace('/storage', '', $about->logo_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
-            $data['image_2_url'] = env('APP_URL').'/storage/about/'.$filename;
+            $data['image_2_url'] = '/storage/about/'.$filename;
         }
         $about->update($data);
         return back()->with('success', 'About Page Updated Successfully');
+    }
+
+    public function addPartners(Request $req) {
+        $req->validate([
+            'name' => 'required|string|max:255',
+            'url' => 'required|string',
+            'image' => 'required|mimes:jpg,jpeg,png|max:5120'
+        ]);
+        $data = [
+            'name' => $req->name,
+            'url' => $req->url,
+        ];
+        $target_dir = storage_path('app/public/partners');
+        if ($req->hasFile('image')) {
+            $filename = $req->image->hashName();
+            $req->image->move($target_dir, $filename);
+            $data['image_url'] = "/partners/$filename";
+        }
+        Partner::create($data);
+        return back()->with('success', 'Add partner successful')->withInput();
+    }
+
+    public function updateParters($id, Request $req) {
+        $id = Crypt::decryptString($id);
+        $partner = Partner::find($id);
+        if (!$partner) return back()->withErrors('Partner not found');
+        $req->validate([
+            'name' => 'required|string|max:255',
+            'url' => 'required|string',
+            'image' => 'mimes:jpg,jpeg,png|max:5120'
+        ]);
+        $data = [
+            'name' => $req->name,
+            'url' => $req->url
+        ];
+        $target_dir = storage_path('app/public/partners');
+        if ($req->hasFile('image')) {
+            $filename = $req->image->hashName();
+            $req->image->move($target_dir, $filename);
+            $prev_path = str_replace('/storage/partners', '', $partner->image_url);
+            if ($partner->image_url && File::exists($target_dir)."/$prev_path") File::delete($target_dir)."/$prev_path";
+            $data['image_url'] = "/storage/partners/$filename";
+        }
+        $partner->update($data);
+        return back()->with('success', 'Partner updated successfully')->withInput();
+    }
+
+    public function destroyPartner($id) {
+        $id = Crypt::decryptString($id);
+        $partner = Partner::find($id);
+        if (!$partner) return back()->withErrors('Partner not found');
+        $partner->delete();
+        return back()->with('success', 'Partner deleted successfully')->withInput();
     }
 }
