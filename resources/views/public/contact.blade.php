@@ -9,21 +9,20 @@
                     <!-- Bagian Kiri -->
                     <div class="w-full md:w-1/3 bg-white p-6 rounded-md shadow">
                         <p class="text-gray-600 mb-4 text-sm">
-                            Will you be in Los Angeles or any other branches any time soon? Stop by the office! We'd love to
-                            meet.
+                            {{ $contact->description }}
                         </p>
                         <div class="mb-3">
                             <h4 class="font-semibold text-yellow-500 text-sm">ADDRESS</h4>
-                            <p class="text-gray-700 text-sm">1702 Olympic Boulevard<br>Santa Monica, CA 90404</p>
+                            <p class="text-gray-700 text-sm">{{ $contact->address }}</p>
                         </div>
                         <div class="mb-3">
                             <h4 class="font-semibold text-yellow-500 text-sm">PHONE NUMBER</h4>
-                            <p class="text-gray-700 text-sm">(480) 555-0103<br>(219) 555-0114</p>
+                            <p class="text-gray-700 text-sm">{{ $contact->phone }}<br>(219) 555-0114</p>
                         </div>
                         <div class="mb-3">
                             <h4 class="font-semibold text-yellow-500 text-sm">EMAIL ADDRESS</h4>
                             <p class="text-gray-700 text-sm">
-                                help.eduguard@gmail.com<br>
+                            {{ $contact->email }}<br>
                                 career.eduguard@gmail.com
                             </p>
                         </div>

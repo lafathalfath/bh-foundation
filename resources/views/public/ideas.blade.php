@@ -1,25 +1,22 @@
 @extends('layout.public')
 @section('content')
     <main class="container mx-auto px-5 md:px-9">
-        <section class="py-20">
-            <div class="container mx-auto flex flex-col md:flex-row items-center">
-                <!-- Bagian Kiri: Gambar -->
-                <div class="w-full md:w-1/2 md:pl-10 text-center md:text-right">
-                    <h2 class="text-3xl font-bold mb-4 text-center">Pengembangan</h2>
-                    <p class="text-gray-700 mb-6 text-center">Untuk menciptakan lingkungan yang ramah,
-                        kami mengadopsi konsep yang menonjolkan suasana hangat dan alami.
-                        Dengan meminimalisir gangguan visual,
-                        desain interior yang sederhana ini memungkinkan siswa untuk lebih fokus pada aspek teoritis.
-                        Dengan cara ini, kami merangkul keindahan fungsional dan esensi unik dari setiap ruangan.</p>
-                </div>
+        @if ($ideas->is_hero_visible)
+            <section class="py-20">
+                <div class="container mx-auto flex flex-col md:flex-row items-center">
+                    <!-- Bagian Kiri: Gambar -->
+                    <div class="w-full md:w-1/2 md:pl-10 text-center md:text-right">
+                        <h2 class="text-3xl font-bold mb-4 text-center">{{ $ideas->title }}</h2>
+                        <p class="text-gray-700 mb-6 text-center">{!! nl2br(e($ideas->description)) !!}.</p>
+                    </div>
 
-                <!-- Bagian Kanan: Teks -->
-                <div class="w-full md:w-1/2 mb-8 md:mb-0">
-                    <img src="https://stpbogor.ac.id/wp-content/uploads/2024/10/Receptionist-Area.png.webp" alt="Logo"
-                        class="w-full max-w-sm mx-auto">
+                    <!-- Bagian Kanan: Teks -->
+                    <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                        <img src="{{ $ideas->image_url }}" alt="Logo" class="w-full max-w-sm mx-auto">
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         <section class="py-10">
             <div class="container mx-auto text-center">
@@ -134,28 +131,23 @@
             </div>
         </section>
 
-        <section class="py-20">
-            <div class="container mx-auto flex flex-col md:flex-row items-center">
-                <!-- Bagian Kiri: Gambar -->
-                <div class="w-full md:w-1/2 mb-8 md:mb-0">
-                    <img src="https://polteklpp.ac.id/wp-content/uploads/2021/09/profil.jpg" alt="Logo"
-                        class="w-full max-w-sm mx-auto">
-                </div>
+        @if ($ideas->is_major_visible)
+            <section class="py-20">
+                <div class="container mx-auto flex flex-col md:flex-row items-center">
+                    <!-- Bagian Kiri: Gambar -->
+                    <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                        <img src="{{ $ideas->major_image_url }}" alt="Logo" class="w-full max-w-sm mx-auto">
+                    </div>
 
-                <!-- Bagian Kanan: Teks -->
-                <div class="w-full md:w-1/2 md:pl-10 text-center md:text-left">
-                    <h2 class="text-3xl font-bold mb-4">Visi & Perencanaan Jurusan Baru</h2>
-                    <p class="text-gray-700 mb-6 max-w-md">Menyongsong Masa Depan dengan Program Studi Inovatif
-                        Politeknik kami senantiasa berkomitmen untuk memenuhi kebutuhan industri dan masyarakat akan tenaga
-                        profesional yang kompeten.
-                        Sebagai langkah strategis dalam menghadapi perkembangan teknologi dan tuntutan pasar kerja yang
-                        semakin dinamis, kami tengah merencanakan penambahan jurusan baru yang relevan dan berdaya saing
-                        tinggi.
-                    </p>
+                    <!-- Bagian Kanan: Teks -->
+                    <div class="w-full md:w-1/2 md:pl-10 text-center md:text-left">
+                        <h2 class="text-3xl font-bold mb-4">{{ $ideas->major_title }}</h2>
+                        <p class="text-gray-700 mb-6 max-w-md">{!! nl2br(e($ideas->major_description)) !!}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
+        @endif
 
     </main>
 @endsection
