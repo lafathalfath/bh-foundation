@@ -50,7 +50,7 @@
                                     @if ($item->published)
                                         <div class="badge badge-success text-white">published</div>
                                     @else
-                                        <div class="badge badge-info">drafted</div>
+                                        <div class="badge badge-warning">drafted</div>
                                     @endif
                                 </td>
                                 <td class="text-center">{{ $views }}</td>
