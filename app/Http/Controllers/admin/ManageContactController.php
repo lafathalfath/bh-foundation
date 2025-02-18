@@ -20,7 +20,7 @@ class ManageContactController extends Controller
             'description' => 'required|string|max:255',
             'address' => 'required|string|max:500',
             'phone' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|string|max:255|email',
         ]);
 
         $data = [
@@ -29,6 +29,9 @@ class ManageContactController extends Controller
             'phone' => $req->phone,
             'email' => $req->email,
         ];
-        
+
+        $contact = Contact::first();
+        $contact->update($data);
+        return back()->with('success', 'Contact Updating Successful');
     }
 }

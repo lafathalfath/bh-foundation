@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AppSettingsController;
 use App\Http\Controllers\admin\FrontPageController;
 use App\Http\Controllers\admin\ManageContactController;
+use App\Http\Controllers\admin\ManageIdeasController;
 use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
@@ -35,6 +36,9 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
             Route::get('/front-page', [FrontPageController::class, 'index'])->name('manage.page.front_page');
             Route::put('/front-page/update', [FrontPageController::class, 'update'])->name('manage.page.front_page.update');
             Route::get('/contact', [ManageContactController::class, 'index'])->name('manage.page.contact');
+            Route::put('/contact/update', [ManageContactController::class, 'update'])->name('manage.page.contact.update');
+            Route::get('/ideas', [ManageIdeasController::class, 'index'])->name('manage.page.ideas');
+            Route::put('/ideas/update', [ManageIdeasController::class, 'update'])->name('manage.page.ideas.update');
 
             Route::prefix('/articles')->group(function () {
                 Route::get('/', [ManageProgramController::class, 'index'])->name('manage.article');
