@@ -29,8 +29,15 @@
                             Dashboard
                         </div>
                     </a>
-                    <button class="w-full text-start px-5 py-3 {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}" onclick="toggleManage()">
-                        Manage
+                    <button class="w-full flex items-center justify-between text-start px-5 py-3 {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}" onclick="toggleManage()">
+                        <div>Manage</div>
+                        <div id="menu-caret">
+                            @if (str_starts_with(request()->getPathInfo(), '/manage/page'))
+                                <i class="fa-solid fa-caret-down"></i>
+                            @else
+                                <i class="fa-solid fa-caret-right"></i>
+                            @endif
+                        </div>
                     </button>
                     <div style="display: {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? 'block' : 'none' }};" id="sub-manage">
                         <a href="{{ route('manage.page.front_page') }}">
@@ -43,9 +50,9 @@
                                 About Us
                             </div>
                         </a>
-                        <a href="">
-                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                                News
+                        <a href="{{ route('manage.article') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.article') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Articles
                             </div>
                         </a>
                         <a href="{{ route('manage.page.ideas') }}">
@@ -125,8 +132,10 @@
             alert.style.display = 'none'
         }
         const toggleManage = () => {
-            subMenu = document.getElementById('sub-manage')
+            const subMenu = document.getElementById('sub-manage')
+            const caret = document.getElementById('menu-caret')
             subMenu.style.display = subMenu.style.display == 'none' ? 'block' : 'none'
+            caret.innerHTML = caret.innerHTML == '<i class="fa-solid fa-caret-down"></i>' ? '<i class="fa-solid fa-caret-right"></i>' : '<i class="fa-solid fa-caret-down"></i>'
         }
     </script>
 </body>

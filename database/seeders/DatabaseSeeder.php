@@ -21,13 +21,14 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            mMemberLevelSeeder::class,
+            mCategorySeeder::class,
+            mProgramTypeSeeder::class,
             UserSeeder::class,
             AppSettingSeeder::class,
-            ProgramTypeSeeder::class,
-            CategorySeeder::class,
             AboutPageSeeder::class,
             mMemberLevelSeeder::class,
-
+            FrontPageSeeder::class,
             ContactPageSeeder::class,
             IdeasPageSeeder::class
         ]);

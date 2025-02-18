@@ -35,17 +35,21 @@
 
     @if ($about->is_members_visible)
         <section class="py-10 bg-gray-200 flex flex-col items-center gap-5">
-            <div class="text-2xl font-semibold">Level</div>
-            <div class="flex items-center justify-center gap-5">
-                <div class="w-60">
-                    <div class="w-full h-60 bg-gray-500"></div>
-                    {{-- <img src="" alt=""> --}}
-                    <div class="w-full h-20 bg-white flex flex-col items-center">
-                        <div class="w-full text-center font-semibold">Name</div>
-                        <div class="w-full text-center text-sm">Position</div>
-                    </div>
+            @foreach ($member_level as $ml)
+                <div class="text-2xl font-semibold">{{ $ml->name }}</div>
+                <div class="flex items-center justify-center gap-5">
+                    @foreach ($ml->member as $mb)
+                        <div class="w-60">
+                            {{-- <div class="w-full h-60 bg-gray-500"></div> --}}
+                            <img src="{{ $mb->image_url }}" alt="">
+                            <div class="w-full h-20 bg-white flex flex-col items-center">
+                                <div class="w-full text-center font-semibold">{{ $mb->name }}</div>
+                                <div class="w-full text-center text-sm">{{ $mb->position }}</div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-            </div>
+            @endforeach
         </section>
     @endif
 
@@ -90,8 +94,15 @@
                     <div>{{ $about->partners_description }}</div>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-2 w-2/3">
-                {{-- <img src="" alt=""> --}}
-                <div class="w-48 h-24 bg-white rounded shadow-lg outline outline-1 outline-gray-300"></div>
+                @forelse ($partners as $pt)
+                    <a href="{{ $pt->url }}">
+                        <div class="w-48 h-24 p-5 bg-white rounded shadow-lg outline outline-1 outline-gray-300 flex items-center justify-center">
+                            <img src="{{ $pt->image_url }}" class="max-w-full max-h-full" alt="">
+                        </div>
+                    </a>
+                @empty
+                    <div class="font-semibold">No Partners Exists</div>
+                @endforelse
             </div>
         </section>
     @endif

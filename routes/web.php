@@ -8,6 +8,7 @@ use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ManageAboutController;
+use App\Http\Controllers\admin\ManageProgramController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\public\IdeasController;
 use App\Http\Controllers\public\ContactController;
@@ -38,9 +39,23 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
             Route::put('/contact/update', [ManageContactController::class, 'update'])->name('manage.page.contact.update');
             Route::get('/ideas', [ManageIdeasController::class, 'index'])->name('manage.page.ideas');
             Route::put('/ideas/update', [ManageIdeasController::class, 'update'])->name('manage.page.ideas.update');
+
+            Route::prefix('/articles')->group(function () {
+                Route::get('/', [ManageProgramController::class, 'index'])->name('manage.article');
+                Route::get('/{type}/create', [ManageProgramController::class, 'create'])->name('manage.article.create');
+                Route::post('/store', [ManageProgramController::class, 'store'])->name('manage.article.store');
+                Route::get('/{id}/edit', [ManageProgramController::class, 'edit'])->name('manage.article.edit');
+                Route::put('/{id}/update', [ManageProgramController::class, 'update'])->name('manage.article.update');
+                Route::put('/{id}/publish', [ManageProgramController::class, 'publish'])->name('manage.article.publish');
+                Route::delete('/{id}/destroy', [ManageProgramController::class, 'destroy'])->name('manage.article.destroy');
+            });
         });
         Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
         Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
+
+        Route::post('/members/store', [ManageAboutController::class, 'addMember'])->name('manage.member.store');
+        Route::delete('/members/{id}/destroy', [ManageAboutController::class, 'destroyMember'])->name('manage.member.destroy');
+        Route::put('/members/{id}/update', [ManageAboutController::class, 'updateMember'])->name('manage.member.update');
 
         Route::post('/partners/store', [ManageAboutController::class, 'addPartners'])->name('manage.partner.store');
         Route::put('/partners/{id}/update', [ManageAboutController::class, 'updateParters'])->name('manage.partner.update');

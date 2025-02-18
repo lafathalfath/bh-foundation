@@ -39,16 +39,16 @@ class AppSettingsController extends Controller
         if ($req->hasFile('logo')) {
             $filename = $req->logo->hashName();
             $req->logo->move($target_dir, $filename);
-            $prev_path = str_replace(env('APP_URL').'/storage', '', $settings->logo_url);
+            $prev_path = str_replace('/storage', '', $settings->logo_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
-            $data['logo_url'] = env('APP_URL').'/storage/app_settings/'.$filename;
+            $data['logo_url'] = '/storage/app_settings/'.$filename;
         }
         if ($req->hasFile('logo_banner')) {
             $filename = $req->logo_banner->hashName();
             $req->logo_banner->move($target_dir, $filename);
-            $prev_path = str_replace(env('APP_URL').'/storage', '', $settings->logo_banner_url);
+            $prev_path = str_replace('/storage', '', $settings->logo_banner_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
-            $data['logo_banner_url'] = env('APP_URL').'/storage/app_settings/'.$filename;
+            $data['logo_banner_url'] = '/storage/app_settings/'.$filename;
         }
         $settings->update($data);
         return back()->with('success', 'App Settings Updating Successful');
