@@ -3,15 +3,17 @@
     <main class="container mx-auto px-5 md:px-9">
         <!-- Judul Artikel -->
         <section class="text-center py-10">
-            <h1 class="text-4xl font-bold mb-4">Complete Website Responsive Design: from Figma to Webflow to Website Design
+            <h1 class="text-4xl font-bold mb-4">{{ $program->title }}
             </h1>
-            <p class="text-gray-600">Become an instructor & start teaching with 26k certified instructors. Create a success
-                story with 671k Students — Grow yourself with 71 countries.</p>
+            {{-- <p class="text-gray-600">Become an instructor & start teaching with 26k certified instructors. Create a success --}}
+                {{-- story with 671k Students — Grow yourself with 71 countries.</p> --}}
         </section>
 
         <!-- Gambar Utama -->
         <section class="mb-10">
-            <img src="https://stpbogor.ac.id/wp-content/uploads/2024/10/kabinet-merah-putih-.jpg.webp" alt="Main Image" class="w-full rounded-lg shadow-lg">
+            <div class="bg-gray-300 w-full aspect-video flex justify-center">
+                <img src="{{ $program->image_url }}" alt="Main Image" class="max-w-full max-h-full rounded-lg shadow-lg">
+            </div>
         </section>
 
         <!-- Deskripsi Artikel -->
@@ -27,7 +29,12 @@
                         </div>
                     </div>
                     <h4 class="text-lg font-bold mb-1">More In:</h4>
-                    <a href="" class="text-gray-600 mb-3 hover:underline">Javascript</a>,<a href="" class="text-gray-600 mb-3 hover:underline"> Leadership</a>
+                    <div>
+                        @foreach ($program->category as $cat)
+                            <a href="" class="text-gray-600 mb-3 hover:underline">{{ $cat->name }}</a>
+                            @if ($loop->iteration != count($program->category)),@endif
+                        @endforeach
+                    </div>
                     <h4 class="text-lg font-bold mb-1">Published:</h4>
                     <p class="text-gray-600">25 Desember 2025</p>
                 </div>
@@ -38,13 +45,12 @@
                 <section class="mb-10">
                     <h2 class="text-2xl font-bold mb-4">Description</h2>
                     <p class="text-gray-800 mb-4">
-                        It gives you a huge self-satisfaction when you look at your work and say, "I made that". I love that
-                        feeling after I'm done working on something.
+                        {{ $program->description }}
                     </p>
-                    <p class="text-gray-800 mb-4">
+                    {{-- <p class="text-gray-800 mb-4">
                         I did that and that's why I got into this field. Not for the love of Web Design, which I do love.
                         But for the FEELING.
-                    </p>
+                    </p> --}}
                 </section>
                 <section class="mb-10">
                     <h2 class="text-2xl font-bold mb-4">Lectures Description</h2>
@@ -110,8 +116,8 @@
         <!-- Related Post -->
         <section class="mt-20 mb-20">
             <h2 class="text-3xl font-bold mb-10 text-center">Related Post</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @for ($i = 0; $i < 3; $i++)
+            <div class="flex items-center justify-center flex-wrap gap-6">
+                @forelse ($related as $rel)
                     <div class="border rounded-lg overflow-hidden shadow-md">
                         <img src="https://stpbogor.ac.id/wp-content/uploads/2024/10/foto-bersama.jpg.webp" alt="Related Post Image"
                             class="w-full h-48 object-cover">
@@ -124,10 +130,12 @@
                             <p class="text-gray-600 text-sm mb-3">
                                 25 December 2025
                             </p>
-                            <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button>
+                            {{-- <button class="btn btn-outline btn-warning mt-4" onclick="window.location='{{ route('article') }}'">Read More...</button> --}}
                         </div>
                     </div>
-                @endfor
+                @empty
+                    <div class="font-semibold">Related Post is Empty</div>
+                @endforelse
             </div>
         </section>
 

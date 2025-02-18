@@ -58,7 +58,10 @@
                                     @if (!$item->published)
                                         <button type="button" class="btn btn-xs btn-success text-white" onclick="handlePublish('{{ route('manage.article.publish', Crypt::encryptString($item->id)) }}')">Publish</button>
                                     @endif
-                                    <a href="" class="btn btn-xs btn-info">Detail</a>
+                                    <a href="{{ route('article', [
+                                        'type' => strtolower($item->type->name),
+                                        'id' => Crypt::encryptString($item->id),
+                                    ]) }}" class="btn btn-xs btn-info">Detail</a>
                                     <a href="{{ route('manage.article.edit', [
                                         'type' => strtolower($item->type->name),
                                         'id' => Crypt::encryptString($item->id),
