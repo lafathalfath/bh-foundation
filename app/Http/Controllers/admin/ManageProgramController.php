@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\mCategory;
+use App\Models\Member;
 use App\Models\mProgramType;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -18,6 +20,7 @@ class ManageProgramController extends Controller
             $programs[$pt->name] = Program::where('type_id', $pt->id)
                 ->select([
                     'id',
+                    'type_id',
                     'title',
                     'image_url',
                     'description',
@@ -35,9 +38,11 @@ class ManageProgramController extends Controller
     public function create($type) {
         $type = ucfirst($type);
         $program_type_id = mProgramType::select('id')->where('name', $type)->first()->id;
+        $categories = mCategory::select(['id', 'name'])->get();
         return view('admin.programs.create', [
             'program_type_id' => $program_type_id,
             'type' => $type,
+            'categories' => $categories,
         ]);
     }
 
@@ -47,6 +52,8 @@ class ManageProgramController extends Controller
             'title' => 'required|string|max:255',
             'image' => 'required|mimes:jpg,jpeg,png|max:5120',
             'description' => 'required|string',
+            'categories' => 'array',
+            'categories.*' => 'numeric'
         ]);
         $data = [
             'type_id' => $req->type_id,
@@ -59,15 +66,19 @@ class ManageProgramController extends Controller
             $req->image->move($target_dir, $filename);
             $data['image_url'] = "/storage/articles/$filename";
         }
-        Program::create($data);
+        $program = Program::create($data);
+        $program->category()->sync($req->categories);
         return redirect()->route('manage.article')->with('success', 'New Article Created Successfully');
     }
 
-    public function edit($id) {
+    public function edit($type, $id) {
         $program = Program::find(Crypt::decryptString($id));
+        $categories = mCategory::select(['id', 'name'])->get();
         if (!$program) return back()->withErrors('Article Not Found');
         return view('admin.programs.edit', [
             'program' => $program,
+            'categories' => $categories,
+            'type' => ucfirst($type),
         ]);
     }
 
@@ -75,13 +86,13 @@ class ManageProgramController extends Controller
         $program = Program::find(Crypt::decryptString($id));
         if (!$program) return back()->withErrors('Article Not Found');
         $req->validate([
-            'type_id' => 'required|numeric',
             'title' => 'required|string|max:255',
             'image' => 'mimes:jpg,jpeg,png|max:5120',
             'description' => 'required|string',
+            'categories' => 'array',
+            'categories.*' => 'numeric'
         ]);
         $data = [
-            'type_id' => $req->type_id,
             'title' => $req->title,
             'description' => $req->description,
         ];
@@ -93,6 +104,9 @@ class ManageProgramController extends Controller
             if (File::exists($prev_file)) File::delete($prev_file);
             $data['image_url'] = "/storage/articles/$filename";
         }
+        $program->update($data);
+        $program->category()->sync($req->categories);
+        return redirect()->route('manage.article')->with('success', 'Article Updated Successfully');
     }
 
     public function publish($id) {

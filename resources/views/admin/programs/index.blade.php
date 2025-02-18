@@ -22,7 +22,7 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Description</th>
+                            <th>Categories</th>
                             <th>Status</th>
                             <th>Views</th>
                             <th>Actions</th>
@@ -39,8 +39,12 @@
                             <tr class="hover:bg-gray-300">
                                 <th class="text-center">{{ $loop->iteration }}</th>
                                 <td>{{ $item->title }}</td>
-                                <td>
-                                    <div class="max-w-96 truncate overflow-hidden">{{ $item->description }}</div>
+                                <td class="flex gap-2 flex-wrap items-center justify-center">
+                                    <div class="max-w-56">
+                                        @foreach ($item->category as $cat)
+                                            <div class="my-1 badge badge-accent">{{ $cat->name }}</div>
+                                        @endforeach
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     @if ($item->published)
@@ -55,7 +59,10 @@
                                         <button type="button" class="btn btn-xs btn-success text-white" onclick="handlePublish('{{ route('manage.article.publish', Crypt::encryptString($item->id)) }}')">Publish</button>
                                     @endif
                                     <a href="" class="btn btn-xs btn-info">Detail</a>
-                                    <button type="button" class="btn btn-xs btn-warning">Edit</button>
+                                    <a href="{{ route('manage.article.edit', [
+                                        'type' => strtolower($item->type->name),
+                                        'id' => Crypt::encryptString($item->id),
+                                    ]) }}" class="btn btn-xs btn-warning">Edit</a>
                                     <button type="button" class="btn btn-xs btn-error text-white" onclick="handleDelete('{{ route('manage.article.destroy', Crypt::encryptString($item->id)) }}')">Delete</button>
                                 </td>
                             </tr>

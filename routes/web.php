@@ -44,7 +44,7 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
                 Route::get('/', [ManageProgramController::class, 'index'])->name('manage.article');
                 Route::get('/{type}/create', [ManageProgramController::class, 'create'])->name('manage.article.create');
                 Route::post('/store', [ManageProgramController::class, 'store'])->name('manage.article.store');
-                Route::get('/{id}/edit', [ManageProgramController::class, 'edit'])->name('manage.article.edit');
+                Route::get('/{type}/{id}/edit', [ManageProgramController::class, 'edit'])->name('manage.article.edit');
                 Route::put('/{id}/update', [ManageProgramController::class, 'update'])->name('manage.article.update');
                 Route::put('/{id}/publish', [ManageProgramController::class, 'publish'])->name('manage.article.publish');
                 Route::delete('/{id}/destroy', [ManageProgramController::class, 'destroy'])->name('manage.article.destroy');
