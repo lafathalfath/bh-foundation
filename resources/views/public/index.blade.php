@@ -42,7 +42,7 @@
             </section>
 
             <!-- Recent News Section -->
-            <section class="py-20 ">
+            {{-- <section class="py-20 ">
                 <div class="container mx-auto text-center px-4 md:px-8">
                     <h2 class="text-3xl font-bold mb-10">Recent News</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 z-0">
@@ -96,7 +96,7 @@
                                 class="fa-solid fa-paper-plane"></i></button>
                     </a>
                 </div>
-            </section>
+            </section> --}}
         </main>
     </div>
     <script>
