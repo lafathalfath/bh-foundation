@@ -49,11 +49,63 @@
             </div>
         </div>
 
-        <div class="flex justify-end">
+        <div class="flex justify-end space-x-2">
+            <button type="button" class="btn btn-sm btn-warning text-white" onclick="checkFormBeforeBack()">Back</button>
             <button type="submit" class="btn btn-sm btn-success text-white">Save</button>
         </div>
     </form>
 </div>
+
+{{-- modals --}}
+<div id="back_confirm_modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ">
+    <div class="bg-white p-6 rounded-lg w-96">
+        <h3 class="text-lg font-bold mb-4">Confirmation</h3>
+        <p>Are you sure you want to go back? Any unsaved data will be lost.</p>
+        <div class="mt-4 flex justify-end space-x-2">
+            <button class="btn" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-error text-white" onclick="goBack()">Yes, Go Back</button>
+        </div>
+    </div>
+</div>
+
+{{-- javascript --}}
+<script>
+    function isFormFilled() {
+        const title = document.getElementById('title').value.trim();
+        const image = document.getElementById('image').value;
+        const description = document.getElementById('description').value.trim();
+        
+        return title !== '' || image !== '' || description !== '';
+    }
+
+    function checkFormBeforeBack() {
+        if (isFormFilled()) {
+            openModal();
+        } else {
+            goBack();
+        }
+    }
+
+    function openModal() {
+        const modal = document.getElementById('back_confirm_modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('back_confirm_modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    function goBack() {
+        location.replace(document.referrer);
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        closeModal(); 
+    });
+</script>
 
 <script>
     const previewImage = (e) => {

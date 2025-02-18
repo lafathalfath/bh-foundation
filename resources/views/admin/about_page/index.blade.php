@@ -165,7 +165,7 @@
                         <label for="member_image">Image</label><br>
                         <input type="file" name="image" id="member_image" placeholder="Type Here..." class="bg-white outline outline-1 outline-gray-300 p-3" accept=".jpg,.jpeg,.png" required>
                     </div>
-                    <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                    <button type="submit" class="btn btn-outline btn-success">Submit</button>
                 </form>
             </div>
         </div>
@@ -212,7 +212,7 @@
                     <label for="partner_image">Image</label><br>
                     <input type="file" name="image" id="partner_image" placeholder="Type Here..." class="bg-white outline outline-1 outline-gray-300 p-3" accept=".jpg,.jpeg,.png" required>
                 </div>
-                <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                <button type="submit" class="btn btn-outline btn-success">Submit</button>
             </form>
         </div>
     </section>
@@ -244,7 +244,7 @@
             <form method="dialog">
                 <button class="btn">Close</button>
             </form>
-            <button type="submit" class="btn btn-success" onclick="handleUpdatePartner()">Submit</button>
+            <button type="submit" class="btn btn-outline btn-success" onclick="handleUpdatePartner()">Submit</button>
         </div>
     </div>
     <form method="dialog" class="modal-backdrop">
@@ -276,7 +276,7 @@
 
 <dialog id="update_member_modal" class="modal">
     <div class="modal-box bg-white">
-        <h3 class="text-lg font-bold">Edit Partner</h3>
+        <h3 class="text-lg font-bold">Edit Member</h3>
         <div>
             <form action="" method="POST" enctype="multipart/form-data" id="update_member">
                 @csrf
@@ -307,7 +307,7 @@
             <form method="dialog">
                 <button class="btn">Close</button>
             </form>
-            <button type="submit" class="btn btn-success" onclick="handleUpdateMember()">Submit</button>
+            <button type="submit" class="btn btn-outline btn-success" onclick="handleUpdateMember()">Submit</button>
         </div>
     </div>
     <form method="dialog" class="modal-backdrop">

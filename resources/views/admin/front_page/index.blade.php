@@ -32,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="hero_description">Hero Description</label><br>
-                <textarea type="text" name="hero_description" id="hero_description" placeholder="Type Here..."
+                <textarea type="text" name="hero_description" id="hero_description" placeholder="Type Here..." cols="30" rows="10"
                     class="input-box" required>
                     {{ $front_page->hero_description }}
                     </textarea>
