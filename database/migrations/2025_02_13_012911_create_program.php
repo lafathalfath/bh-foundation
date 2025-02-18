@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('type_id');
             $table->string('title')->unique();
-            $table->string('image_url')->unique();
-            $table->text('description')->unique();
+            $table->string('image_url');
+            $table->text('description');
             $table->unsignedInteger('views')->default(0);
-            $table->boolean('drafted')->default(false);
+            $table->boolean('published')->default(false);
             $table->timestamps();
             
             $table->foreign('type_id')->references('id')->on('m_program_type');
