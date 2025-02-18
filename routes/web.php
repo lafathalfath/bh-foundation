@@ -75,4 +75,4 @@ Route::get('/our-works', function () {
 Route::get('/ideas', [IdeasController::class, 'index'])->name('ideas');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/allnews', [AllnewsController::class, 'index'])->name('allnews');
-Route::get('/article', [ArticleController::class, 'index'])->name('article');
+Route::get('/article/{type}/{id}', [ArticleController::class, 'index'])->name('article');
