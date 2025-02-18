@@ -16,7 +16,7 @@ class AuthenticateMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) return redirect()->route('auth.login.view');
+        if (!Auth::check()) return redirect()->route('home');
         return $next($request);
     }
 }

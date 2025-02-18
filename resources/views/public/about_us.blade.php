@@ -94,13 +94,15 @@
                     <div>{{ $about->partners_description }}</div>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-2 w-2/3">
-                @foreach ($partners as $pt)
+                @forelse ($partners as $pt)
                     <a href="{{ $pt->url }}">
                         <div class="w-48 h-24 p-5 bg-white rounded shadow-lg outline outline-1 outline-gray-300 flex items-center justify-center">
                             <img src="{{ $pt->image_url }}" class="max-w-full max-h-full" alt="">
                         </div>
                     </a>
-                @endforeach
+                @empty
+                    <div class="font-semibold">No Partners Exists</div>
+                @endforelse
             </div>
         </section>
     @endif
