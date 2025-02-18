@@ -32,7 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="description">Description</label><br>
-                <textarea type="text" name="description" id="description" placeholder="Type Here..."
+                <textarea type="text" name="description" id="description" placeholder="Type Here..." cols="30" rows="10"
                     class="input-box" required>
                         {{ $ideas->description }}
                         </textarea>
@@ -51,7 +51,7 @@
             </div>
             <div class="mb-3">
                 <label for="major_description">Major_Description</label><br>
-                <textarea type="text" name="major_description" id="major_description" placeholder="Type Here..."
+                <textarea type="text" name="major_description" id="major_description" placeholder="Type Here..." cols="30" rows="10"
                     class="input-box" required>
                         {{ $ideas->major_description }}
                         </textarea>

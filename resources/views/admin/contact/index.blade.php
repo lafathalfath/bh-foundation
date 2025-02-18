@@ -22,7 +22,7 @@
             @method('PUT')
             <div class="mb-3">
                 <label for="description">Description</label><br>
-                <input type="text" name="description" id="description" placeholder="Type Here..."
+                <input type="text" name="description" id="description" placeholder="Type Here..." cols="30" rows="10"
                     value="{{ $contact->description }}" class="input-box" required>
             </div>
             <div class="mb-3">
