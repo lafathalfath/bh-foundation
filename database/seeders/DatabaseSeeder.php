@@ -27,7 +27,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AppSettingSeeder::class,
             AboutPageSeeder::class,
-            mMemberLevelSeeder::class,
             FrontPageSeeder::class,
             ContactPageSeeder::class,
             IdeasPageSeeder::class
