@@ -56,17 +56,18 @@
                                 <td class="text-center">{{ $views }}</td>
                                 <td class="flex items-center justify-center gap-2">
                                     @if (!$item->published)
-                                        <button type="button" class="btn btn-xs btn-success text-white" onclick="handlePublish('{{ route('manage.article.publish', Crypt::encryptString($item->id)) }}')">Publish</button>
+                                        <button type="button" class="btn btn-xs btn-success text-white" onclick="handlePublish('{{ route('manage.article.publish', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-upload"></i> Publish</button>
                                     @endif
                                     <a href="{{ route('article', [
                                         'type' => strtolower($item->type->name),
                                         'id' => Crypt::encryptString($item->id),
-                                    ]) }}" class="btn btn-xs btn-info">Detail</a>
+                                    ]) }}" class="btn btn-xs btn-info"><i class="fa-solid fa-eye"></i> Detail</a>
+
                                     <a href="{{ route('manage.article.edit', [
                                         'type' => strtolower($item->type->name),
                                         'id' => Crypt::encryptString($item->id),
-                                    ]) }}" class="btn btn-xs btn-warning">Edit</a>
-                                    <button type="button" class="btn btn-xs btn-error text-white" onclick="handleDelete('{{ route('manage.article.destroy', Crypt::encryptString($item->id)) }}')">Delete</button>
+                                    ]) }}" class="btn btn-xs btn-warning"><i class="fa-solid fa-pencil"></i> Edit</a>
+                                    <button type="button" class="btn btn-xs btn-error text-white" onclick="handleDelete('{{ route('manage.article.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
                                 </td>
                             </tr>
                         @empty
