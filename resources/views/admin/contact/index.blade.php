@@ -17,30 +17,28 @@
         }
     </style>
     <div>
-        <form action="{{ route('manage.page.contact.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('manage.page.contact.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="hero_title">Hero Title</label><br>
-                <input type="text" name="hero_title" id="hero_title" placeholder="Type Here..."
-                    value="{{ $front_page->hero_title }}" class="input-box" required>
+                <label for="description">Description</label><br>
+                <input type="text" name="description" id="description" placeholder="Type Here..."
+                    value="{{ $contact->description }}" class="input-box" required>
             </div>
             <div class="mb-3">
-                <label for="hero_description">Hero Description</label><br>
-                <input type="textarea" name="hero_description" id="hero_description" placeholder="Type Here..."
-                    value="{{ $front_page->hero_description }}" class="input-box" required>
+                <label for="address">Address</label><br>
+                <input type="text" name="address" id="address" placeholder="Type Here..."
+                    value="{{ $contact->address }}" class="input-box" required>
             </div>
             <div class="mb-3">
-                <label for="hero_image">Hero Image</label><br>
-                <div class="w-1/4">
-                    <img src="{{ $front_page->hero_image_url }}" alt="">
-                </div>
-                <input type="file" name="hero_image" id="hero_image" class="input-box" accept=".jpg,.jpeg,.png">
+                <label for="phone">Phone Number</label><br>
+                <input type="text" name="phone" id="phone" placeholder="Type Here..."
+                    value="{{ $contact->phone }}" class="input-box" required>
             </div>
             <div class="mb-3">
-                <label for="hero_bg_color">Hero Backgroun Color</label><br>
-                <input type="color" name="hero_bg_color" id="hero_bg_color" value="{{ $front_page->hero_bg_color }}"
-                    class="w-48 bg-[#272B34]" required>
+                <label for="email">Email</label><br>
+                <input type="text" name="email" id="email" placeholder="Type Here..."
+                    value="{{ $contact->email }}" class="input-box" required>
             </div>
             <div class="flex justify-end">
                 <button type="submit" class="px-10 py-2 bg-green-700 text-white">Save</button>

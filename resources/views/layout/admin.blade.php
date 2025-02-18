@@ -48,7 +48,7 @@
                                 News
                             </div>
                         </a>
-                        <a href="">
+                        <a href="{{ route('manage.page.ideas') }}">
                             <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                                 Ideas
                             </div>

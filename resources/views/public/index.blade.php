@@ -2,7 +2,7 @@
 @section('content')
     <div>
         @if ($front_page->is_hero_visible)
-            <section class="bg-[{{ $front_page->hero_bg_color }}] text-white py-30">
+            <section class="bg-[{{ $front_page->hero_bg_color}}] text-white py-30">
                 <div class="container mx-auto flex h-screen items-center">
                     <!-- Bagian Kiri: Judul dan Teks -->
                     <div class="w-full md:w-1/2 pl-10">
@@ -46,7 +46,8 @@
                 <div class="container mx-auto text-center px-4 md:px-8">
                     <h2 class="text-3xl font-bold mb-10">Recent News</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 z-0">
-                        <div class="shadow-md rounded-xl">
+                        <div
+                            class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
                             <figure>
                                 <img src="https://stpbogor.ac.id/wp-content/uploads/2025/02/Desain-tanpa-judul-1024x907.png"
                                     alt="News Image" class="w-full">
@@ -58,7 +59,8 @@
                                     onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
-                        <div class="shadow-md rounded-xl">
+                        <div
+                            class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
                             <figure>
                                 <img src="https://stpbogor.ac.id/wp-content/uploads/2025/01/MoU-STP-Bogor-dan-Hands-to-the-Future-H2TF-e1736845670562.jpeg"
                                     alt="News Image" class="w-full">
@@ -70,7 +72,8 @@
                                     onclick="window.location='{{ route('article') }}'">Read More...</button>
                             </div>
                         </div>
-                        <div class="shadow-md rounded-xl">
+                        <div
+                            class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
                             <figure>
                                 <img src="https://stpbogor.ac.id/wp-content/uploads/2025/01/PPN-Batal-Naik-_-STP-Bogor-e1736413891938.jpg.webp"
                                     alt="News Image" class="w-full">
@@ -96,4 +99,38 @@
             </section>
         </main>
     </div>
+    <script>
+        // Tunggu hingga halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', function () {
+            // Pilih semua card yang akan dianimasikan
+            const cards = document.querySelectorAll('.grid > div');
+
+            // Atur opsi observer
+            const observerOptions = {
+                root: null, // viewport browser
+                rootMargin: '0px',
+                threshold: 0.5 // Berapa persen elemen terlihat sebelum animasi berjalan
+            };
+
+            // Fungsi callback saat elemen terlihat
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Tambahkan class untuk animasi
+                        entry.target.classList.add('opacity-100', 'translate-x-0');
+                        // Hentikan observasi setelah animasi berjalan
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            // Buat observer baru
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            // Mulai observasi tiap card
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 @endsection
