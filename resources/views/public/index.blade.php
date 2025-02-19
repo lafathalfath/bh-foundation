@@ -42,49 +42,41 @@
             </section>
 
             <!-- Recent News Section -->
-            {{-- <section class="py-20 ">
+            <section class="py-20 ">
                 <div class="container mx-auto text-center px-4 md:px-8">
                     <h2 class="text-3xl font-bold mb-10">Recent News</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 z-0">
-                        <div
-                            class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
-                            <figure>
-                                <img src="https://stpbogor.ac.id/wp-content/uploads/2025/02/Desain-tanpa-judul-1024x907.png"
-                                    alt="News Image" class="w-full">
-                            </figure>
-                            <div class="card-body">
-                                <h3 class="card-title">Berita 1</h3>
-                                <p class="text-gray-600">Deskripsi singkat berita pertama.</p>
-                                <button class="btn btn-outline btn-warning mt-4"
-                                    onclick="window.location='{{ route('article') }}'">Read More...</button>
-                            </div>
-                        </div>
-                        <div
-                            class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
-                            <figure>
-                                <img src="https://stpbogor.ac.id/wp-content/uploads/2025/01/MoU-STP-Bogor-dan-Hands-to-the-Future-H2TF-e1736845670562.jpeg"
-                                    alt="News Image" class="w-full">
-                            </figure>
-                            <div class="card-body">
-                                <h3 class="card-title">Berita 2</h3>
-                                <p class="text-gray-600">Deskripsi singkat berita kedua.</p>
-                                <button class="btn btn-outline btn-warning mt-4"
-                                    onclick="window.location='{{ route('article') }}'">Read More...</button>
-                            </div>
-                        </div>
-                        <div
-                            class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
-                            <figure>
-                                <img src="https://stpbogor.ac.id/wp-content/uploads/2025/01/PPN-Batal-Naik-_-STP-Bogor-e1736413891938.jpg.webp"
-                                    alt="News Image" class="w-full">
-                            </figure>
-                            <div class="card-body">
-                                <h3 class="card-title">Berita 3</h3>
-                                <p class="text-gray-600">Deskripsi singkat berita ketiga.</p>
-                                <button class="btn btn-outline btn-warning mt-4"
-                                    onclick="window.location='{{ route('article') }}'">Read More...</button>
-                            </div>
-                        </div>
+                        @forelse ($news as $nw)
+                            @php
+                                $views = strval($nw->views);
+                                if (strlen($views) >= 4 && strlen($views) < 7) $views = substr($views, 0, strlen($views)-3)."K";
+                                if (strlen($views) >= 7 && strlen($views) < 10) $views = substr($views, 0, strlen($views)-6)."M";
+                                if (strlen($views) >= 10) $views = substr($views, 0, strlen($views)-9)."B";
+                            @endphp
+                                <div
+                                    class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
+                                    <figure class="w-full h-60 bg-gray-300 overflow-hidden border rounded-t-xl flex items-center justify-center">
+                                        <img src="{{ $nw->image_url }}"
+                                            alt="News Image" class="w-full h-full object-cover  ">
+                                    </figure>
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ $nw->title }}</h3>
+                                        <p class="w-full h-7 overflow-hidden text-start text-gray-600">{{ $nw->description }}</p>
+                                        <p class="w-full text-start text-gray-500">{{ substr($nw->published_at, 0, 10) }}</p>
+                                        <div class="w-full flex justify-end">
+                                            {{ $views }} views
+                                        </div>
+                                        <a href="{{ route('article', [
+                                            'type' => 'news',
+                                            'id' => Crypt::encryptString($nw->id)
+                                        ]) }}" class="btn btn-outline btn-warning mt-4">
+                                            Read More...
+                                        </a>
+                                    </div>
+                                </div>
+                        @empty
+                            <div class="flex justify-center">Empty</div>
+                        @endforelse
                     </div>
                 </div>
                 <div class="flex items-center justify-center space-x-3">
@@ -96,7 +88,7 @@
                                 class="fa-solid fa-paper-plane"></i></button>
                     </a>
                 </div>
-            </section> --}}
+            </section>
         </main>
     </div>
     <script>

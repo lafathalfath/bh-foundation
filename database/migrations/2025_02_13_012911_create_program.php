@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->unsignedInteger('views')->default(0);
             $table->boolean('published')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             
             $table->foreign('type_id')->references('id')->on('m_program_type');

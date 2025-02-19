@@ -112,7 +112,7 @@ class ManageProgramController extends Controller
     public function publish($id) {
         $program = Program::find(Crypt::decryptString($id));
         if (!$program) return back()->withErrors('Article Not Found');
-        $program->update(['published' => true]);
+        $program->update(['published' => true, 'published_at' => date('Y-m-d H:i:s')]);
         return redirect()->route('manage.article')->with('success', 'Article Published Successfully');
     }
 
