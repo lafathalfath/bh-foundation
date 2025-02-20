@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AboutPage;
 use App\Models\AppSettings;
 use App\Models\mMemberLevel;
+use App\Models\mProgramType;
 use App\Models\Partner;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -16,8 +17,17 @@ class AboutController extends Controller
         $settings = AppSettings::first();
         $about = AboutPage::first();
         $member_level = mMemberLevel::get();
-        $programs = Program::paginate(4);
+        // $programs = Program::paginate(4);
         $partners = Partner::paginate(8);
+        $program_type = mProgramType::where('name', 'Programs')->select('id')->first();
+        $programs = $program_type->program()->select([
+            'id',
+            'title',
+            'image_url', 
+            'description',
+            'published_at',
+            'views',
+        ])->where('published', true)->paginate(4);
         return view('public.about_us', [
             'settings' => $settings,
             'about' => $about,
