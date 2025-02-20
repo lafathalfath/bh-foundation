@@ -9,6 +9,7 @@ use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ManageAboutController;
 use App\Http\Controllers\admin\ManageCategoryController;
+use App\Http\Controllers\admin\ManageMemberLevelController;
 use App\Http\Controllers\admin\ManageProgramController;
 use App\Http\Controllers\admin\ManageProgramTypeController;
 use App\Http\Controllers\AuthController;
@@ -65,6 +66,12 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
                 Route::post('/store', [ManageProgramTypeController::class, 'store'])->name('manage.program_type.store');
                 Route::put('/{id}/update', [ManageProgramTypeController::class, 'update'])->name('manage.program_type.update');
                 Route::delete('/{id}/destroy', [ManageProgramTypeController::class, 'destroy'])->name('manage.program_type.destroy');
+            });
+            Route::prefix('/member-category')->group(function () {
+                Route::get('/', [ManageMemberLevelController::class, 'index'])->name('manage.member_level');
+                Route::post('/store', [ManageMemberLevelController::class, 'store'])->name('manage.member_level.store');
+                Route::put('/{id}/update', [ManageMemberLevelController::class, 'update'])->name('manage.member_level.update');
+                Route::delete('/{id}/destroy', [ManageMemberLevelController::class, 'destroy'])->name('manage.member_level.destroy');
             });
         });
 

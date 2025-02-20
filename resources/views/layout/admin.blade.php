@@ -89,6 +89,11 @@
                                 Article Types
                             </div>
                         </a>
+                        <a href="{{ route('manage.member_level') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.member_level') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Member Categories
+                            </div>
+                        </a>
                     </div>
 
                     <a href="{{ route('manage.app_settings.view') }}">
