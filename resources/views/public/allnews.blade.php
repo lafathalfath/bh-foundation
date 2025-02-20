@@ -48,7 +48,7 @@
                 if ($lastpage == 1) $show = $total;
                 else {
                     $start = $current * $allnews->perPage() + 1;
-                    $show = $total - ($allnews->perPage() * ($allnews->lasPage() - 1));
+                    $show = $total - ($allnews->perPage() * ($allnews->lastPage() - 1));
                 }
             @endphp
             <div>Showing {{ $start }} to {{ $show }} of {{ $allnews->total() }} results</div>
