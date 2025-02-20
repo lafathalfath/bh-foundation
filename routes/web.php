@@ -8,6 +8,7 @@ use App\Http\Controllers\public\AboutController;
 use App\Http\Controllers\public\homeController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ManageAboutController;
+use App\Http\Controllers\admin\ManageCategoryController;
 use App\Http\Controllers\admin\ManageProgramController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\public\IdeasController;
@@ -50,6 +51,16 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
                 Route::delete('/{id}/destroy', [ManageProgramController::class, 'destroy'])->name('manage.article.destroy');
             });
         });
+
+        Route::prefix('/master')->group(function () {
+            Route::prefix('/categories')->group(function () {
+                Route::get('/', [ManageCategoryController::class, 'index'])->name('manage.categories');
+                Route::post('/store', [ManageCategoryController::class, 'store'])->name('manage.categories.store');
+                Route::put('/{id}/update', [ManageCategoryController::class, 'update'])->name('manage.categories.update');
+                Route::delete('/{id}/destroy', [ManageCategoryController::class, 'destroy'])->name('manage.categories.destroy');
+            });
+        });
+
         Route::get('/app-settings', [AppSettingsController::class, 'index'])->name('manage.app_settings.view');
         Route::put('/app-settings/update', [AppSettingsController::class, 'update'])->name('manage.app_settings.update');
 

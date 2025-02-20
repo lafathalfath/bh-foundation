@@ -29,9 +29,10 @@
                             Dashboard
                         </div>
                     </a>
-                    <button class="w-full flex items-center justify-between text-start px-5 py-3 {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}" onclick="toggleManage()">
-                        <div>Manage</div>
-                        <div id="menu-caret">
+
+                    <button class="w-full flex items-center justify-between text-start px-5 py-3 {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}" onclick="toggleManagePages()">
+                        <div>Manage Pages</div>
+                        <div id="menu-caret-pages">
                             @if (str_starts_with(request()->getPathInfo(), '/manage/page'))
                                 <i class="fa-solid fa-caret-down"></i>
                             @else
@@ -39,7 +40,7 @@
                             @endif
                         </div>
                     </button>
-                    <div style="display: {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? 'block' : 'none' }};" id="sub-manage">
+                    <div style="display: {{ str_starts_with(request()->getPathInfo(), '/manage/page') ? 'block' : 'none' }};" id="sub-page">
                         <a href="{{ route('manage.page.front_page') }}">
                             <div class="ps-10 py-3 {{ request()->routeIs('manage.page.front_page') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                                 Front Page
@@ -66,6 +67,25 @@
                             </div>
                         </a>
                     </div>
+
+                    <button class="w-full flex items-center justify-between text-start px-5 py-3 {{ str_starts_with(request()->getPathInfo(), '/manage/master') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}" onclick="toggleManageMaster()">
+                        <div>Master</div>
+                        <div id="menu-caret-master">
+                            @if (str_starts_with(request()->getPathInfo(), '/manage/master'))
+                                <i class="fa-solid fa-caret-down"></i>
+                            @else
+                                <i class="fa-solid fa-caret-right"></i>
+                            @endif
+                        </div>
+                    </button>
+                    <div style="display: {{ str_starts_with(request()->getPathInfo(), '/manage/master') ? 'block' : 'none' }};" id="sub-master">
+                        <a href="{{ route('manage.categories') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.categories') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Categories
+                            </div>
+                        </a>
+                    </div>
+
                     <a href="{{ route('manage.app_settings.view') }}">
                         <div class="px-5 py-3 {{ request()->routeIs('manage.app_settings.view') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                             App Settings
@@ -131,9 +151,15 @@
             const alert = document.getElementById('success')
             alert.style.display = 'none'
         }
-        const toggleManage = () => {
-            const subMenu = document.getElementById('sub-manage')
-            const caret = document.getElementById('menu-caret')
+        const toggleManagePages = () => {
+            const subMenu = document.getElementById('sub-page')
+            const caret = document.getElementById('menu-caret-pages')
+            subMenu.style.display = subMenu.style.display == 'none' ? 'block' : 'none'
+            caret.innerHTML = caret.innerHTML == '<i class="fa-solid fa-caret-down"></i>' ? '<i class="fa-solid fa-caret-right"></i>' : '<i class="fa-solid fa-caret-down"></i>'
+        }
+        const toggleManageMaster = () => {
+            const subMenu = document.getElementById('sub-master')
+            const caret = document.getElementById('menu-caret-master')
             subMenu.style.display = subMenu.style.display == 'none' ? 'block' : 'none'
             caret.innerHTML = caret.innerHTML == '<i class="fa-solid fa-caret-down"></i>' ? '<i class="fa-solid fa-caret-right"></i>' : '<i class="fa-solid fa-caret-down"></i>'
         }
