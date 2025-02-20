@@ -2,7 +2,7 @@
 @section('content')
     
 <div>
-    <div class="text-xl font-semibold mb-10">Manage Categories</div>
+    <div class="text-xl font-semibold mb-10">Manage Social Media</div>
     <div class="flex justify-end"><button class="btn btn-sm btn-success text-white" onclick="create_modal.showModal()">+ Create New</button></div>
     <div class="overflow-x-auto">
         <table class="table">
