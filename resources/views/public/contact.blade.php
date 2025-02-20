@@ -45,7 +45,7 @@
                                     class="w-full p-2 bg-white outline outline-1 outline-gray-400 rounded">
                             </div>
                             <div class="mb-3">
-                                <input type="text" placeholder="Message Subject"
+                                <input type="text" placeholder="Phone Number"
                                     class="w-full p-2 bg-white outline outline-1 outline-gray-400 rounded">
                             </div>
                             <div class="mb-4">
