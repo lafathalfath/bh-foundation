@@ -7,6 +7,7 @@ use App\Models\AboutPage;
 use App\Models\AppSettings;
 use App\Models\mMemberLevel;
 use App\Models\mProgramType;
+use App\Models\mCategory;
 use App\Models\Partner;
 use App\Models\Program;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class AboutController extends Controller
         $member_level = mMemberLevel::get();
         // $programs = Program::paginate(4);
         $partners = Partner::paginate(8);
+        $category = mCategory::select(['id', 'name'])->get();
         $program_type = mProgramType::where('name', 'Programs')->select('id')->first();
         $programs = $program_type->program()->select([
             'id',
@@ -34,6 +36,7 @@ class AboutController extends Controller
             'member_level' => $member_level,
             'programs' => $programs,
             'partners' => $partners,
+            'category' => $category,
         ]);
     }
 }

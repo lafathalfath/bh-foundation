@@ -95,7 +95,7 @@
                             </a>
                         </li>
                         <li class="mb-3">
-                            <a href="#" class="text-gray-700 hover:text-pink-600">
+                            <a href="https://www.instagram.com/bogorheritagefoundation" class="text-gray-700 hover:text-pink-600">
                                 <i class="fab fa-instagram"></i> Instagram
                             </a>
                         </li>
