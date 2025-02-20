@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             AboutPageSeeder::class,
             FrontPageSeeder::class,
             ContactPageSeeder::class,
-            IdeasPageSeeder::class
+            IdeasPageSeeder::class,
+            SocialMediaSeeder::class,
         ]);
     }
 }
