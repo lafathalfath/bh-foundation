@@ -35,12 +35,37 @@
                     <div>Empty</div>
                 @endforelse
             </div>
-
+            
             <!-- Pagination -->
-            <div>Showing 1 to 9 of 50 results</div>
-            {{-- <div class="mb-5">
-                {{ $allnews->links() }}
-            </div> --}}
+            @php
+                $current = $allnews->currentPage();
+                $lastpage = $allnews->lastPage();
+                $first = $current == 1;
+                $last = $current == $lastpage;
+                $total = $allnews->total();
+                $start = 1;
+                $show = 0;
+                if ($lastpage == 1) $show = $total;
+                else {
+                    $start = $current * $allnews->perPage() + 1;
+                    $show = $total - ($allnews->perPage() * ($allnews->lasPage() - 1));
+                }
+            @endphp
+            <div>Showing {{ $start }} to {{ $show }} of {{ $allnews->total() }} results</div>
+            <div class="flex items-center justify-center">
+                <div class="flex items-center justify-center gap-2">
+                    <a @if (!$first)
+                        href="{{ route('allnews', ['page' => $current-1]) }}"
+                    @endif class="px-2.5 pb-1 text-white font-bold hover:scale-125 {{ $first ? 'bg-gray-400' : "rounded bg-[$settings->primary_color]" }}">«</a>
+                    @for ($i = 0; $i < $lastpage; $i++)
+                        <a href="{{ $current == $i + 1 ? route('allnews', ['page' => $i + 1]) : '' }}" class="px-1 rounded {{ $current == $i + 1 ? "border-x-2 border-[$settings->primary_color]" : "hover:bg-[$settings->primary_color]/[0.5] hover:text-white" }}">{{ $i+1 }}</a>
+                    @endfor
+                    <div>...</div>
+                    <a @if (!$last)
+                        href="{{ route('allnews', ['page' => $current+1]) }}"
+                    @endif class="px-2.5 pb-1 text-white font-bold hover:scale-125 {{ $last ? 'bg-gray-400' : "rounded bg-[$settings->primary_color]"}}">»</a>
+                </div>
+            </div>
         </section>
     </main>
 @endsection
