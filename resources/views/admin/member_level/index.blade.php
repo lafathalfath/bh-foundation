@@ -2,7 +2,7 @@
 @section('content')
     
 <div>
-    <div class="text-xl font-semibold mb-10">Manage Categories</div>
+    <div class="text-xl font-semibold mb-10">Manage Member Categories</div>
     <div class="flex justify-end"><button class="btn btn-sm btn-success text-white" onclick="create_modal.showModal()">+ Create New</button></div>
     <div class="overflow-x-auto">
         <table class="table">
@@ -11,19 +11,19 @@
                 <tr>
                     <th class="w-10">#</th>
                     <th>Name</th>
-                    <th>In Uses of Articles</th>
+                    <th>Member Count</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($categories as $item)
+                @forelse ($member_level as $item)
                     <tr class="hover:bg-gray-300">
                         <th class="text-center">{{ $loop->iteration }}</th>
                         <td class="text-center">{{ $item->name }}</td>
-                        <td class="text-center">{{ count($item->program) }}</td>
+                        <td class="text-center">{{ count($item->member) }}</td>
                         <td class="flex items-center justify-center gap-2">
-                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.categories.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
-                            <button class="btn btn-sm btn-error text-white" onclick="handleDelete('{{ route('manage.categories.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.member_level.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
+                            <button class="btn btn-sm btn-error text-white" onclick="handleDelete('{{ route('manage.member_level.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </td>
                     </tr>
                 @empty
@@ -39,7 +39,7 @@
     <div class="modal-box bg-white">
         <h3 class="text-lg font-bold mb-3">Create New Category</h3>
         <div>
-            <form action="{{ route('manage.categories.store') }}" method="POST" id="create_form">
+            <form action="{{ route('manage.member_level.store') }}" method="POST" id="create_form">
                 @csrf
                 <div>
                     <label for="create_name" class="font-semibold">Name</label><br>
@@ -88,7 +88,7 @@
     <div class="modal-box bg-white">
         <h3 class="text-lg font-bold mb-3">Confirmation</h3>
         <div>
-            Are you sure you want to delete this category?
+            Are you sure you want to delete this Member Category?
         </div>
         <div class="modal-action">
             <form method="dialog">

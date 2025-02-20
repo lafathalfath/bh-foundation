@@ -81,7 +81,17 @@
                     <div style="display: {{ str_starts_with(request()->getPathInfo(), '/manage/master') ? 'block' : 'none' }};" id="sub-master">
                         <a href="{{ route('manage.categories') }}">
                             <div class="ps-10 py-3 {{ request()->routeIs('manage.categories') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                                Categories
+                                Article Categories
+                            </div>
+                        </a>
+                        <a href="{{ route('manage.program_type') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.program_type') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Article Types
+                            </div>
+                        </a>
+                        <a href="{{ route('manage.member_level') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.member_level') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Member Categories
                             </div>
                         </a>
                     </div>
