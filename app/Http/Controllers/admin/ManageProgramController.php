@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\mCategory;
+use App\Models\AppSettings;
 use App\Models\Member;
 use App\Models\mProgramType;
 use App\Models\Program;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\File;
 class ManageProgramController extends Controller
 {
     public function index(Request $req) {
+        $settings = AppSettings::first();
         $program_types = mProgramType::select(['id', 'name'])->get();
         $programs = [];
         foreach ($program_types as $pt) {
@@ -32,6 +34,7 @@ class ManageProgramController extends Controller
         return view('admin.programs.index', [
             'programs' => $programs,
             'program_types' => $program_types,
+            'settings' => $settings,
         ]);
     }
 
