@@ -2,7 +2,7 @@
 @section('content')
     
 <div>
-    <div class="text-xl font-semibold mb-10">Manage Categories</div>
+    <div class="text-xl font-semibold mb-10">Manage Article Types</div>
     <div class="flex justify-end"><button class="btn btn-sm btn-success text-white" onclick="create_modal.showModal()">+ Create New</button></div>
     <div class="overflow-x-auto">
         <table class="table">
@@ -16,14 +16,14 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($categories as $item)
+                @forelse ($program_type as $item)
                     <tr class="hover:bg-gray-300">
                         <th class="text-center">{{ $loop->iteration }}</th>
                         <td class="text-center">{{ $item->name }}</td>
                         <td class="text-center">{{ count($item->program) }}</td>
                         <td class="flex items-center justify-center gap-2">
-                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.categories.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
-                            <button class="btn btn-sm btn-error text-white" onclick="handleDelete('{{ route('manage.categories.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.program_type.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
+                            <button class="btn btn-sm btn-error text-white" onclick="handleDelete('{{ route('manage.program_type.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </td>
                     </tr>
                 @empty
@@ -39,7 +39,7 @@
     <div class="modal-box bg-white">
         <h3 class="text-lg font-bold mb-3">Create New Category</h3>
         <div>
-            <form action="{{ route('manage.categories.store') }}" method="POST" id="create_form">
+            <form action="{{ route('manage.program_type.store') }}" method="POST" id="create_form">
                 @csrf
                 <div>
                     <label for="create_name" class="font-semibold">Name</label><br>
@@ -88,7 +88,7 @@
     <div class="modal-box bg-white">
         <h3 class="text-lg font-bold mb-3">Confirmation</h3>
         <div>
-            Are you sure you want to delete this category?
+            Are you sure you want to delete this type?
         </div>
         <div class="modal-action">
             <form method="dialog">
