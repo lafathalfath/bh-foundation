@@ -54,16 +54,16 @@
         @endif
 
         @if ($about->is_programs_visible)
-            <section class="px-[8%] py-[5%]">
+            <section class="px-[8%] py-[5%]" id="programs">
                 <div class="flex items-center justify-between mb-3">
                     <div class="font-semibold text-lg">Programs</div>
                     <div class="flex items-center gap-1">
-                        <div
+                        <a href="{{ route('about', ['page' => $programs->currentPage() - 1]) }}"
                             class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] flex items-center justify-center w-10 h-10 scale-x-[-1]">
-                            &#10140;</div>
-                        <div
+                            &#10140;</a>
+                        <a href="{{ route('about', ['page' => $programs->currentPage() + 1]) }}"
                             class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] flex items-center justify-center w-10 h-10">
-                            &#10140;</div>
+                            &#10140;</a>
                     </div>
                 </div>
                 <div class="relative">
