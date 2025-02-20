@@ -12,12 +12,14 @@
     <title>Bogor Heritage Foundation</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-white text-black min-h-[100vh]">
     <div>
-        <nav class="fixed top-0 w-full bg-white px-5 py-3 flex items-center justify-between outline outline-1 outline-gray-200 z-50">
+        <nav
+            class="fixed top-0 w-full bg-white px-5 py-3 flex items-center justify-between outline outline-1 outline-gray-200 z-50">
             <!-- Logo dan Nama Aplikasi -->
             <a href="{{ route('home') }}" class="flex items-center gap-3">
                 <img src="{{ $settings->logo_url }}" alt="" class="w-10">
@@ -33,7 +35,8 @@
 
             <!-- Link Navigasi -->
             <div id="menu" class="hidden md:flex items-center gap-5">
-                <a href="{{ route('home') }}" class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
+                <a href="{{ route('home') }}"
+                    class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
                     Home
                 </a>
                 <a href="{{ route('about') }}"
@@ -71,7 +74,8 @@
         </nav>
 
         <!-- Dropdown Menu (Mobile) -->
-        <div id="mobile-menu" class="md:hidden flex flex-col gap-2 px-5 pt-3 pb-5 bg-white shadow-md fixed top-14 left-0 w-full z-40">
+        <div id="mobile-menu"
+            class="md:hidden flex flex-col gap-2 px-5 pt-3 pb-5 bg-white shadow-md fixed top-14 left-0 w-full z-40">
             <a href="{{ route('home') }}"
                 class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
                 Home
@@ -102,7 +106,7 @@
     <div class="pt-[70px]">
         @if ($errors->any())
             <div class="fixed w-full p-3">
-                @foreach ($errors->all() as $key=>$err)
+                @foreach ($errors->all() as $key => $err)
                     <div class="bg-error p-3 rounded-xl" id="error-{{ $key }}" onclick="hideError({{ $key }})">{{ $err }}</div>
                 @endforeach
             </div>
@@ -112,7 +116,7 @@
                 <div class="bg-success p-3 rounded-xl" id="success" onclick="hideSuccess()">{{ session('success') }}</div>
             </div>
         @endif
-        
+
         @yield('content')
     </div>
     <footer class="bg-gray-900 text-gray-400 py-10">
@@ -186,7 +190,7 @@
             </div>
         </div>
     </footer>
-    
+
     <script>
         // JavaScript untuk Toggle Menu
         const menuToggle = document.getElementById('menu-toggle');
@@ -195,7 +199,7 @@
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
+
         const hideError = (id) => {
             const alert = document.getElementById(`error-${id}`)
             alert.style.display = 'none'
@@ -205,5 +209,16 @@
             alert.style.display = 'none'
         }
     </script>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+            duration: 1000, // Durasi animasi (1 detik)
+            once: false,    // Animasi akan di-trigger setiap muncul di viewport
+        });
+    });
+</script>
 </body>
+
 </html>
