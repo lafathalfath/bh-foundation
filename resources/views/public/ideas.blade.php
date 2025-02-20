@@ -40,6 +40,35 @@
                         @empty
                             <div class="flex justify-center">Empty</div>
                         @endforelse
+                        <!-- Pagination -->
+            @php
+                $current = $scholarship->currentPage();
+                $lastpage = $scholarship->lastPage();
+                $first = $current == 1;
+                $last = $current == $lastpage;
+                $total = $scholarship->total();
+                $start = 1;
+                $show = 0;
+                if ($lastpage == 1) $show = $total;
+                else {
+                    $start = $current * $scholarship->perPage() + 1;
+                    $show = $total - ($scholarship->perPage() * ($scholarship->lastPage() - 1));
+                }
+            @endphp
+            <div class="flex justify-center items-center w-full mt-5 translate-x-[240px]">
+                <div class="flex items-center justify-center gap-2 ml-10">
+                    <a @if (!$first)
+                        href="{{ route('ideas', ['page' => $current-1]) }}"
+                    @endif class="px-2.5 pb-1 text-white font-bold hover:scale-125 {{ $first ? 'bg-gray-400' : "rounded bg-[$settings->primary_color]" }}">«</a>
+                    @for ($i = 0; $i < $lastpage; $i++)
+                        <a href="{{ $current == $i + 1 ? route('ideas', ['page' => $i + 1]) : '' }}" class="px-1 rounded {{ $current == $i + 1 ? "border-x-2 border-[$settings->primary_color]" : "hover:bg-[$settings->primary_color]/[0.5] hover:text-white" }}">{{ $i+1 }}</a>
+                    @endfor
+                    <div>...</div>
+                    <a @if (!$last)
+                        href="{{ route('ideas', ['page' => $current+1]) }}"
+                    @endif class="px-2.5 pb-1 text-white font-bold hover:scale-125 {{ $last ? 'bg-gray-400' : "rounded bg-[$settings->primary_color]"}}">»</a>
+                </div>
+            </div>
                     </div>
                 </div>
             </div>

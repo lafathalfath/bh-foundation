@@ -8,7 +8,7 @@
 
     <div>
         @if ($front_page->is_hero_visible)
-            <section class="bg-[{{ $front_page->hero_bg_color}}] text-white py-30">
+            <section class="bg-[{{ $front_page->hero_bg_color}}] text-white py-30" data-aos="fade-down">
                 <div class="container mx-auto flex h-screen items-center">
                     <!-- Bagian Kiri: Judul dan Teks -->
                     <div class="w-full md:w-1/2 pl-10">
