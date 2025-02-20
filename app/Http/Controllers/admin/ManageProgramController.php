@@ -19,6 +19,7 @@ class ManageProgramController extends Controller
         $program_types = mProgramType::select(['id', 'name'])->get();
         $programs = [];
         foreach ($program_types as $pt) {
+            $pageName = str_replace(' ', '-', strtolower($pt->name));
             $programs[$pt->name] = Program::where('type_id', $pt->id)
                 ->select([
                     'id',
@@ -29,7 +30,7 @@ class ManageProgramController extends Controller
                     'views',
                     'published',
                 ])
-                ->paginate(10);
+                ->paginate(10)->setPageName($pageName);
         }
         return view('admin.programs.index', [
             'programs' => $programs,
