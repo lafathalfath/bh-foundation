@@ -37,7 +37,7 @@
 {{-- modals --}}
 <dialog id="create_modal" class="modal">
     <div class="modal-box bg-white">
-        <h3 class="text-lg font-bold mb-3">Create New Category</h3>
+        <h3 class="text-lg font-bold mb-3">Create New Member Category</h3>
         <div>
             <form action="{{ route('manage.member_level.store') }}" method="POST" id="create_form">
                 @csrf
@@ -51,7 +51,7 @@
             <form method="dialog">
                 <button class="btn btn-error text-white">Discard</button>
             </form>
-            <button type="submit" class="btn btn-success text-white" onclick="create_form.submit()">Update</button>
+            <button type="submit" class="btn btn-success text-white" onclick="create_form.submit()">Save</button>
         </div>
     </div>
     <form method="dialog" class="modal-backdrop">
@@ -61,7 +61,7 @@
 
 <dialog id="edit_modal" class="modal">
     <div class="modal-box bg-white">
-        <h3 class="text-lg font-bold mb-3">Edit Category</h3>
+        <h3 class="text-lg font-bold mb-3">Edit Member Category</h3>
         <div>
             <form action="" method="POST" id="edit_form">
                 @csrf
@@ -76,7 +76,7 @@
             <form method="dialog">
                 <button class="btn btn-error text-white">Discard</button>
             </form>
-            <button type="submit" class="btn btn-success text-white" onclick="edit_form.submit()">Save</button>
+            <button type="submit" class="btn btn-success text-white" onclick="edit_form.submit()">Update</button>
         </div>
     </div>
     <form method="dialog" class="modal-backdrop">

@@ -129,18 +129,15 @@
                 </div>
                 <p class="text-gray-500 text-sm">Aliquam rhoncus ligula est, non pulvinar elit convallis nec. Donec
                     mattis odio at.</p>
-                <div class="flex gap-2 mt-3">
-                    <!-- Ikon Sosial Media -->
-                    <a href="#" class="bg-gray-700 hover:bg-[#3b5998] text-white rounded-full p-2"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="bg-gray-700 hover:bg-[#E4405F] text-white rounded-full p-2"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="#" class="bg-gray-700 hover:bg-[#FF5700] text-white rounded-full p-2"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a href="#" class="bg-gray-700 hover:bg-[#00acee] text-white rounded-full p-2"><i
-                            class="fab fa-twitter"></i></a>
-                    <a href="#" class="bg-gray-700 hover:bg-[#FF0000] text-white rounded-full p-2"><i
-                            class="fab fa-youtube"></i></a>
+                <div class="flex items-center gap-2 mt-3">
+                    @php
+                        $social = \App\models\SocialMedia::select(['name', 'url'])->get();
+                    @endphp
+                    @foreach ($social as $sc)
+                        <a href="{{ $sc->url }}" class="w-8 aspect-square bg-gray-700 hover:bg-[{{ $settings->primary_color }}] hover:shadow-md hover:shadow-[{{ $settings->primary_color }}] text-white flex items-center justify-center">
+                            <i class="fa-brands fa-{{ str_replace(' ', '-', strtolower($sc->name)) == 'x' ? 'twitter' : str_replace(' ', '-', strtolower($sc->name)) }}"></i>
+                        </a>
+                    @endforeach
                 </div>
             </div>
 

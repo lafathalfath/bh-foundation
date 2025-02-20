@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('social_media', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('contact_id')->default(1);
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->timestamps();
-
-            $table->foreign('contact_id')->references('id')->on('contact');
         });
     }
 
