@@ -22,11 +22,17 @@ class FrontPageController extends Controller
             'hero_description' => 'required|string|max:500',
             'hero_image' => 'mimes:jpg,jpeg,png|max:5120',
             'hero_bg_color' => 'required|string',
+            'is_hero_visible' => 'boolean',
+            'is_about_visible' => 'boolean',
+            'is_recent_news_visible' => 'boolean',
         ]);
         $data = [
             'hero_title' => $req->hero_title,
             'hero_description' => $req->hero_description,
             'hero_bg_color' => $req->hero_bg_color,
+            'is_hero_visible' => $req->is_hero_visible ?? false,
+            'is_about_visible' => $req->is_about_visible ?? false,
+            'is_recent_news_visible' => $req->is_recent_news_visible ?? false,
         ];
 
         $front_page = FrontPage::first();

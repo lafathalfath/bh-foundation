@@ -1,5 +1,11 @@
 @extends('layout.public')
 @section('content')
+<style>
+.hover-translate:hover {
+    transform: translateY(-10px) !important;
+}
+</style>
+
     <main class="container mx-auto px-5 md:px-9">
         <!-- Grid Berita -->
         <section class="py-20 ">
@@ -11,7 +17,7 @@
                         if (strlen($views) >= 7 && strlen($views) < 10) $views = substr($views, 0, strlen($views)-6)."M";
                         if (strlen($views) >= 10) $views = substr($views, 0, strlen($views)-9)."B";
                     @endphp
-                    <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="border rounded-lg overflow-hidden shadow-md hover-translate" data-aos="zoom-in">
                         <figure class="w-full h-60 bg-gray-300 overflow-hidden border rounded-t-xl flex items-center justify-center">
                             <img src="{{ $nw->image_url }}"
                                 alt="News Image" class="w-full h-full object-cover  ">

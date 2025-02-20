@@ -51,7 +51,7 @@
                 <section class="mb-10">
                     {{-- <h2 class="text-2xl font-bold mb-4">Description</h2> --}}
                     <p class="text-gray-800 mb-4">
-                        {{ $program->description }}
+                    {!! nl2br(e($program->description)) !!}
                     </p>
                     {{-- <p class="text-gray-800 mb-4">
                         I did that and that's why I got into this field. Not for the love of Web Design, which I do love.

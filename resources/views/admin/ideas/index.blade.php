@@ -20,11 +20,11 @@
         <form action="{{ route('manage.page.ideas.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <!-- <div class="mt-10 mb-5">
+            <div class="mt-10 mb-5">
                     <input type="checkbox" name="is_hero_visible" id="is_hero_visible" placeholder="Type Here..."
-                        value="true" class="" {{ $ideas->is_hero_visible ? 'checked' : '' }}>
+                        value="1" class="" {{ $ideas->is_hero_visible ? 'checked' : '' }}>
                     <label class="text-xl" for="is_hero_visible">Hero Section</label>
-                </div> -->
+            </div>
             <div class="mb-3">
                 <label for="title">Title</label><br>
                 <input type="text" name="title" id="title" placeholder="Type Here..."
@@ -43,6 +43,11 @@
                     <img src="{{ $ideas->image_url }}" alt="">
                 </div>
                 <input type="file" name="image" id="image" class="input-box" accept=".jpg,.jpeg,.png">
+            </div>
+            <div class="mt-10 mb-5">
+                    <input type="checkbox" name="is_major_visible" id="is_major_visible" placeholder="Type Here..."
+                        value="1" class="" {{ $ideas->is_major_visible ? 'checked' : '' }}>
+                    <label class="text-xl" for="is_major_visible">Major Section</label>
             </div>
             <div class="mb-3">
                 <label for="major_title">Major_Title</label><br>
@@ -63,16 +68,6 @@
                 </div>
                 <input type="file" name="major_image" id="major_image" class="input-box" accept=".jpg,.jpeg,.png">
             </div>
-            <!-- <div class="mt-10 mb-5">
-                    <input type="checkbox" name="is_about_visible" id="is_about_visible" placeholder="Type Here..."
-                        value="true" class="" {{ $ideas->is_about_visible ? 'checked' : '' }}>
-                    <label class="text-xl" for="is_about_visible">about Section</label>
-                </div>
-                <div class="mt-10 mb-5">
-                    <input type="checkbox" name="is_recent_news_visible" id="is_recent_news_visible" placeholder="Type Here..."
-                        value="true" class="" {{ $ideas->is_recent_news_visible ? 'checked' : '' }}>
-                    <label class="text-xl" for="is_recent_news_visible">Recent News Section</label>
-                </div> -->
             <div class="flex justify-end">
                 <button type="submit" class="px-10 py-2 bg-green-700 text-white">Save</button>
             </div>
