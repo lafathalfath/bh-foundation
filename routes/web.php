@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\ManageCategoryController;
 use App\Http\Controllers\admin\ManageMemberLevelController;
 use App\Http\Controllers\admin\ManageProgramController;
 use App\Http\Controllers\admin\ManageProgramTypeController;
+use App\Http\Controllers\admin\ManageSocialMediaController;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\public\IdeasController;
@@ -91,6 +92,13 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
             Route::get('/', [ProfileController::class, 'index'])->name('manage.profile');
             Route::put('/update', [ProfileController::class, 'update'])->name('manage.profile.update');
             Route::put('/reset-password', [ProfileController::class, 'resetPassword'])->name('manage.profile.reset_password');
+        });
+
+        Route::prefix('/social-media')->group(function () {
+            Route::get('/', [ManageSocialMediaController::class, 'index'])->name('manage.social');
+            Route::post('/store', [ManageSocialMediaController::class, 'store'])->name('manage.social.store');
+            Route::put('/{id}/update', [ManageSocialMediaController::class, 'update'])->name('manage.social.update');
+            Route::delete('/{id}/destroy', [ManageSocialMediaController::class, 'destroy'])->name('manage.social.destroy');
         });
     });
 });
