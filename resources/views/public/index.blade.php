@@ -1,5 +1,11 @@
 @extends('layout.public')
 @section('content')
+<style>
+.hover-translate:hover {
+    transform: translateY(-10px) !important;
+}
+</style>
+
     <div>
         @if ($front_page->is_hero_visible)
             <section class="bg-[{{ $front_page->hero_bg_color}}] text-white py-30">
@@ -20,6 +26,7 @@
 
         <main class="container mx-auto px-5 md:px-9">
 
+        @if ($front_page->is_about_visible)
             <!-- About Us Section -->
             <section class="py-20">
                 <div class="container mx-auto flex flex-col md:flex-row items-center">
@@ -40,89 +47,61 @@
                     </div>
                 </div>
             </section>
+        @endif
 
             <!-- Recent News Section -->
-            <section class="py-20 ">
-                <div class="container mx-auto text-center px-4 md:px-8">
-                    <h2 class="text-3xl font-bold mb-10">Recent News</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 z-0">
-                        @forelse ($news as $nw)
-                            @php
-                                $views = strval($nw->views);
-                                if (strlen($views) >= 4 && strlen($views) < 7) $views = substr($views, 0, strlen($views)-3)."K";
-                                if (strlen($views) >= 7 && strlen($views) < 10) $views = substr($views, 0, strlen($views)-6)."M";
-                                if (strlen($views) >= 10) $views = substr($views, 0, strlen($views)-9)."B";
-                            @endphp
-                                <div
-                                    class="shadow-md rounded-xl transition-transform duration-500 hover:translate-y-[-10px] opacity-0 translate-x-10">
-                                    <figure class="w-full h-60 bg-gray-300 overflow-hidden border rounded-t-xl flex items-center justify-center">
-                                        <img src="{{ $nw->image_url }}"
-                                            alt="News Image" class="w-full h-full object-cover  ">
-                                    </figure>
-                                    <div class="card-body">
-                                        <h3 class="card-title">{{ $nw->title }}</h3>
-                                        <p class="w-full h-7 overflow-hidden text-start text-gray-600">{{ $nw->description }}</p>
-                                        <p class="w-full text-start text-gray-500">{{ substr($nw->published_at, 0, 10) }}</p>
-                                        <div class="w-full flex justify-end">
-                                            {{ $views }} views
-                                        </div>
-                                        <a href="{{ route('article', [
-                                            'type' => 'news',
-                                            'id' => Crypt::encryptString($nw->id)
-                                        ]) }}" class="btn btn-outline btn-warning mt-4">
-                                            Read More...
-                                        </a>
-                                    </div>
-                                </div>
-                        @empty
-                            <div class="flex justify-center">Empty</div>
-                        @endforelse
+            @if ($front_page->is_recent_news_visible)
+                <section class="py-20 ">
+                    <div class="container mx-auto text-center px-4 md:px-8">
+                        <h2 class="text-3xl font-bold mb-10">Recent News</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 z-0">
+                            @forelse ($news as $nw)
+                                            @php
+                                                $views = strval($nw->views);
+                                                if (strlen($views) >= 4 && strlen($views) < 7)
+                                                    $views = substr($views, 0, strlen($views) - 3) . "K";
+                                                if (strlen($views) >= 7 && strlen($views) < 10)
+                                                    $views = substr($views, 0, strlen($views) - 6) . "M";
+                                                if (strlen($views) >= 10)
+                                                    $views = substr($views, 0, strlen($views) - 9) . "B";
+                                            @endphp
+                                            <div
+                                                class="shadow-md rounded-xl transition-transform duration-500 hover-translate" data-aos="fade-left" data-aos-anchor-placement="top-bottom">
+                                                <figure
+                                                    class="w-full h-60 bg-gray-300 overflow-hidden border rounded-t-xl flex items-center justify-center">
+                                                    <img src="{{ $nw->image_url }}" alt="News Image" class="w-full h-full object-cover  ">
+                                                </figure>
+                                                <div class="card-body">
+                                                    <h3 class="card-title overflow-hidden">{{ $nw->title }}</h3>
+                                                    <p class="w-full h-7 overflow-hidden text-start text-gray-600">{{ $nw->description }}</p>
+                                                    <p class="w-full text-start text-gray-500">{{ substr($nw->published_at, 0, 10) }}</p>
+                                                    <div class="w-full flex justify-end">
+                                                        {{ $views }} views
+                                                    </div>
+                                                    <a href="{{ route('article', [
+                                    'type' => 'news',
+                                    'id' => Crypt::encryptString($nw->id)
+                                ]) }}" class="btn btn-outline btn-warning mt-4">
+                                                        Read More...
+                                                    </a>
+                                                </div>
+                                            </div>
+                            @empty
+                                <div class="flex justify-center">Empty</div>
+                            @endforelse
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-center space-x-3">
-                    <a href="{{ route('allnews') }}">
-                        <button class="btn btn-outline btn-warning mt-4">Berita Lainnya...</button>
-                    </a>
-                    <a href="{{ route('contact') }}">
-                        <button class="btn btn-outline btn-warning mt-4">Contact <i
-                                class="fa-solid fa-paper-plane"></i></button>
-                    </a>
-                </div>
-            </section>
+                    <div class="flex items-center justify-center space-x-3">
+                        <a href="{{ route('allnews') }}">
+                            <button class="btn btn-outline btn-warning mt-4">Berita Lainnya...</button>
+                        </a>
+                        <a href="{{ route('contact') }}">
+                            <button class="btn btn-outline btn-warning mt-4">Contact <i
+                                    class="fa-solid fa-paper-plane"></i></button>
+                        </a>
+                    </div>
+                </section>
+            @endif
         </main>
     </div>
-    <script>
-        // Tunggu hingga halaman selesai dimuat
-        document.addEventListener('DOMContentLoaded', function () {
-            // Pilih semua card yang akan dianimasikan
-            const cards = document.querySelectorAll('.grid > div');
-
-            // Atur opsi observer
-            const observerOptions = {
-                root: null, // viewport browser
-                rootMargin: '0px',
-                threshold: 0.5 // Berapa persen elemen terlihat sebelum animasi berjalan
-            };
-
-            // Fungsi callback saat elemen terlihat
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Tambahkan class untuk animasi
-                        entry.target.classList.add('opacity-100', 'translate-x-0');
-                        // Hentikan observasi setelah animasi berjalan
-                        observer.unobserve(entry.target);
-                    }
-                });
-            };
-
-            // Buat observer baru
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-            // Mulai observasi tiap card
-            cards.forEach(card => {
-                observer.observe(card);
-            });
-        });
-    </script>
 @endsection

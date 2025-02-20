@@ -24,12 +24,16 @@ class ManageIdeasController extends Controller
             'major_title' => 'required|string|max:255',
             'major_description' => 'required|string|max:1000',
             'major_image' => 'mimes:jpg,jpeg,png|max:5120',
+            'is_hero_visible' => 'boolean',
+            'is_major_visible' => 'boolean',
         ]);
         $data = [
             'title' => $req->title,
             'description' => $req->description,
             'major_title' => $req->major_title,
             'major_description' => $req->major_description,
+            'is_hero_visible' => $req->is_hero_visible ?? false,
+            'is_major_visible' => $req->is_major_visible ?? false,
         ];
 
         $ideas = Ideas::first();

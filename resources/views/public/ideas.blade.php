@@ -25,7 +25,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
                     @forelse ($scholarship as $sch)
                         <!-- Card Beasiswa -->
-                        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                        <div class="bg-white shadow-md rounded-lg overflow-hidden" data-aos="fade-up">
                             <img src="{{ $sch->image_url }}"
                                 alt="Beasiswa Image" class="w-full h-48 object-cover">
                             <div class="p-4">

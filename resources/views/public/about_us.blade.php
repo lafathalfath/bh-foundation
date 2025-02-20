@@ -3,13 +3,13 @@
     <div class="flex flex-col">
         @if ($about->is_hero_visible)
             <section class="my-5 flex items-center justify-between h-96">
-                <div class="w-1/2 h-full">
+                <div class="w-1/2 h-full" data-aos="fade-right">
                     <div class="p-10">
                         <div class="text-5xl font-semibold">{{ $about->title }}</div><br>
                         <p>&emsp;{{ $about->description }}</p>
                     </div>
                 </div>
-                <div class="w-1/2 h-full">
+                <div class="w-1/2 h-full" data-aos="fade-left">
                     <div class="h-full flex items-center justify-end">
                         <div class="h-full">
                             <img src="{{ $about->image_1_url }}" alt="" class="h-full">
@@ -21,10 +21,10 @@
 
         @if ($about->is_vision_visible)
             <section class="p-5 bg-[{{ $about->bg_color ?? $settings->primary_color }}] flex items-center justify-between h-96">
-                <div class="w-1/2 h-full">
+                <div class="w-1/2 h-full" data-aos="fade-right">
                     <img src="{{ $about->image_2_url }}" class="h-full" alt="">
                 </div>
-                <div class="w-1/2 max-h-full text-white">
+                <div class="w-1/2 max-h-full text-white" data-aos="fade-left">
                     <div class="font-semibold text-2xl mb-2 mt-3">Vision:</div>
                     <p>{{ $about->vision }}</p>
                     <div class="font-semibold text-2xl mb-2 mt-3">Mision:</div>
@@ -39,7 +39,7 @@
                     <div class="text-2xl font-semibold">{{ $ml->name }}</div>
                     <div class="flex items-center justify-center gap-5">
                         @foreach ($ml->member as $mb)
-                            <div class="w-60">
+                            <div class="w-60" data-aos="fade-up">
                                 {{-- <div class="w-full h-60 bg-gray-500"></div> --}}
                                 <img src="{{ $mb->image_url }}" alt="">
                                 <div class="w-full h-20 bg-white flex flex-col items-center">
@@ -85,7 +85,7 @@
                                             'id' => Crypt::encryptString($po->id)
                                         ]) }}">
                                         
-                                    <div class="snap-center min-w-[304px] outline outline-1 outline-gray-300 hover:border-b-2 border-[{{ $settings->primary_color }}] rounded shadow-lg">
+                                    <div class="snap-center min-w-[304px] outline outline-1 outline-gray-300 hover:border-b-2 border-[{{ $settings->primary_color }}] rounded shadow-lg" data-aos="fade-in">
                                         <div class="w-full h-[171px] bg-gray-500">
                                             <img src="{{ $po->image_url }}" alt="Programs Image" class="w-full h-full object-cover">
                                         </div>
