@@ -47,22 +47,22 @@
                         </a>
                         <a href="{{ route('manage.page.about') }}">
                             <div class="ps-10 py-3 {{ request()->routeIs('manage.page.about') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                                About Us
+                                About Us Page
+                            </div>
+                        </a>
+                        <a href="{{ route('manage.page.ideas') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.page.ideas') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Ideas Page
+                            </div>
+                        </a>
+                        <a href="{{ route('manage.page.contact') }}">
+                            <div class="ps-10 py-3 {{ request()->routeIs('manage.page.contact') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                                Contact Page
                             </div>
                         </a>
                         <a href="{{ route('manage.article') }}">
                             <div class="ps-10 py-3 {{ request()->routeIs('manage.article') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                                 Articles
-                            </div>
-                        </a>
-                        <a href="{{ route('manage.page.ideas') }}">
-                            <div class="ps-10 py-3 {{ request()->routeIs('manage.dashboard') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                                Ideas
-                            </div>
-                        </a>
-                        <a href="{{ route('manage.page.contact') }}">
-                            <div class="ps-10 py-3 {{ request()->routeIs('manage.page.contact') ? "bg-[$settings->primary_color]/[0.7] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
-                                Contact
                             </div>
                         </a>
                     </div>

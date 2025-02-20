@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\public;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppSettings;
 use App\Models\mProgramType;
 use App\Models\Program;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -20,32 +21,15 @@ class AllnewsController extends Controller
             ->where('published', true)
             ->orderBy('id', 'desc')
             ->paginate(9);
-
-        return view('public.allnews', ['allnews' => $allnews]);
-
-        
-        // Data Dummy
-        // $news = collect(range(1, 50))->map(function ($i) {
-        //     return (object) [
-        //         'title' => "Judul Berita $i",
-        //         'description' => "Ini adalah deskripsi singkat dari berita nomor $i.",
-        //         'date' => "2025-02-14",
-        //         'image' => "https://stpbogor.ac.id/wp-content/uploads/2024/10/kerjasama-stp-bogor-quail-center-e1728016964606.jpg"
-        //     ];
-        // });
-
-        // // Custom Pagination untuk Collection
-        // $perPage = 9;
-        // $currentPage = request()->get('page', 1);
-        // $currentItems = $news->slice(($currentPage - 1) * $perPage, $perPage)->values();
-        // $paginatedNews = new LengthAwarePaginator(
-        //     $currentItems,
-        //     $news->count(),
-        //     $perPage,
-        //     $currentPage,
-        //     ['path' => request()->url()]
-        // );
-
-        // return view('public.allnews', ['allnews' => $paginatedNews]);
+        $settings = AppSettings::select([
+            'primary_color',
+            'secondary_color',
+            'accent_color',
+            'info_color'
+        ])->first();
+        return view('public.allnews', [
+            'allnews' => $allnews,
+            'settings' => $settings,
+        ]);
     }
 }
