@@ -56,6 +56,16 @@
                     $start = $current * $allnews->perPage() + 1;
                     $show = $total - ($allnews->perPage() * ($allnews->lastPage() - 1));
                 }
+                $startpage = 1;
+                $endpage = 1;
+                if ($lastpage <= 11) $endpage = $lastpage;
+                else {
+                    if ($current <= 6) $startpage = 1;
+                    else $startpage = $current - 6;
+
+                    if ($current + 5 <= $lastpage) $endpage = $lastpage;
+                    else $endpage = $current + 5;
+                }
             @endphp
             <div>Showing {{ $start }} to {{ $show }} of {{ $allnews->total() }} results</div>
             <div class="flex items-center justify-center">
@@ -63,10 +73,15 @@
                     <a @if (!$first)
                         href="{{ route('allnews', ['page' => $current-1]) }}"
                     @endif class="px-2.5 pb-1 text-white font-bold hover:scale-125 {{ $first ? 'bg-gray-400' : "rounded bg-[$settings->primary_color]" }}">«</a>
-                    @for ($i = 0; $i < $lastpage; $i++)
-                        <a href="{{ $current == $i + 1 ? route('allnews', ['page' => $i + 1]) : '' }}" class="px-1 rounded {{ $current == $i + 1 ? "border-x-2 border-[$settings->primary_color]" : "hover:bg-[$settings->primary_color]/[0.5] hover:text-white" }}">{{ $i+1 }}</a>
+                    @if ($startpage > 1)
+                        <div>...</div>
+                    @endif
+                    @for ($i = $startpage; $i <= $endpage; $i++)
+                        <a href="{{ $current == $i ? route('allnews', ['page' => $i]) : '' }}" class="px-1 rounded {{ $current == $i ? "border-x-2 border-[$settings->primary_color]" : "hover:bg-[$settings->primary_color]/[0.5] hover:text-white" }}">{{ $i }}</a>
                     @endfor
-                    <div>...</div>
+                    @if ($endpage > $lastpage)
+                        <div>...</div>
+                    @endif
                     <a @if (!$last)
                         href="{{ route('allnews', ['page' => $current+1]) }}"
                     @endif class="px-2.5 pb-1 text-white font-bold hover:scale-125 {{ $last ? 'bg-gray-400' : "rounded bg-[$settings->primary_color]"}}">»</a>
