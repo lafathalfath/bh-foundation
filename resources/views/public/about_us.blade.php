@@ -95,10 +95,12 @@
                                                 <div class="text-gray-400 text-sm">{{ substr($po->published_at, 0, 10) }}</div>
                                             </div>
                                             <div class="flex justify-between items-center mt-2">
+                                            @foreach ($po->category as $cat)
                                                 <div
                                                     class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] px-2 rounded-full">
-                                                    category
+                                                    {{ $cat->name }}
                                                 </div>
+                                            @endforeach
                                                 <div class="text-center text-sm">{{ $views }} views</div>
                                             </div>
                                         </div>

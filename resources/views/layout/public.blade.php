@@ -133,7 +133,7 @@
                     <!-- Ikon Sosial Media -->
                     <a href="#" class="bg-gray-700 hover:bg-[#3b5998] text-white rounded-full p-2"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="bg-gray-700 hover:bg-[#E4405F] text-white rounded-full p-2"><i
+                    <a href="https://www.instagram.com/bogorheritagefoundation" class="bg-gray-700 hover:bg-[#E4405F] text-white rounded-full p-2"><i
                             class="fab fa-instagram"></i></a>
                     <a href="#" class="bg-gray-700 hover:bg-[#FF5700] text-white rounded-full p-2"><i
                             class="fab fa-tiktok"></i></a>
