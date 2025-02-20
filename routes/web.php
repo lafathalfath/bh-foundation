@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\ManageCategoryController;
 use App\Http\Controllers\admin\ManageMemberLevelController;
 use App\Http\Controllers\admin\ManageProgramController;
 use App\Http\Controllers\admin\ManageProgramTypeController;
+use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\public\IdeasController;
 use App\Http\Controllers\public\ContactController;
@@ -85,6 +86,12 @@ Route::middleware(AuthenticateMiddleware::class)->group(function () {
         Route::post('/partners/store', [ManageAboutController::class, 'addPartners'])->name('manage.partner.store');
         Route::put('/partners/{id}/update', [ManageAboutController::class, 'updateParters'])->name('manage.partner.update');
         Route::delete('/partners/{id}/destroy', [ManageAboutController::class, 'destroyPartner'])->name('manage.partner.destroy');
+
+        Route::prefix('/profile')->group(function () {
+            Route::get('/', [ProfileController::class, 'index'])->name('manage.profile');
+            Route::put('/update', [ProfileController::class, 'update'])->name('manage.profile.update');
+            Route::put('/reset-password', [ProfileController::class, 'resetPassword'])->name('manage.profile.reset_password');
+        });
     });
 });
 

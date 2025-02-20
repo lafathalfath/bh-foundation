@@ -17,7 +17,7 @@
 <body class="bg-white text-black h-[100vh] overflow-hidden">
     <div class="flex">
 
-        <div class="w-fit h-[100vh] overflow-hidden bg-[#1D2026] text-white">
+        <div class="w-fit h-[100vh] overflow-x-hidden bg-[#1D2026] text-white overflow-y-scroll">
             <a href="{{ route('home') }}" class="p-5 w-72 flex items-center gap-2 border-b border-gray-500">
                 <div class="w-10"><img src="{{ $settings->logo_url }}" alt=""></div>
                 <div class="text-lg font-semibold">{{ $settings->app_name }}</div>
@@ -101,8 +101,14 @@
                             App Settings
                         </div>
                     </a>
+
+                    <a href="{{ route('manage.profile') }}">
+                        <div class="px-5 py-3 {{ request()->routeIs('manage.profile') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                            Profile
+                        </div>
+                    </a>
                 </div>
-                <div>
+                <div class="mt-10">
                     <div class="px-5 py-3 hover:bg-red-800 text-gray-300 hover:text-white">
                         <a href="{{ route('auth.logout') }}"><i class="fa-solid fa-arrow-right-from-bracket"></i>&emsp;Logout</a>
                     </div> 
