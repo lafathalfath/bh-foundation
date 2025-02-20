@@ -3,6 +3,7 @@
     
 <div class="flex flex-col gap-20">
     @foreach ($programs as $key=>$pg)
+        {{-- {{ dd($pg) }} --}}
         <div>
             <div class="flex items-center justify-between">
                 <button type="button" class="font-semibold text-lg" onclick="toggleSection('{{ $key }}')">
@@ -78,7 +79,7 @@
                     </tbody>
                 </table>
                 @php
-                    $current = $pg->currentPage();
+                    $current = request()[str_replace(' ', '-', strtolower($key))] ?? 1;
                     $lastpage = $pg->lastPage();
                     $first = $current == 1;
                     $last = $current == $lastpage;
@@ -86,15 +87,14 @@
                     $start = ($current - 1) * $pg->perPage() + 1;
                     $end = min($current * $pg->perPage(), $total);
                 @endphp
-
-                <div class="flex items-center justify-center">
+                <div class="mt-3 flex items-center justify-center">
                     <div class="flex items-center justify-center gap-2">
                         <!-- Tombol Previous -->
-                        <a @if (!$first && $pg->count() > 0)
-                            href="{{ $pg->previousPageUrl() }}"
+                        <a @if (!$first)
+                            href="{{ $pg->url($current - 1) }}"
                         @endif 
                         class="px-2.5 pb-1 text-white font-bold hover:scale-125 
-                        {{ $first || $pg->count() == 0 ? 'bg-gray-400 pointer-events-none' : "rounded bg-[$settings->primary_color]" }}">
+                        {{ $first ? 'bg-gray-400 pointer-events-none' : "rounded bg-[$settings->primary_color]" }}">
                             «
                         </a>
                                                     
@@ -107,11 +107,11 @@
                         @endfor
                                                     
                         <!-- Tombol Next -->
-                        <a @if (!$last && $pg->count() > 0)
-                            href="{{ $pg->nextPageUrl() }}"
+                        <a @if (!$last)
+                            href="{{ $pg->url($current + 1) }}"
                         @endif 
                         class="px-2.5 pb-1 text-white font-bold hover:scale-125 
-                        {{ $last || $pg->count() == 0 ? 'bg-gray-400 pointer-events-none' : "rounded bg-[$settings->primary_color]" }}">
+                        {{ $last ? 'bg-gray-400 pointer-events-none' : "rounded bg-[$settings->primary_color]" }}">
                             »
                         </a>
                     </div>
