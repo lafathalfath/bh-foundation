@@ -51,7 +51,7 @@
             <form method="dialog">
                 <button class="btn btn-error text-white">Discard</button>
             </form>
-            <button type="submit" class="btn btn-success text-white" onclick="create_form.submit()">Update</button>
+            <button type="submit" class="btn btn-success text-white" onclick="create_form.submit()">Save</button>
         </div>
     </div>
     <form method="dialog" class="modal-backdrop">
@@ -76,7 +76,7 @@
             <form method="dialog">
                 <button class="btn btn-error text-white">Discard</button>
             </form>
-            <button type="submit" class="btn btn-success text-white" onclick="edit_form.submit()">Save</button>
+            <button type="submit" class="btn btn-success text-white" onclick="edit_form.submit()">Update</button>
         </div>
     </div>
     <form method="dialog" class="modal-backdrop">

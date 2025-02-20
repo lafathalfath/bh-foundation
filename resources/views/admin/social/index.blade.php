@@ -2,7 +2,7 @@
 @section('content')
     
 <div>
-    <div class="text-xl font-semibold mb-10">Manage Article Types</div>
+    <div class="text-xl font-semibold mb-10">Manage Categories</div>
     <div class="flex justify-end"><button class="btn btn-sm btn-success text-white" onclick="create_modal.showModal()">+ Create New</button></div>
     <div class="overflow-x-auto">
         <table class="table">
@@ -11,19 +11,19 @@
                 <tr>
                     <th class="w-10">#</th>
                     <th>Name</th>
-                    <th>In Uses of Articles</th>
+                    <th>URL</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($program_type as $item)
+                @forelse ($social as $item)
                     <tr class="hover:bg-gray-300">
                         <th class="text-center">{{ $loop->iteration }}</th>
                         <td class="text-center">{{ $item->name }}</td>
-                        <td class="text-center">{{ count($item->program) }}</td>
+                        <td class="text-center"><a href="{{ $item->url }}" class="hover:text-blue-600">{{ $item->url }}</a></td>
                         <td class="flex items-center justify-center gap-2">
-                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.program_type.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
-                            <button class="btn btn-sm btn-error text-white" onclick="handleDelete('{{ route('manage.program_type.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
+                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.social.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
+                            <button class="btn btn-sm btn-error text-white" onclick="handleDelete('{{ route('manage.social.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </td>
                     </tr>
                 @empty
@@ -37,13 +37,17 @@
 {{-- modals --}}
 <dialog id="create_modal" class="modal">
     <div class="modal-box bg-white">
-        <h3 class="text-lg font-bold mb-3">Create New Article Type</h3>
+        <h3 class="text-lg font-bold mb-3">Create New Social Media</h3>
         <div>
-            <form action="{{ route('manage.program_type.store') }}" method="POST" id="create_form">
+            <form action="{{ route('manage.social.store') }}" method="POST" id="create_form">
                 @csrf
                 <div>
                     <label for="create_name" class="font-semibold">Name</label><br>
                     <input type="text" name="name" id="create_name" class="w-full bg-white p-3 outline outline-1 outline-gray-300" placholder="Type Here..." required>
+                </div>
+                <div>
+                    <label for="create_url" class="font-semibold">URL</label><br>
+                    <input type="url" name="url" id="create_url" class="w-full bg-white p-3 outline outline-1 outline-gray-300" placholder="Type Here..." required>
                 </div>
             </form>
         </div>
@@ -61,7 +65,7 @@
 
 <dialog id="edit_modal" class="modal">
     <div class="modal-box bg-white">
-        <h3 class="text-lg font-bold mb-3">Edit Article Type</h3>
+        <h3 class="text-lg font-bold mb-3">Edit Social Media</h3>
         <div>
             <form action="" method="POST" id="edit_form">
                 @csrf
@@ -69,6 +73,10 @@
                 <div>
                     <label for="edit_name" class="font-semibold">Name</label><br>
                     <input type="text" name="name" id="edit_name" class="w-full bg-white p-3 outline outline-1 outline-gray-300" placholder="Type Here..." required>
+                </div>
+                <div>
+                    <label for="edit_url" class="font-semibold">URL</label><br>
+                    <input type="url" name="url" id="edit_url" class="w-full bg-white p-3 outline outline-1 outline-gray-300" placholder="Type Here..." required>
                 </div>
             </form>
         </div>
@@ -88,7 +96,7 @@
     <div class="modal-box bg-white">
         <h3 class="text-lg font-bold mb-3">Confirmation</h3>
         <div>
-            Are you sure you want to delete this type?
+            Are you sure you want to delete this social media?
         </div>
         <div class="modal-action">
             <form method="dialog">

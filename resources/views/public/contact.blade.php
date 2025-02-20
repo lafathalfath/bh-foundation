@@ -17,13 +17,12 @@
                         </div>
                         <div class="mb-3">
                             <h4 class="font-semibold text-yellow-500 text-sm">PHONE NUMBER</h4>
-                            <p class="text-gray-700 text-sm">{{ $contact->phone }}<br>(219) 555-0114</p>
+                            <p class="text-gray-700 text-sm">{{ $contact->phone }}</p>
                         </div>
                         <div class="mb-3">
                             <h4 class="font-semibold text-yellow-500 text-sm">EMAIL ADDRESS</h4>
                             <p class="text-gray-700 text-sm">
-                            {{ $contact->email }}<br>
-                                career.eduguard@gmail.com
+                            {{ $contact->email }}
                             </p>
                         </div>
                     </div>
@@ -37,27 +36,29 @@
                         <form>
                             <div class="flex gap-2 mb-3">
                                 <input type="text" placeholder="First name..."
-                                    class="w-1/2 p-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                    class="w-1/2 p-2 bg-white outline outline-1 outline-gray-400 rounded">
                                 <input type="text" placeholder="Last name..."
-                                    class="w-1/2 p-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                    class="w-1/2 p-2 bg-white outline outline-1 outline-gray-400 rounded">
                             </div>
                             <div class="mb-3">
                                 <input type="email" placeholder="Email Address"
-                                    class="w-full p-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                    class="w-full p-2 bg-white outline outline-1 outline-gray-400 rounded">
                             </div>
                             <div class="mb-3">
                                 <input type="text" placeholder="Message Subject"
-                                    class="w-full p-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                    class="w-full p-2 bg-white outline outline-1 outline-gray-400 rounded">
                             </div>
                             <div class="mb-4">
                                 <textarea placeholder="Message Subject" rows="3"
-                                    class="w-full p-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
+                                    class="w-full p-2 bg-white outline outline-1 outline-gray-400 rounded"></textarea>
                             </div>
-                            <button type="submit"
-                                class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md flex items-center gap-2 text-sm">
-                                Send Message
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
+                            <div class="flex justify-center">
+                                <button type="submit"
+                                    class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md flex items-center gap-2 text-sm">
+                                    Send Message
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

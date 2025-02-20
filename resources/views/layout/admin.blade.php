@@ -102,6 +102,12 @@
                         </div>
                     </a>
 
+                    <a href="{{ route('manage.social') }}">
+                        <div class="px-5 py-3 {{ request()->routeIs('manage.social') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
+                            Social Media
+                        </div>
+                    </a>
+
                     <a href="{{ route('manage.profile') }}">
                         <div class="px-5 py-3 {{ request()->routeIs('manage.profile') ? "bg-[$settings->primary_color] text-white" : "hover:bg-[$settings->primary_color]/[0.5] text-gray-300 hover:text-white" }}">
                             Profile
