@@ -15,8 +15,8 @@ class AppSettingSeeder extends Seeder
     {
         $settings = [[
             'app_name' => 'BH-Foundation',
-            'logo_url' => 'http://localhost:8000/storage/LOGO-YPB_BULAT.png',
-            'logo_banner_url' => 'http://localhost:8000/storage/LOGO-YPB_NOBG.png',
+            'logo_url' => '/storage/LOGO-YPB_BULAT.png',
+            'logo_banner_url' => '/storage/LOGO-YPB_NOBG.png',
             'primary_color' => '#C17D40',
             'secondary_color' => '#16793C',
             'accent_color' => '#F5C97F',
