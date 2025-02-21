@@ -20,6 +20,7 @@ class DashboardController extends Controller
         $totalArticlesType = mProgramType::count();
         $totalMember = Member::count();
         $totalPartner = Partner::count();
-        return view('admin.dashboard.index', compact('totalArticles', 'totalArticlesCat', 'totalArticlesType', 'totalMember', 'totalPartner'));
+        $totalViews = Program::sum('views');
+        return view('admin.dashboard.index', compact('totalArticles', 'totalArticlesCat', 'totalArticlesType', 'totalMember', 'totalPartner', 'totalViews'));
     }
 }

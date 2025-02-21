@@ -1,8 +1,6 @@
 @extends('layout.admin')
 @section('content')
 <div class="container mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4">Dashboard Admin</h2>
-
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <a href="{{ route('manage.article') }}">
         <div class="bg-blue-500 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
@@ -27,8 +25,8 @@
         <div class="bg-red-500 text-white p-4 rounded-lg shadow-md flex items-center justify-between">
         <i class="fa-solid fa-eye text-8xl"></i>
             <div class="text-right">
-            <h3 class="text-lg text-center justify-center">Total View</h3>
-            <p class="text-2xl font-bold text-center justify-center"></p>
+            <h3 class="text-lg text-center justify-center">Total Views</h3>
+            <p class="text-2xl font-bold text-center justify-center">{{ $totalViews }}</p>
             </div>
         </div>
         </a>
