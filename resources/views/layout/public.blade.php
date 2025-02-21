@@ -131,7 +131,7 @@
                     mattis odio at.</p>
                 <div class="flex items-center gap-2 mt-3">
                     @php
-                        $social = \App\models\SocialMedia::select(['name', 'url'])->get();
+                        $social = \App\Models\SocialMedia::select(['name', 'url'])->get();
                     @endphp
                     @foreach ($social as $sc)
                         <a href="{{ $sc->url }}" class="w-8 aspect-square bg-gray-700 hover:bg-[{{ $settings->primary_color }}] hover:shadow-md hover:shadow-[{{ $settings->primary_color }}] text-white flex items-center justify-center">
