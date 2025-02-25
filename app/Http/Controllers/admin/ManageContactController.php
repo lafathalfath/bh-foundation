@@ -15,7 +15,7 @@ class ManageContactController extends Controller
         ]);
     }
 
-    public function store(Request $req){
+    public function update(Request $req){
         $req->validate([
             'description' => 'required|string|max:255',
             'address' => 'required|string|max:500',
