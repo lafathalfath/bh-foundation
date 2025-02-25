@@ -79,7 +79,8 @@
                     </tbody>
                 </table>
                 @php
-                    $current = request()[str_replace(' ', '-', strtolower($key))] ?? 1;
+                    $pageParam = str_replace(' ', '-', strtolower($key)); // Nama parameter page
+                    $current = request($pageParam, 1);
                     $lastpage = $pg->lastPage();
                     $first = $current == 1;
                     $last = $current == $lastpage;
@@ -87,6 +88,7 @@
                     $start = ($current - 1) * $pg->perPage() + 1;
                     $end = min($current * $pg->perPage(), $total);
                 @endphp
+
                 <div class="mt-3 flex items-center justify-center">
                     <div class="flex items-center justify-center gap-2">
                         <!-- Tombol Previous -->
@@ -97,7 +99,7 @@
                         {{ $first ? 'bg-gray-400 pointer-events-none' : "rounded bg-[$settings->primary_color]" }}">
                             «
                         </a>
-                                                    
+                                                
                         <!-- Nomor Halaman -->
                         @for ($i = 1; $i <= $lastpage; $i++)
                             <a href="{{ $pg->url($i) }}" 
@@ -105,7 +107,7 @@
                                 {{ $i }}
                             </a>
                         @endfor
-                                                    
+                                                
                         <!-- Tombol Next -->
                         <a @if (!$last)
                             href="{{ $pg->url($current + 1) }}"
