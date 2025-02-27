@@ -45,7 +45,7 @@
                 <input type="file" name="hero_image" id="hero_image" class="input-box" accept=".jpg,.jpeg,.png">
             </div>
             <div class="mb-3">
-                <label for="hero_bg_color">Hero Backgroun Color</label><br>
+                <label for="hero_bg_color">Hero Background Color</label><br>
                 <input type="color" name="hero_bg_color" id="hero_bg_color" value="{{ $front_page->hero_bg_color }}"
                     class="w-48 bg-[#272B34]" required>
             </div>
