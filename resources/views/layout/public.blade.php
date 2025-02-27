@@ -216,6 +216,43 @@
         });
     });
 </script>
+
+<!-- Language -->
+ <!-- Google Translate Widget -->
+<!-- <div id="google_translate_element" style="display: none;"></div>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'id',
+        includedLanguages: 'id,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    var lang = localStorage.getItem('selectedLang') || 'id'; 
+    document.getElementById("languageSwitcher").value = lang;
+    setTimeout(() => changeLanguage(lang), 500); 
+
+    document.getElementById("languageSwitcher").addEventListener("change", function() {
+        var selectedLang = this.value;
+        localStorage.setItem('selectedLang', selectedLang);
+        changeLanguage(selectedLang);
+    });
+});
+
+function changeLanguage(lang) {
+    var select = document.querySelector('.goog-te-combo');
+    if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event('change'));
+    }
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
 </body>
 
 </html>

@@ -37,11 +37,8 @@
 
                     <!-- Bagian Kanan: Teks -->
                     <div class="w-full md:w-1/2 md:pl-10 text-center md:text-left">
-                        <h2 class="text-3xl font-bold mb-4">About Us</h2>
-                        <p class="text-gray-700 mb-6 max-w-md">Yayasan Pusaka Bogor berdedikasi untuk melestarikan dan
-                            melindungi
-                            warisan budaya yang kaya dari Bogor. Kami bekerja untuk menjaga nilai sejarah, seni, dan tradisi
-                            yang menjadi identitas masyarakat Bogor.</p>
+                        <h2 class="text-3xl font-bold mb-4">{{ $about->title }}</h2>
+                        <p class="text-gray-700 mb-6 max-w-md">&emsp;{{ Str::words($about->description, 30, '...') }}</p>
                         <button class="btn btn-outline btn-warning" onclick="window.location='{{ route('about') }}'">Read
                             More...</button>
                     </div>
