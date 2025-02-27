@@ -38,7 +38,7 @@
                                 if (strlen($views) >= 10) $views = substr($views, 0, strlen($views)-9)."B";
                             @endphp
                             <tr class="hover:bg-gray-300">
-                                <th class="text-center">{{ $loop->iteration }}</th>
+                                <th class="text-center">{{ (($pg->currentPage() - 1) * $pg->perPage()) + $loop->iteration }}</th>
                                 <td>{{ $item->title }}</td>
                                 <td class="flex gap-2 flex-wrap items-center justify-center">
                                     <div class="max-w-56">
