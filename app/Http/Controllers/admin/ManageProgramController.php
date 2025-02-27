@@ -24,6 +24,7 @@ class ManageProgramController extends Controller
             $pageName = str_replace(' ', '-', strtolower($pt->name));
 
             $programs[$pt->name] = Program::where('type_id', $pt->id)
+                ->orderByDesc('created_at')
                 ->select([
                     'id',
                     'type_id',
