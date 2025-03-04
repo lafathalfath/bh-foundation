@@ -9,14 +9,14 @@
     <div>
         @if ($front_page->is_hero_visible)
             <section class="bg-[{{ $front_page->hero_bg_color}}] text-white py-30" data-aos="fade-down">
-                <div class="container mx-auto flex h-screen items-center">
+                <div class="container mx-auto flex max-[450px]:flex-col-reverse h-screen items-center justify-center gap-20 md:gap-64 max-[450px]:gap-5">
                     <!-- Bagian Kiri: Judul dan Teks -->
-                    <div class="w-full md:w-1/2 pl-10">
-                        <h3 class="text-5xl text-center md:text-6xl font-bold leading-tight">{{ $front_page->hero_title }}</h3>
-                        <p class="mt-4 text-lg md:text-xl text-center">{{ $front_page->hero_description }}.</p>
+                    <div class="w-1/3 max-[450px]:w-4/5 max-[450px]:w-1/2 flex flex-col items-center justify-center">
+                        <h3 class="text-3xl max-[450px]:text-2xl text-center font-bold leading-tight">{{ $front_page->hero_title }}</h3>
+                        <p class="mt-4 md:text-lg text-center">{{ $front_page->hero_description }}.</p>
                     </div>
 
-                    <div class="md:block md:w-1/2 flex justify-end pr-40">
+                    <div class="max-w-[500px] flex justify-end max-[450px]:justify-center max-[450px]:w-[250px]">
                         <img src="{{ $front_page->hero_image_url }}" alt="Gambar Yayasan"
                             class="w-full max-w-sm rounded-lg shadow-lg ml-auto">
                     </div>
@@ -24,23 +24,25 @@
             </section>
         @endif
 
-        <main class="container mx-auto px-5 md:px-9">
+        <main class="container mx-auto px-5 max-[450px]:px-9">
 
         @if ($front_page->is_about_visible)
             <!-- About Us Section -->
             <section class="py-20">
-                <div class="container mx-auto flex flex-col md:flex-row items-center">
+                <div class="container mx-auto flex max-[450px]:flex-col items-center gap-10">
                     <!-- Bagian Kiri: Gambar -->
-                    <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                    <div class="w-full max-[450px]:w-1/2 mb-8 max-[450px]:mb-0">
                         <img src="{{ $settings->logo_banner_url }}" alt="Logo" class="w-full max-w-sm mx-auto">
                     </div>
 
                     <!-- Bagian Kanan: Teks -->
-                    <div class="w-full md:w-1/2 md:pl-10 text-center md:text-left">
-                        <h2 class="text-3xl font-bold mb-4">{{ $about->title }}</h2>
+                    <div class="w-full flex flex-col max-[450px]:pt-10 max-[450px]:items-center">
+                        <h2 class="text-3xl max-[450px]:text-2xl font-bold mb-4">{{ $about->title }}</h2>
                         <p class="text-gray-700 mb-6 max-w-md">&emsp;{{ Str::words($about->description, 30, '...') }}</p>
-                        <button class="btn btn-outline btn-warning" onclick="window.location='{{ route('about') }}'">Read
-                            More...</button>
+                        <div>
+                            <button class="btn btn-sm md:btn-md btn-outline btn-warning" onclick="window.location='{{ route('about') }}'">Read
+                                More...</button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -49,9 +51,9 @@
             <!-- Recent News Section -->
             @if ($front_page->is_recent_news_visible)
                 <section class="py-20 ">
-                    <div class="container mx-auto text-center px-4 md:px-8">
-                        <h2 class="text-3xl font-bold mb-10">Recent News</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 z-0">
+                    <div class="container mx-auto text-center px-4 max-[450px]:px-8">
+                        <h2 class="text-3xl max-[450px]:text-2xl font-bold mb-10">Recent News</h2>
+                        <div class="grid grid-cols-1 max-[450px]:grid-cols-3 gap-8 z-0">
                             @forelse ($news as $nw)
                                             @php
                                                 $views = strval($nw->views);
@@ -78,7 +80,7 @@
                                                     <a href="{{ route('article', [
                                     'type' => 'news',
                                     'id' => Crypt::encryptString($nw->id)
-                                ]) }}" class="btn btn-outline btn-warning mt-4">
+                                ]) }}" class="btn btn-sm md:btn-md btn-outline btn-warning mt-4">
                                                         Read More...
                                                     </a>
                                                 </div>
@@ -90,10 +92,10 @@
                     </div>
                     <div class="flex items-center justify-center space-x-3">
                         <a href="{{ route('allnews') }}">
-                            <button class="btn btn-outline btn-warning mt-4">Berita Lainnya...</button>
+                            <button class="btn btn-sm md:btn-md btn-outline btn-warning mt-4">Berita Lainnya...</button>
                         </a>
                         <a href="{{ route('contact') }}">
-                            <button class="btn btn-outline btn-warning mt-4">Contact <i
+                            <button class="btn btn-sm md:btn-md btn-outline btn-warning mt-4">Contact <i
                                     class="fa-solid fa-paper-plane"></i></button>
                         </a>
                     </div>
