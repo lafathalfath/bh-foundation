@@ -22,7 +22,7 @@
                         <td class="text-center">{{ $item->name }}</td>
                         <td class="text-center"><a href="{{ $item->url }}" class="hover:text-blue-600">{{ $item->url }}</a></td>
                         <td class="flex items-center justify-center gap-2">
-                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.social.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
+                            <button class="btn btn-sm btn-warning" onclick="handleEdit('{{ route('manage.social.update', Crypt::encryptString($item->id)) }}', '{{ $item->name }}', '{{ $item->url }}')"><i class="fa-solid fa-pencil"></i> Edit</button>
                             <button class="btn btn-sm btn-error text-white" onclick="handleDelete('{{ route('manage.social.destroy', Crypt::encryptString($item->id)) }}')"><i class="fa-solid fa-trash-can"></i> Delete</button>
                         </td>
                     </tr>
@@ -116,12 +116,14 @@
 {{-- modals --}}
 
 <script>
-    const handleEdit = (route, name) => {
+    const handleEdit = (route, name, url) => {
         const modal = document.getElementById('edit_modal')
         const form = document.getElementById('edit_form')
         const nameInput = document.getElementById('edit_name')
+        const urlInput = document.getElementById('edit_url')
         form.action = route
         nameInput.value = name
+        urlInput.value = url
         modal.showModal()
         
     }
