@@ -6,7 +6,7 @@
                 <div class="w-1/2 h-full" data-aos="fade-right">
                     <div class="p-10">
                         <div class="text-5xl font-semibold">{{ $about->title }}</div><br>
-                        <p>&emsp;{{ $about->description }}</p>
+                        <p>&emsp;{!! nl2br(e($about->description)) !!}</p>
                     </div>
                 </div>
                 <div class="w-1/2 h-full" data-aos="fade-left">
@@ -26,9 +26,9 @@
                 </div>
                 <div class="w-1/2 max-h-full text-white" data-aos="fade-left">
                     <div class="font-semibold text-2xl mb-2 mt-3">Vision:</div>
-                    <p>{{ $about->vision }}</p>
+                    <p>{!! nl2br(e($about->vision)) !!}</p>
                     <div class="font-semibold text-2xl mb-2 mt-3">Mision:</div>
-                    <p>{{ $about->mision }}</p>
+                    <p>{!! nl2br(e($about->mision)) !!}</p>
                 </div>
             </section>
         @endif

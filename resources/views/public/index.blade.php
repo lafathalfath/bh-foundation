@@ -13,7 +13,7 @@
                     <!-- Bagian Kiri: Judul dan Teks -->
                     <div class="w-full md:w-1/2 pl-10">
                         <h3 class="text-5xl text-center md:text-6xl font-bold leading-tight">{{ $front_page->hero_title }}</h3>
-                        <p class="mt-4 text-lg md:text-xl text-center">{{ $front_page->hero_description }}.</p>
+                        <p class="mt-4 text-lg md:text-xl text-center">{!! nl2br(e($front_page->hero_description)) !!}.</p>
                     </div>
 
                     <div class="md:block md:w-1/2 flex justify-end pr-40">
