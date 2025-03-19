@@ -29,12 +29,12 @@
             </a>
 
             <!-- Hamburger Menu (Mobile) -->
-            <button id="menu-toggle" class="block md:hidden focus:outline-none text-2xl">
+            <button id="menu-toggle" class="block min-[960px]:hidden focus:outline-none text-2xl">
                 ☰
             </button>
 
             <!-- Link Navigasi -->
-            <div id="menu" class="hidden md:flex items-center gap-5">
+            <div id="menu" class="hidden min-[960px]:flex items-center gap-5">
                 <a href="{{ route('home') }}"
                     class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
                     Home
@@ -67,7 +67,7 @@
             </div>
 
             <!-- Search Box -->
-            <div class="hidden md:flex items-center gap-3 px-3 py-1 outline outline-1 outline-gray-300">
+            <div class="hidden min-[960px]:flex items-center gap-3 px-3 py-1 outline outline-1 outline-gray-300">
                 <div class="text-xl">⌕</div>
                 <input type="search" name="search" class="outline-none bg-white" placeholder="Search...">
             </div>
@@ -75,7 +75,7 @@
 
         <!-- Dropdown Menu (Mobile) -->
         <div id="mobile-menu"
-            class="md:hidden flex flex-col gap-2 px-5 pt-3 pb-5 bg-white shadow-md fixed top-14 left-0 w-full z-40">
+            class="flex-col gap-2 px-5 pt-3 pb-5 bg-white shadow-md fixed top-[9%] left-0 w-full z-40" style="display: none;">
             <a href="{{ route('home') }}"
                 class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
                 Home
@@ -84,13 +84,13 @@
                 class="p-2 {{ request()->getPathInfo() == '/about-us' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
                 About Us
             </a>
-            <div class="p-2 hover:bg-gray-200">
-                Our Works <i class="fa-solid fa-caret-down"></i>
-                <ul class="pl-4 mt-2">
-                    <li><a href="https://stpbogor.ac.id/">STP</a></li>
-                    <li><a href="https://lkp.stpbogor.ac.id/">LKP</a></li>
-                    <li><a href="https://lsp.stpbogor.ac.id/">LSP</a></li>
-                    <li><a href="https://lppm.stpbogor.ac.id/">LPPM</a></li>
+            <div>
+                <button onclick="ToggleMobileOw(this)" class="w-full text-start p-2 hover:bg-gray-200">Our Works <i class="fa-solid fa-caret-right"></i></button>
+                <ul class="pl-4 mt-2" id="mobile-ow" style="display: none;">
+                    <li class="p-1 hover:bg-gray-200"><a href="https://stpbogor.ac.id/">STP</a></li>
+                    <li class="p-1 hover:bg-gray-200"><a href="https://lkp.stpbogor.ac.id/">LKP</a></li>
+                    <li class="p-1 hover:bg-gray-200"><a href="https://lsp.stpbogor.ac.id/">LSP</a></li>
+                    <li class="p-1 hover:bg-gray-200"><a href="https://lppm.stpbogor.ac.id/">LPPM</a></li>
                 </ul>
             </div>
             <a href="{{ route('ideas') }}"
@@ -194,7 +194,8 @@
         const mobileMenu = document.getElementById('mobile-menu');
 
         menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            // mobileMenu.classList.toggle('hidden');
+            mobileMenu.style.display = mobileMenu.style.display == 'none' ? 'flex' : 'none'
         });
 
         const hideError = (id) => {
@@ -204,6 +205,12 @@
         const hideSuccess = () => {
             const alert = document.getElementById('success')
             alert.style.display = 'none'
+        }
+
+        const ToggleMobileOw = (e) => {
+            const menu = document.getElementById('mobile-ow')
+            menu.style.display = menu.style.display == 'none' ? 'block' : 'none'
+            e.innerHTML = e.innerHTML == 'Our Works <i class="fa-solid fa-caret-right"></i>' ? 'Our Works <i class="fa-solid fa-caret-down"></i>' : 'Our Works <i class="fa-solid fa-caret-right"></i>'
         }
     </script>
 

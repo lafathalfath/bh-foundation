@@ -2,17 +2,17 @@
 @section('content')
     <div class="flex flex-col">
         @if ($about->is_hero_visible)
-            <section class="my-5 flex items-center justify-between h-96">
-                <div class="w-1/2 h-full" data-aos="fade-right">
+            <section class="my-5 flex max-[960px]:flex-col-reverse items-center justify-between min-h-96">
+                <div class="w-full md:w-1/2 h-full" data-aos="fade-right">
                     <div class="p-10">
-                        <div class="text-5xl font-semibold">{{ $about->title }}</div><br>
-                        <p>&emsp;{!! nl2br(e($about->description)) !!}</p>
+                        <div class="text-2xl md:text-5xl font-semibold">{{ $about->title }}</div><br>
+                        <p class="max-[960px]:text-sm">&emsp;{!! nl2br(e($about->description)) !!}</p>
                     </div>
                 </div>
-                <div class="w-1/2 h-full" data-aos="fade-left">
+                <div class="w-full md:w-1/2 h-full" data-aos="fade-left">
                     <div class="h-full flex items-center justify-end">
                         <div class="h-full">
-                            <img src="{{ $about->image_1_url }}" alt="" class="h-full">
+                            <img src="{{ $about->image_1_url }}" alt="" class="h-full w-full">
                         </div>
                     </div>
                 </div>
@@ -20,15 +20,15 @@
         @endif
 
         @if ($about->is_vision_visible)
-            <section class="p-5 bg-[{{ $about->bg_color ?? $settings->primary_color }}] flex items-center justify-between h-96">
-                <div class="w-1/2 h-full" data-aos="fade-right">
+            <section class="p-5 bg-[{{ $about->bg_color ?? $settings->primary_color }}] flex max-[960px]:flex-col items-center justify-between min-h-96">
+                <div class="w-full md:w-1/2 h-full" data-aos="fade-right">
                     <img src="{{ $about->image_2_url }}" class="h-full" alt="">
                 </div>
-                <div class="w-1/2 max-h-full text-white" data-aos="fade-left">
+                <div class="w-full md:w-1/2 max-h-full text-white" data-aos="fade-left">
                     <div class="font-semibold text-2xl mb-2 mt-3">Vision:</div>
-                    <p>{!! nl2br(e($about->vision)) !!}</p>
+                    <p class="max-[960px]:text-sm">{!! nl2br(e($about->vision)) !!}</p>
                     <div class="font-semibold text-2xl mb-2 mt-3">Mision:</div>
-                    <p>{!! nl2br(e($about->mision)) !!}</p>
+                    <p class="max-[960px]:text-sm">{!! nl2br(e($about->mision)) !!}</p>
                 </div>
             </section>
         @endif
@@ -115,12 +115,12 @@
         @endif
 
         @if ($about->is_partners_visible)
-            <section class="mx-[8%] my-[5%] outline outline-1 outline-gray-300 h-96 flex items-center gap-10">
-                <div class="p-5 flex flex-col items-center justify-center w-1/3">
+            <section class="mx-[8%] my-[5%] outline outline-1 outline-gray-300 h-96 flex max-[960px]:flex-col items-center gap-10">
+                <div class="p-5 flex flex-col items-center justify-center md:w-1/3 w-full">
                     <div class="w-full mb-3 text-2xl font-semibold">{{ $about->partners_title }}</div>
-                    <div>{{ $about->partners_description }}</div>
+                    <div class="max-[450px]:text-sm">{{ $about->partners_description }}</div>
                 </div>
-                <div class="flex flex-wrap items-center justify-center gap-2 w-2/3">
+                <div class="flex flex-wrap items-center justify-center gap-2 md:w-2/3 w-full">
                     @forelse ($partners as $pt)
                         <a href="{{ $pt->url }}">
                             <div
