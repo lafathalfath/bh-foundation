@@ -73,16 +73,17 @@ class ManageAboutController extends Controller
             'is_partners_visible' => $req->is_partners_visible ?? false,
         ];
         $target_dir = storage_path('app/public/about');
+        if (!File::exists($target_dir)) File::makeDirectory($target_dir);
         if ($req->hasFile('image_1')) {
             $filename = $req->image_1->hashName();
-            $req->logo->move($target_dir, $filename);
+            $req->image_1->move($target_dir, $filename);
             $prev_path = str_replace('/storage', '', $about->logo_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
             $data['image_1_url'] = '/storage/about/'.$filename;
         }
         if ($req->hasFile('image_2')) {
             $filename = $req->image_2->hashName();
-            $req->logo->move($target_dir, $filename);
+            $req->image_2->move($target_dir, $filename);
             $prev_path = str_replace('/storage', '', $about->logo_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
             $data['image_2_url'] = '/storage/about/'.$filename;
