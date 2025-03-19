@@ -41,18 +41,18 @@ class ManageIdeasController extends Controller
         if ($req->hasFile('image')) {
             $filename = $req->image->hashName();
             $req->image->move($target_dir, $filename);
-            $prev_path = str_replace(env('APP_URL').'/storage', '', $ideas->image_url);
+            $prev_path = str_replace('/storage', '', $ideas->image_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
-            $data['image_url'] = env('APP_URL').'/storage/developmnet/'.$filename;
+            $data['image_url'] = '/storage/development/'.$filename;
         }
 
         $target_dir = storage_path('app/public/major');
         if ($req->hasFile('major_image')) {
             $filename = $req->major_image->hashName();
             $req->major_image->move($target_dir, $filename);
-            $prev_path = str_replace(env('APP_URL').'/storage', '', $ideas->major_image_url);
+            $prev_path = str_replace('/storage', '', $ideas->major_image_url);
             if (File::exists(storage_path('app/public').$prev_path)) File::delete(storage_path('app/public').$prev_path);
-            $data['major_image_url'] = env('APP_URL').'/storage/major/'.$filename;
+            $data['major_image_url'] = '/storage/major/'.$filename;
         }
         $ideas->update($data);
         return back()->with('success', 'Ideas Updating Successful');
