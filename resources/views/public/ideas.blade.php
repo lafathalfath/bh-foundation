@@ -6,8 +6,8 @@
                 <div class="container mx-auto flex flex-col md:flex-row items-center">
                     <!-- Bagian Kiri: Gambar -->
                     <div class="w-full md:w-1/2 md:pl-10 text-center md:text-right">
-                        <h2 class="text-3xl font-bold mb-4 text-center">{{ $ideas->title }}</h2>
-                        <p class="text-gray-700 mb-6 text-center">{!! nl2br(e($ideas->description)) !!}.</p>
+                        <h2 class="text-3xl font-bold mb-4 text-center">{{ translate($ideas->title, session('locale', 'en')) }}</h2>
+                        <p class="text-gray-700 mb-6 text-center">{!! nl2br(e(translate($ideas->description, session('locale', 'en')))) !!}.</p>
                     </div>
 
                     <!-- Bagian Kanan: Teks -->
@@ -20,7 +20,7 @@
 
         <section class="py-10">
             <div class="container mx-auto text-center">
-                <h2 class="text-2xl font-bold mb-6">Scholarship</h2>
+                <h2 class="text-2xl font-bold mb-6">@lang('messages.scholarship')</h2>
                 <div class="flex justify-center">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl">
                         @forelse ($scholarship as $sch)
@@ -33,7 +33,7 @@
                                 'id' => Crypt::encryptString($sch->id)
                             ]) }}"
                                                         class="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full">Scholarship</a>
-                                                    <h3 class="text-lg font-semibold mt-2 truncate">{{ $sch->title }}</h3>
+                                                    <h3 class="text-lg font-semibold mt-2 truncate">{{ translate($sch->title, session('locale', 'en')) }}</h3>
                                                 </div>
                                             </div>
                         @empty
@@ -86,8 +86,8 @@
 
                     <!-- Bagian Kanan: Teks -->
                     <div class="w-full md:w-1/2 md:pl-10 text-center md:text-left">
-                        <h2 class="text-3xl font-bold mb-4">{{ $ideas->major_title }}</h2>
-                        <p class="text-gray-700 mb-6 max-w-md">{!! nl2br(e($ideas->major_description)) !!}
+                        <h2 class="text-3xl font-bold mb-4">{{ translate($ideas->major_title, session('locale', 'en')) }}</h2>
+                        <p class="text-gray-700 mb-6 max-w-md">{!! nl2br(e(translate($ideas->major_description, session('locale', 'en')))) !!}
                         </p>
                     </div>
                 </div>
