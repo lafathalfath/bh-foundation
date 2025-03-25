@@ -37,16 +37,16 @@
             <div id="menu" class="hidden min-[960px]:flex items-center gap-5">
                 <a href="{{ route('home') }}"
                     class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                    Home
+                    @lang('messages.home')
                 </a>
                 <a href="{{ route('about') }}"
                     class="p-2 {{ request()->getPathInfo() == '/about-us' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                    About Us
+                    @lang('messages.about_us')
                 </a>
                 <div class="relative group">
                     <div tabindex="0" role="button"
                         class="p-2 border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                        Our Works <i class="fa-solid fa-caret-down"></i>
+                        @lang('messages.our_works') <i class="fa-solid fa-caret-down"></i>
                     </div>
                     <ul tabindex="0"
                         class="group-hover:block dropdown-content menu bg-white absolute hidden rounded-md shadow-md w-52 p-2 z-10">
@@ -58,34 +58,35 @@
                 </div>
                 <a href="{{ route('ideas') }}"
                     class="p-2 {{ request()->getPathInfo() == '/ideas' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                    Ideas
+                    @lang('messages.ideas')
                 </a>
                 <a href="{{ route('contact') }}"
                     class="p-2 {{ request()->getPathInfo() == '/contact' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                    Contact
+                    @lang('messages.contact')
                 </a>
             </div>
 
             <!-- Search Box -->
             <div class="hidden min-[960px]:flex items-center gap-3 px-3 py-1 outline outline-1 outline-gray-300">
                 <div class="text-xl">⌕</div>
-                <input type="search" name="search" class="outline-none bg-white" placeholder="Search...">
+                <input type="search" name="search" class="outline-none bg-white" placeholder="{{ translate('Search...', session('locale', 'en')) }}">
             </div>
         </nav>
 
         <!-- Dropdown Menu (Mobile) -->
-        <div id="mobile-menu"
-            class="flex-col gap-2 px-5 pt-3 pb-5 bg-white shadow-md fixed top-[9%] left-0 w-full z-40" style="display: none;">
+        <div id="mobile-menu" class="flex-col gap-2 px-5 pt-3 pb-5 bg-white shadow-md fixed top-[9%] left-0 w-full z-40"
+            style="display: none;">
             <a href="{{ route('home') }}"
                 class="p-2 {{ request()->getPathInfo() == '/' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                Home
+                @lang('messages.home')
             </a>
             <a href="{{ route('about') }}"
                 class="p-2 {{ request()->getPathInfo() == '/about-us' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                About Us
+                @lang('messages.about_us')
             </a>
             <div>
-                <button onclick="ToggleMobileOw(this)" class="w-full text-start p-2 hover:bg-gray-200">Our Works <i class="fa-solid fa-caret-right"></i></button>
+                <button onclick="ToggleMobileOw(this)" class="w-full text-start p-2 hover:bg-gray-200">Our Works <i
+                        class="fa-solid fa-caret-right"></i></button>
                 <ul class="pl-4 mt-2" id="mobile-ow" style="display: none;">
                     <li class="p-1 hover:bg-gray-200"><a href="https://stpbogor.ac.id/">STP</a></li>
                     <li class="p-1 hover:bg-gray-200"><a href="https://lkp.stpbogor.ac.id/">LKP</a></li>
@@ -95,11 +96,11 @@
             </div>
             <a href="{{ route('ideas') }}"
                 class="p-2 {{ request()->getPathInfo() == '/ideas' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                Ideas
+                @lang('messages.ideas')
             </a>
             <a href="{{ route('contact') }}"
                 class="p-2 {{ request()->getPathInfo() == '/contact' ? 'border-t-2' : '' }} border-[{{ $settings->primary_color }}] hover:bg-gray-200">
-                Contact
+                @lang('messages.contact')
             </a>
         </div>
     </div>
@@ -127,15 +128,17 @@
                     <img src="{{ $settings->logo_url }}" alt="Logo" class="w-10 mb-2">
                     <h3 class="text-white text-lg font-bold">BH Foundation</h3>
                 </div>
-                <p class="text-gray-500 text-sm">Aliquam rhoncus ligula est, non pulvinar elit convallis nec. Donec
-                    mattis odio at.</p>
+                <p class="text-gray-500 text-sm">{{ translate('Aliquam rhoncus ligula est, non pulvinar elit convallis nec. Donec
+                    mattis odio at.', session('locale', 'en')) }}</p>
                 <div class="flex items-center gap-2 mt-3">
                     @php
                         $social = \App\Models\SocialMedia::select(['name', 'url'])->get();
                     @endphp
                     @foreach ($social as $sc)
-                        <a href="{{ $sc->url }}" class="w-8 aspect-square bg-gray-700 hover:bg-[{{ $settings->primary_color }}] hover:shadow-md hover:shadow-[{{ $settings->primary_color }}] text-white flex items-center justify-center">
-                            <i class="fa-brands fa-{{ str_replace(' ', '-', strtolower($sc->name)) == 'x' ? 'twitter' : str_replace(' ', '-', strtolower($sc->name)) }}"></i>
+                        <a href="{{ $sc->url }}"
+                            class="w-8 aspect-square bg-gray-700 hover:bg-[{{ $settings->primary_color }}] hover:shadow-md hover:shadow-[{{ $settings->primary_color }}] text-white flex items-center justify-center">
+                            <i
+                                class="fa-brands fa-{{ str_replace(' ', '-', strtolower($sc->name)) == 'x' ? 'twitter' : str_replace(' ', '-', strtolower($sc->name)) }}"></i>
                         </a>
                     @endforeach
                 </div>
@@ -143,35 +146,35 @@
 
             <!-- Top 4 Category -->
             <div class="space-y-3">
-                <h4 class="text-white text-base font-semibold">TOP 4 CATEGORY</h4>
+                <h4 class="text-white text-base font-semibold">@lang('messages.top_4_category')</h4>
                 <ul class="space-y-1 text-sm">
-                    <li><a href="#" class="hover:text-white">Development</a></li>
-                    <li><a href="#" class="hover:text-white">Finance & Accounting</a></li>
-                    <li><a href="#" class="hover:text-white">Design</a></li>
-                    <li><a href="#" class="hover:text-white">Business</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.development')</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.finance')</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.design')</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.business')</a></li>
                 </ul>
             </div>
 
             <!-- Quick Links -->
             <div class="space-y-3">
-                <h4 class="text-white text-base font-semibold">QUICK LINKS</h4>
+                <h4 class="text-white text-base font-semibold">@lang('messages.quick_links')</h4>
                 <ul class="space-y-1 text-sm">
-                    <li><a href="#" class="hover:text-white">About</a></li>
-                    <li><a href="#" class="hover:text-white flex items-center justify-between">Become Instructor</a>
+                    <li><a href="#" class="hover:text-white">@lang('messages.about')</a></li>
+                    <li><a href="#" class="hover:text-white flex items-center justify-between">@lang('messages.instructor')</a>
                     </li>
-                    <li><a href="#" class="hover:text-white">Contact</a></li>
-                    <li><a href="#" class="hover:text-white">Career</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.contact')</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.career')</a></li>
                 </ul>
             </div>
 
             <!-- Support -->
             <div class="space-y-3">
-                <h4 class="text-white text-base font-semibold">SUPPORT</h4>
+                <h4 class="text-white text-base font-semibold">@lang('messages.support')</h4>
                 <ul class="space-y-1 text-sm">
-                    <li><a href="#" class="hover:text-white">Help Center</a></li>
-                    <li><a href="#" class="hover:text-white">FAQs</a></li>
-                    <li><a href="#" class="hover:text-white">Terms & Condition</a></li>
-                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.help_center')</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.faq')</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.terms')</a></li>
+                    <li><a href="#" class="hover:text-white">@lang('messages.privacy')</a></li>
                 </ul>
             </div>
         </div>
@@ -180,10 +183,12 @@
         <div class="border-t border-gray-700 mt-10 pt-5 text-center text-gray-500">
             <p class="text-xs">© 2025 - Bogor Heritage Foundation. All rights reserved</p>
             <div class="mt-2">
-                <select class="bg-gray-800 text-white p-1 rounded text-xs">
-                    <option>English</option>
-                    <option>Bahasa Indonesia</option>
-                </select>
+                <form action="" method="GET" id="lang-form">
+                    <select name="lang" onchange="changeLanguage(this)">
+                        <option value="en" {{ session('locale') == 'en' ? 'selected' : '' }}>English</option>
+                        <option value="id" {{ session('locale') == 'id' ? 'selected' : '' }}>Bahasa Indonesia</option>
+                    </select>
+                </form>
             </div>
         </div>
     </footer>
@@ -214,19 +219,27 @@
         }
     </script>
 
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        AOS.init({
-            duration: 1000, // Durasi animasi (1 detik)
-            once: false,    // Animasi akan di-trigger setiap muncul di viewport
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            AOS.init({
+                duration: 1000, // Durasi animasi (1 detik)
+                once: false,    // Animasi akan di-trigger setiap muncul di viewport
+            });
         });
-    });
-</script>
+    </script>
 
-<!-- Language -->
- <!-- Google Translate Widget -->
-<!-- <div id="google_translate_element" style="display: none;"></div>
+    <script>
+        function changeLanguage(select) {
+            let lang = select.value;
+            window.location.href = "{{ url('locale') }}/" + lang;
+        }
+    </script>
+
+
+    <!-- Language -->
+    <!-- Google Translate Widget -->
+    <!-- <div id="google_translate_element" style="display: none;"></div>
 
 <script>
 function googleTranslateElementInit() {

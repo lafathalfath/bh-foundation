@@ -23,22 +23,22 @@
                                 alt="News Image" class="w-full h-full object-cover  ">
                         </figure>
                         <div class="card-body">
-                            <h3 class="card-title">{{ $nw->title }}</h3>
-                            <p class="w-full h-7 overflow-hidden text-start text-gray-600">{{ $nw->description }}</p>
+                            <h3 class="card-title">{{ translate($nw->title, session('locale', 'en')) }}</h3>
+                            <p class="w-full h-7 overflow-hidden text-start text-gray-600">{{ translate($nw->description, session('locale', 'en')) }}</p>
                             <p class="w-full text-start text-gray-500">{{ substr($nw->published_at, 0, 10) }}</p>
                             <div class="w-full flex justify-end">
-                                {{ $views }} views
+                                {{ $views }} @lang('messages.views')
                             </div>
                             <a href="{{ route('article', [
                                 'type' => 'news',
                                 'id' => Crypt::encryptString($nw->id)
                             ]) }}" class="btn btn-outline btn-warning mt-4">
-                                Read More...
+                                @lang('messages.read_more')
                             </a>
                         </div>
                     </div>
                 @empty
-                    <div>Empty</div>
+                    <div>@lang('messages.empty')</div>
                 @endforelse
             </div>
             
@@ -67,7 +67,7 @@
                     else $endpage = $current + 5;
                 }
             @endphp
-            <div>Showing {{ $start }} to {{ $show }} of {{ $allnews->total() }} results</div>
+            <div>{{ translate(sprintf('Showing %d to %d of %d results', $start, $show, $allnews->total()), session('locale', 'en')) }}</div>
             <div class="flex items-center justify-center">
                 <div class="flex items-center justify-center gap-2">
                     <a @if (!$first)
