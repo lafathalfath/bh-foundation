@@ -11,6 +11,8 @@ return [
     'related_post' => 'Related Post',
     'recent_news' => 'Recent News',
     'another_news' => 'Another News..',
+    'another_program' => 'Another Program...',
+    'another_scholarship' => 'Another Scholarship...', 
     'read_more' => 'Read More...',
     'board_of_supervisor' => 'Board of Supervisor',
     'supervisory_board' => 'Supervisory Board',
@@ -40,7 +42,10 @@ return [
     'privacy' => 'Privacy Policy',
     'share' => 'Share',
     'views' => 'views',
-    'empty' => 'Empty'
+    'empty' => 'Empty',
+    'category_filter' => 'Category Filter',
+    'all' => 'All',
+    'news' => 'News'
 ];
 
 

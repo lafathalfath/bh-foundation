@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-center space-x-3">
-                        <a href="{{ route('allnews') }}">
+                        <a href="{{ route('allnews', ['type'=>'news']) }}">
                             <button class="btn btn-sm md:btn-md btn-outline btn-warning mt-4">@lang('messages.another_news')</button>
                         </a>
                         <a href="{{ route('contact') }}">
