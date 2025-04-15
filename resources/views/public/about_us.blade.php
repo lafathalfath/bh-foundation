@@ -53,18 +53,19 @@
             </section>
         @endif
 
-        @if ($about->is_programs_visible)
+        @isset($programs)
+        @if (isset($about) && $about->is_programs_visible)
             <section class="px-[8%] py-[5%]" id="programs">
                 <div class="flex items-center justify-between mb-3">
                     <div class="font-semibold text-lg">@lang('messages.programs')</div>
-                    <div class="flex items-center gap-1">
+                    <!-- <div class="flex items-center gap-1">
                         <a href="{{ route('about', ['page' => $programs->currentPage() - 1]) }}"
                             class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] flex items-center justify-center w-10 h-10 scale-x-[-1]">
                             &#10140;</a>
                         <a href="{{ route('about', ['page' => $programs->currentPage() + 1]) }}"
                             class="text-[{{ $settings->primary_color }}] bg-[{{ $settings->accent_color }}]/[0.5] flex items-center justify-center w-10 h-10">
                             &#10140;</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="relative">
                     <div class="flex gap-5">
@@ -110,9 +111,15 @@
                             <div class="flex justify-center">@lang('messages.empty')</div>
                         @endforelse
                     </div>
+                    <div class="flex items-center justify-center space-x-3">
+                    <a href="{{ route('allnews',['type' => 'programs']) }}">
+                            <button class="btn btn-sm md:btn-md btn-outline btn-warning mt-4">@lang('messages.another_program')</button>
+                    </a>
+                    </div>
                 </div>
             </section>
         @endif
+        @endisset
 
         @if ($about->is_partners_visible)
             <section class="mx-[8%] my-[5%] outline outline-1 outline-gray-300 h-96 flex max-[960px]:flex-col items-center gap-10">

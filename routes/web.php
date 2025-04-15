@@ -19,6 +19,7 @@ use App\Http\Controllers\public\IdeasController;
 use App\Http\Controllers\public\ContactController;
 use App\Http\Controllers\public\AllnewsController;
 use App\Http\Controllers\public\ArticleController;
+use App\Http\Controllers\public\SearchController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\AuthenticateMiddleware;
@@ -120,3 +121,6 @@ Route::get('/allnews', [AllnewsController::class, 'index'])->name('allnews');
 Route::get('/article/{type}/{id}', [ArticleController::class, 'index'])->name('article');
 Route::post('/contact/send', [ContactUsController::class, 'sendMessage'])->name('contact.send');
 Route::get('locale/{lang}', [LocaleController::class, 'setLocale'])->name('setLocale');
+
+Route::get('/search', [SearchController::class, 'index'])->name('globalSearch');
+Route::get('/search/check', [SearchController::class, 'check'])->name('search.check');

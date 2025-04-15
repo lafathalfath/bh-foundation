@@ -18,6 +18,7 @@
             </section>
         @endif
 
+        @isset($scholarship)
         <section class="py-10">
             <div class="container mx-auto text-center">
                 <h2 class="text-2xl font-bold mb-6">@lang('messages.scholarship')</h2>
@@ -29,10 +30,10 @@
                                                 <img src="{{ $sch->image_url }}" alt="Beasiswa Image" class="w-full h-48 object-cover">
                                                 <div class="p-4">
                                                     <a href="{{ route('article', [
-                                'type' => 'scholarship',
-                                'id' => Crypt::encryptString($sch->id)
-                            ]) }}"
-                                                        class="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full">Scholarship</a>
+                                                            'type' => 'scholarship',
+                                                            'id' => Crypt::encryptString($sch->id)
+                                                        ]) }}"
+                                                        class="bg-blue-100 text-blue-600 text-xs font-semibold px-2 py-1 rounded-full">@lang('messages.scholarship')</a>
                                                     <h3 class="text-lg font-semibold mt-2 truncate">{{ translate($sch->title, session('locale', 'en')) }}</h3>
                                                 </div>
                                             </div>
@@ -42,8 +43,14 @@
                     </div>
                 </div>
 
+                <div class="flex items-center justify-center space-x-3">
+                    <a href="{{ route('allnews', ['type' => 'scholarship']) }}">
+                            <button class="btn btn-sm md:btn-md btn-outline btn-warning mt-4">@lang('messages.another_scholarship')</button>
+                    </a>
+                </div>
+
                 <!-- Pagination -->
-                @php
+                <!-- @php
                     $current = $scholarship->currentPage();
                     $lastpage = $scholarship->lastPage();
                     $first = $current == 1;
@@ -72,9 +79,10 @@
                             »
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
+        @endisset
 
         @if ($ideas->is_major_visible)
             <section class="py-20">

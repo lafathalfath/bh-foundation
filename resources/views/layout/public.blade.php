@@ -66,11 +66,14 @@
                 </a>
             </div>
 
-            <!-- Search Box -->
-            <div class="hidden min-[960px]:flex items-center gap-3 px-3 py-1 outline outline-1 outline-gray-300">
+            <form action="{{ route('globalSearch') }}" method="GET"
+                class="hidden min-[960px]:flex items-center gap-3 px-3 py-1 outline outline-1 outline-gray-300">
                 <div class="text-xl">⌕</div>
-                <input type="search" name="search" class="outline-none bg-white" placeholder="{{ translate('Search...', session('locale', 'en')) }}">
-            </div>
+                <input type="search" name="search" id="search" class="outline-none bg-white"
+                    placeholder="{{ translate('Search...', session('locale', 'en')) }}" value="{{ request('search') }}">
+                <input type="hidden" name="type" id="searchType" value="{{ request('type', 'all') }}">
+            </form>
+
         </nav>
 
         <!-- Dropdown Menu (Mobile) -->
@@ -148,7 +151,7 @@
             <div class="space-y-3">
                 <h4 class="text-white text-base font-semibold">@lang('messages.top_4_category')</h4>
                 <ul class="space-y-1 text-sm">
-                    <li><a href="#" class="hover:text-white">@lang('messages.development')</a></li>
+                    <li><a href="{{ route('ideas') }}" class="hover:text-white">@lang('messages.development')</a></li>
                     <li><a href="#" class="hover:text-white">@lang('messages.finance')</a></li>
                     <li><a href="#" class="hover:text-white">@lang('messages.design')</a></li>
                     <li><a href="#" class="hover:text-white">@lang('messages.business')</a></li>
@@ -159,10 +162,11 @@
             <div class="space-y-3">
                 <h4 class="text-white text-base font-semibold">@lang('messages.quick_links')</h4>
                 <ul class="space-y-1 text-sm">
-                    <li><a href="#" class="hover:text-white">@lang('messages.about')</a></li>
-                    <li><a href="#" class="hover:text-white flex items-center justify-between">@lang('messages.instructor')</a>
+                    <li><a href="{{ route('about') }}" class="hover:text-white">@lang('messages.about')</a></li>
+                    <li><a href="#"
+                            class="hover:text-white flex items-center justify-between">@lang('messages.instructor')</a>
                     </li>
-                    <li><a href="#" class="hover:text-white">@lang('messages.contact')</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-white">@lang('messages.contact')</a></li>
                     <li><a href="#" class="hover:text-white">@lang('messages.career')</a></li>
                 </ul>
             </div>
@@ -171,8 +175,8 @@
             <div class="space-y-3">
                 <h4 class="text-white text-base font-semibold">@lang('messages.support')</h4>
                 <ul class="space-y-1 text-sm">
-                    <li><a href="#" class="hover:text-white">@lang('messages.help_center')</a></li>
-                    <li><a href="#" class="hover:text-white">@lang('messages.faq')</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-white">@lang('messages.help_center')</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-white">@lang('messages.faq')</a></li>
                     <li><a href="#" class="hover:text-white">@lang('messages.terms')</a></li>
                     <li><a href="#" class="hover:text-white">@lang('messages.privacy')</a></li>
                 </ul>
@@ -236,6 +240,56 @@
         }
     </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentPath = window.location.pathname;
+            const typeInput = document.getElementById('searchType');
+            const searchInput = document.getElementById('search');
+            const params = new URLSearchParams(window.location.search);
+            const queryType = params.get('type'); // Ambil query string `type`
+
+            if (typeInput) {
+                if (queryType) {
+                    typeInput.value = queryType;
+                } else if (currentPath.includes('/allnews')) {
+                    typeInput.value = '{{ $type ?? 'all' }}';
+                } else {
+                    typeInput.value = 'all';
+                }
+
+                if (searchInput) {
+                    searchInput.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+
+                            const keyword = searchInput.value.trim();
+                            let type = typeInput.value; // Ambil nilai typeInput
+
+                            if (!keyword) {
+                                alert('Masukan kata kunci pencaharian.');
+                                return;
+                            }
+
+                            // Mengirimkan beberapa tipe dalam query string (misalnya 'news,programs,scholarship')
+                            fetch(`/search/check?search=${encodeURIComponent(keyword)}${type ? `&type=${type}` : ''}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.found) {
+                                        searchInput.closest('form').submit();
+                                    } else {
+                                        alert('Pencarian anda tidak ditemukan.');
+                                    }
+                                })
+                                .catch(() => {
+                                    alert('Terjadi kesalahan saat pencarian.');
+                                });
+                        }
+                    });
+                }
+            }
+        });
+
+    </script>
 
     <!-- Language -->
     <!-- Google Translate Widget -->

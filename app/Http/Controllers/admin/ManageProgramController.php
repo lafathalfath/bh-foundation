@@ -11,6 +11,7 @@ use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class ManageProgramController extends Controller
 {

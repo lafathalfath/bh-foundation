@@ -11,12 +11,14 @@ return [
     'related_post' => 'Berita Serupa',
     'recent_news' => 'Berita Terkini',
     'another_news' => 'Berita Lainnya...',
+    'another_program' => 'Program Lainnya...',
+    'another_scholarship' => 'Beasiswa Lainnya...', 
     'read_more' => 'Baca Selengkapnya...',
     'board_of_supervisor' => 'Dewan Pembina',
     'supervisory_board' => 'Dewan Pengawas',
     'fondation' => 'Yayasan',
-    'no_partner_exists' => 'tidak ada Mitra',
-    'scholarship' => 'beasiswa',
+    'no_partner_exists' => 'Tidak ada Mitra',
+    'scholarship' => 'Beasiswa',
     'contact_us' => 'Hubungi Kami',
     'address' => 'ALAMAT',
     'phone_number' => 'NOMOR TELEPON',
@@ -40,7 +42,10 @@ return [
     'privacy' => 'Kebijakan Privasi',
     'share' => 'Bagikan',
     'views' => 'dilihat',
-    'empty' => 'Kosong'
+    'empty' => 'Kosong',
+    'category_filter' => 'Penyaring Kategori',
+    'all' => 'Semua',
+    'news' => 'Berita'
 ];
 
 ?>
