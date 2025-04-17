@@ -39,9 +39,13 @@
                     <h4 class="text-lg font-bold mb-1">More In:</h4>
                     <div>
                         @foreach ($program->category as $cat)
-                            <a href=""
-                                class="text-gray-600 mb-3 hover:underline">{{ translate($cat->name, session('locale', 'en')) }}</a>
-                            @if ($loop->iteration != count($program->category)),@endif
+                                            <a href="{{ route('allnews', [
+                                'type' => 'all',
+                                'category' => $cat->slug ?? Str::slug($cat->name)
+                            ]) }}" class="text-gray-600 mb-3 hover:underline">
+                                                {{ translate($cat->name, session('locale', 'en')) }}
+                                            </a>
+                                            @if (!$loop->last),@endif
                         @endforeach
                     </div>
                     <h4 class="text-lg font-bold mb-1">Published:</h4>
@@ -88,12 +92,17 @@
             </article>
 
             <!-- Share Media -->
+            @php
+                $shareUrl = urlencode(url()->current());
+                $shareText = urlencode($program->title);
+            @endphp
             <aside class="md:col-span-1">
                 <div class="border rounded-lg p-4 shadow-md">
                     <h3 class="text-xl font-bold mb-4">@lang('messages.share')</h3>
                     <ul>
                         <li class="mb-3">
-                            <a href="#" class="text-gray-700 hover:text-blue-600">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}" target="_blank"
+                                class="text-gray-700 hover:text-blue-600">
                                 <i class="fab fa-facebook"></i> Facebook
                             </a>
                         </li>
@@ -104,7 +113,8 @@
                             </a>
                         </li>
                         <li class="mb-3">
-                            <a href="#" class="text-gray-700 hover:text-blue-400">
+                            <a href="https://twitter.com/intent/tweet?url={{ $shareUrl }}&text={{ $shareText }}"
+                                target="_blank" class="text-gray-700 hover:text-blue-400">
                                 <i class="fab fa-twitter"></i> Twitter
                             </a>
                         </li>
@@ -114,7 +124,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-700 hover:text-green-600">
+                            <a href="https://wa.me/?text={{ $shareText }}%0A{{ $shareUrl }}" target="_blank"
+                                class="text-gray-700 hover:text-green-600">
                                 <i class="fab fa-whatsapp"></i> WhatsApp
                             </a>
                         </li>
@@ -212,5 +223,18 @@
             </div>
         </section>
 
+        <!-- share konten -->
+        <script>
+            function copyLink() {
+                const dummy = document.createElement('input');
+                const url = window.location.href;
+                document.body.appendChild(dummy);
+                dummy.value = url;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                alert('Link berhasil disalin!');
+            }
+        </script>
     </main>
 @endsection
