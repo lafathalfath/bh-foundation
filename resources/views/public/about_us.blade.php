@@ -68,7 +68,7 @@
                     </div> -->
                 </div>
                 <div class="relative">
-                    <div class="flex gap-5">
+                    <div class="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
                         @forelse ($programs as $po)
                                     @php
                                         $views = strval($po->views);
