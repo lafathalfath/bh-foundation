@@ -8,13 +8,15 @@ use App\Models\mProgramType;
 use App\Models\Program;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class AllnewsController extends Controller
 {
     public function index(Request $request)
     {
-        $type = $request->query('type', 'news'); // default ke 'news'
+        $type = $request->query('type', 'news');
+        $category = $request->query('category'); // ✅ ambil category dari query
         $settings = AppSettings::select([
             'primary_color',
             'secondary_color',
@@ -34,9 +36,16 @@ class AllnewsController extends Controller
             $query->where('type_id', $programType->id);
         }
 
+        //  filter berdasarkan category jika ada
+        if ($category) {
+            $query->whereHas('category', function ($q) use ($category) {
+                $q->where('name', 'like', '%' . str_replace('-', ' ', $category) . '%');
+            });
+        }
+
         $allnews = $query->orderBy('id', 'desc')
             ->paginate(9)
-            ->withQueryString(); // biar query string tetap ada saat pindah halaman
+            ->withQueryString();
 
         return view('public.allnews', [
             'allnews' => $allnews,
@@ -45,6 +54,7 @@ class AllnewsController extends Controller
             'scholarship' => $allnews,
             'type' => $type,
             'settings' => $settings,
+            'category' => $category,
         ]);
     }
 }
