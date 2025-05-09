@@ -20,14 +20,19 @@ class ArticleController extends Controller
         }
         $type = ucfirst($type);
         $program_type = mProgramType::select('id')->where('name', $type)->first();
-        $related = $program_type->program()->select([
-            'id',
-            'type_id',
-            'title',
-            'image_url',
-            'views',
-            'published_at',
-        ])->where('id', '!=', $id)->where('published', true)->latest()->take(3)->get();
+        
+        if ($program_type) {
+            $related = $program_type->program()->select([
+                'id',
+                'type_id',
+                'title',
+                'image_url',
+                'views',
+                'published_at',
+            ])->where('id', '!=', $id)->where('published', true)->latest()->take(3)->get();
+        } else {
+            $related = []; // fallback jika type tidak valid seperti 'all'
+        }        
         return view('public.article', [
             'program' => $program,
             'related' => $related,
